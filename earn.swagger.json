@@ -299,7 +299,7 @@
         }
       }
     },
-    "/v1/users/{id}/activate/email": {
+    "/v1/users/{id}/activate": {
       "post": {
         "tags": [
           "UsersService"
@@ -320,56 +320,6 @@
             "required": true,
             "schema": {
               "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{id}/change_password": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "修改密码",
-        "operationId": "UsersService_ChangePassword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "title": "密码"
-                },
-                "repeat_password": {
-                  "type": "string",
-                  "title": "重复密码"
-                }
-              }
             }
           }
         ],
@@ -436,434 +386,18 @@
         }
       }
     },
-    "/v1/users/{id}/password/reset/email": {
-      "post": {
+    "/v1/users/{id}/password/change": {
+      "put": {
         "tags": [
           "UsersService"
         ],
-        "summary": "发送重置密码邮件",
-        "operationId": "UsersService_SendResetPasswordEmail",
+        "summary": "修改密码",
+        "operationId": "UsersService_ChangePassword",
         "parameters": [
           {
             "type": "string",
             "description": "用户ID",
             "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}": {
-      "get": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "查看用户详情",
-        "operationId": "UsersService_GetUserMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "更新用户",
-        "operationId": "UsersService_UpdateUserMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nickname": {
-                  "type": "string",
-                  "title": "姓名"
-                },
-                "phone": {
-                  "type": "string",
-                  "title": "手机号"
-                },
-                "role_uuids": {
-                  "type": "array",
-                  "title": "角色UUIDs",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "删除用户",
-        "operationId": "UsersService_DeleteUserMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/2fa/reset": {
-      "post": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "重置2fa",
-        "operationId": "UsersService_Reset2FAMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/2fa/reset/email": {
-      "post": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "发送重置2fa邮件",
-        "operationId": "UsersService_SendReset2FAEmail",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/activate/email": {
-      "post": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "发送重新激活邮件",
-        "operationId": "UsersService_SendActivateEmailMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/avatar": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "用户头像修改",
-        "operationId": "UsersService_UpdateUserAvatar",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "avatar": {
-                  "type": "string",
-                  "title": "头像"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/enable": {
-      "post": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "用户启用/禁用",
-        "operationId": "UsersService_EnableUserMixin2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "状态"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/name": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "用户姓名修改",
-        "operationId": "UsersService_UpdateNickname",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nickname": {
-                  "type": "string",
-                  "title": "姓名"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/password/reset": {
-      "post": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "重置密码",
-        "operationId": "UsersService_ResetPassword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
             "in": "path",
             "required": true
           },
@@ -902,18 +436,18 @@
         }
       }
     },
-    "/v1/users/{uuid}/password/reset/email": {
+    "/v1/users/{id}/password/reset": {
       "post": {
         "tags": [
           "UsersService"
         ],
         "summary": "发送重置密码邮件",
-        "operationId": "UsersService_SendResetPasswordEmailMixin2",
+        "operationId": "UsersService_SendResetPasswordEmail",
         "parameters": [
           {
             "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
+            "description": "用户ID",
+            "name": "id",
             "in": "path",
             "required": true
           },
@@ -923,52 +457,6 @@
             "required": true,
             "schema": {
               "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{uuid}/phone": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "用户手机号修改",
-        "operationId": "UsersService_UpdateUserPhone",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户UUID",
-            "name": "uuid",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "phone": {
-                  "type": "string",
-                  "title": "手机号"
-                }
-              }
             }
           }
         ],
