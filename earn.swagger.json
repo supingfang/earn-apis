@@ -202,9 +202,9 @@
                   "type": "string",
                   "title": "手机号"
                 },
-                "role_uuids": {
+                "role_ids": {
                   "type": "array",
-                  "title": "角色UUIDs",
+                  "title": "角色IDs",
                   "items": {
                     "type": "string"
                   }
@@ -520,13 +520,13 @@
     "componentsV1Role": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "title": "角色ID"
+        },
         "name": {
           "type": "string",
           "title": "角色名称"
-        },
-        "uuid": {
-          "type": "string",
-          "title": "角色ID"
         }
       }
     },
@@ -544,6 +544,10 @@
         "created_by": {
           "type": "string",
           "title": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "title": "用户ID"
         },
         "nickname": {
           "type": "string",
@@ -572,10 +576,6 @@
         "updated_by": {
           "type": "string",
           "title": "更新人"
-        },
-        "uuid": {
-          "type": "string",
-          "title": "用户ID"
         }
       }
     },
@@ -626,9 +626,9 @@
           "type": "string",
           "title": "手机号"
         },
-        "role_uuids": {
+        "role_ids": {
           "type": "array",
-          "title": "角色UUIDs",
+          "title": "角色IDs",
           "items": {
             "type": "string"
           }
