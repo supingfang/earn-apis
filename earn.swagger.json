@@ -164,7 +164,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/componentsV1User"
             }
           },
           "default": {
@@ -550,6 +550,10 @@
         "created_by": {
           "type": "string",
           "title": "创建人"
+        },
+        "email": {
+          "type": "string",
+          "title": "邮箱"
         },
         "id": {
           "type": "string",
