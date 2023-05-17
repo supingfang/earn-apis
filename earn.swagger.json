@@ -192,19 +192,19 @@
               "properties": {
                 "avatar": {
                   "type": "string",
-                  "title": "头像"
+                  "title": "[] 头像"
                 },
                 "nickname": {
                   "type": "string",
-                  "title": "姓名"
+                  "title": "[] 姓名"
                 },
                 "phone": {
                   "type": "string",
-                  "title": "手机号"
+                  "title": "[] 手机号"
                 },
                 "role_ids": {
                   "type": "array",
-                  "title": "角色IDs",
+                  "title": "[] 角色IDs",
                   "items": {
                     "type": "string"
                   }
@@ -505,15 +505,15 @@
           "format": "int32",
           "title": "当前页码"
         },
+        "page_count": {
+          "type": "integer",
+          "format": "int32",
+          "title": "总页数"
+        },
         "page_size": {
           "type": "integer",
           "format": "int32",
           "title": "每页数量"
-        },
-        "total_number": {
-          "type": "integer",
-          "format": "int32",
-          "title": "总数量"
         }
       }
     },
@@ -638,17 +638,17 @@
     "usersV1ListUsersReply": {
       "type": "object",
       "properties": {
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
-        },
-        "users": {
+        "list": {
           "type": "array",
           "title": "用户列表",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1User"
           }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
     }
