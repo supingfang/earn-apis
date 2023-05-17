@@ -304,8 +304,8 @@
         "tags": [
           "UsersService"
         ],
-        "summary": "发送重新激活邮件",
-        "operationId": "UsersService_SendActivateEmail",
+        "summary": "重新激活",
+        "operationId": "UsersService_ResetActivate",
         "parameters": [
           {
             "type": "string",
@@ -441,8 +441,8 @@
         "tags": [
           "UsersService"
         ],
-        "summary": "发送重置密码邮件",
-        "operationId": "UsersService_SendResetPasswordEmail",
+        "summary": "重置密码",
+        "operationId": "UsersService_ResetPassword",
         "parameters": [
           {
             "type": "string",
