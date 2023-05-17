@@ -77,6 +77,12 @@
             "in": "query"
           },
           {
+            "type": "string",
+            "description": "角色ID",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
             "type": "integer",
             "format": "int32",
             "description": "页码",
