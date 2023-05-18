@@ -43,6 +43,52 @@
         }
       }
     },
+    "/v1/dictionary": {
+      "get": {
+        "tags": [
+          "DictionaryService"
+        ],
+        "summary": "字典列表",
+        "operationId": "DictionaryService_ListDictionary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemV1ListDictionaryReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/user": {
+      "get": {
+        "tags": [
+          "UsersService"
+        ],
+        "summary": "当前用户",
+        "operationId": "UsersService_User",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1User"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/users": {
       "get": {
         "tags": [
@@ -503,6 +549,17 @@
         }
       }
     },
+    "componentsV1Dictionary": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
     "componentsV1PageInfo": {
       "type": "object",
       "properties": {
@@ -520,19 +577,6 @@
           "type": "integer",
           "format": "int32",
           "title": "每页数量"
-        }
-      }
-    },
-    "componentsV1Role": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "角色ID"
-        },
-        "name": {
-          "type": "string",
-          "title": "角色名称"
         }
       }
     },
@@ -572,7 +616,7 @@
           "title": "角色",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1Role"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
         "status": {
@@ -614,6 +658,35 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "systemV1ListDictionaryReply": {
+      "type": "object",
+      "properties": {
+        "default_status": {
+          "type": "array",
+          "title": "默认状态",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "title": "角色",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "user_status": {
+          "type": "array",
+          "title": "用户状态",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
         }
       }
     },
@@ -666,6 +739,9 @@
   "tags": [
     {
       "name": "AuthService"
+    },
+    {
+      "name": "DictionaryService"
     },
     {
       "name": "UsersService"
