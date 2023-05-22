@@ -489,9 +489,8 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "状态"
+                  "title": "状态",
+                  "$ref": "#/definitions/componentsV1UserStatus"
                 }
               }
             }
@@ -731,11 +730,6 @@
     "usersV1ChangePasswordRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "用户ID"
-        },
         "password": {
           "type": "string",
           "title": "密码"
