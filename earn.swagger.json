@@ -120,11 +120,7 @@
             "in": "body",
             "required": true,
             "schema": {
-<<<<<<< Updated upstream
-              "$ref": "#/definitions/usersV1UpdateCurrentUserRequest"
-=======
               "$ref": "#/definitions/authV1CreateRoleRequest"
->>>>>>> Stashed changes
             }
           }
         ],
@@ -185,7 +181,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "角色ID",
+            "description": "角色Id",
             "name": "id",
             "in": "path",
             "required": true
@@ -634,8 +630,9 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "title": "状态",
-                  "$ref": "#/definitions/componentsV1UserStatus"
+                  "type": "integer",
+                  "format": "int32",
+                  "title": "状态"
                 }
               }
             }
@@ -1017,22 +1014,6 @@
         }
       }
     },
-<<<<<<< Updated upstream
-    "usersV1ChangePasswordRequest": {
-      "type": "object",
-      "properties": {
-        "password": {
-          "type": "string",
-          "title": "密码"
-        },
-        "repeat_password": {
-          "type": "string",
-          "title": "重复密码"
-        }
-      }
-    },
-=======
->>>>>>> Stashed changes
     "usersV1CreateUserRequest": {
       "type": "object",
       "properties": {
@@ -1077,26 +1058,6 @@
           "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
-<<<<<<< Updated upstream
-    },
-    "usersV1UpdateCurrentUserRequest": {
-      "type": "object",
-      "properties": {
-        "avatar": {
-          "type": "string",
-          "title": "[] 头像"
-        },
-        "nickname": {
-          "type": "string",
-          "title": "[] 姓名"
-        },
-        "phone": {
-          "type": "string",
-          "title": "[] 手机号"
-        }
-      }
-=======
->>>>>>> Stashed changes
     }
   },
   "tags": [
