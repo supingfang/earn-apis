@@ -100,7 +100,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/usersV1UpdateUserRequest"
+              "$ref": "#/definitions/usersV1UpdateCurrentUserRequest"
             }
           }
         ],
@@ -785,17 +785,12 @@
         }
       }
     },
-    "usersV1UpdateUserRequest": {
+    "usersV1UpdateCurrentUserRequest": {
       "type": "object",
       "properties": {
         "avatar": {
           "type": "string",
           "title": "[] 头像"
-        },
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "用户ID"
         },
         "nickname": {
           "type": "string",
@@ -804,13 +799,6 @@
         "phone": {
           "type": "string",
           "title": "[] 手机号"
-        },
-        "role_ids": {
-          "type": "array",
-          "title": "[] 角色IDs",
-          "items": {
-            "type": "string"
-          }
         }
       }
     }
