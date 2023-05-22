@@ -7,42 +7,10 @@
   ],
   "swagger": "2.0",
   "info": {
-    "title": "v1/auth/auth.proto",
+    "title": "v1/system/dictionary.proto",
     "version": "version not set"
   },
   "paths": {
-    "/v1/auth/login": {
-      "post": {
-        "tags": [
-          "AuthService"
-        ],
-        "operationId": "AuthService_Login",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/authV1LoginRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/authV1LoginResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/dictionary": {
       "get": {
         "tags": [
@@ -66,18 +34,70 @@
         }
       }
     },
-    "/v1/user": {
+    "/v1/menus": {
       "get": {
         "tags": [
-          "UsersService"
+          "AuthService"
         ],
-        "summary": "当前用户",
-        "operationId": "UsersService_User",
+        "summary": "菜单列表",
+        "operationId": "AuthService_ListMenus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/componentsV1User"
+              "$ref": "#/definitions/authV1ListMenusReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/roles": {
+      "get": {
+        "tags": [
+          "AuthService"
+        ],
+        "summary": "角色列表",
+        "operationId": "AuthService_ListRoles",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "角色名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "状态",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authV1ListRolesReply"
             }
           },
           "default": {
@@ -88,19 +108,23 @@
           }
         }
       },
-      "put": {
+      "post": {
         "tags": [
-          "UsersService"
+          "AuthService"
         ],
-        "summary": "当前用户更新",
-        "operationId": "UsersService_UpdateCurrentUser",
+        "summary": "新增角色",
+        "operationId": "AuthService_CreateRole",
         "parameters": [
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
+<<<<<<< Updated upstream
               "$ref": "#/definitions/usersV1UpdateCurrentUserRequest"
+=======
+              "$ref": "#/definitions/authV1CreateRoleRequest"
+>>>>>>> Stashed changes
             }
           }
         ],
@@ -120,20 +144,76 @@
         }
       }
     },
-    "/v1/user/password/change": {
+    "/v1/roles/{id}": {
+      "get": {
+        "tags": [
+          "AuthService"
+        ],
+        "summary": "查看角色详情",
+        "operationId": "AuthService_GetRole",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "角色ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authV1GetRoleReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      },
       "put": {
         "tags": [
-          "UsersService"
+          "AuthService"
         ],
-        "summary": "当前用户修改密码",
-        "operationId": "UsersService_ChangePassword",
+        "summary": "更新角色",
+        "operationId": "AuthService_UpdateRole",
         "parameters": [
+          {
+            "type": "string",
+            "description": "角色ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
           {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/usersV1ChangePasswordRequest"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "角色名称"
+                },
+                "permissions": {
+                  "type": "array",
+                  "title": "功能权限",
+                  "items": {
+                    "type": "string",
+                    "format": "int64"
+                  }
+                },
+                "remark": {
+                  "type": "string",
+                  "title": "备注"
+                }
+              }
             }
           }
         ],
@@ -142,6 +222,77 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/roles/{id}/enable": {
+      "post": {
+        "tags": [
+          "AuthService"
+        ],
+        "summary": "角色启用/禁用",
+        "operationId": "AuthService_EnableRole",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "角色ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer",
+                  "format": "int32",
+                  "title": "状态"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/user": {
+      "get": {
+        "tags": [
+          "UsersService"
+        ],
+        "summary": "当前用户",
+        "operationId": "UsersService_User",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1User"
             }
           },
           "default": {
@@ -269,7 +420,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -300,7 +450,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -360,7 +509,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -393,7 +541,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -434,7 +581,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -475,7 +621,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -512,6 +657,56 @@
         }
       }
     },
+    "/v1/users/{id}/password/change": {
+      "put": {
+        "tags": [
+          "UsersService"
+        ],
+        "summary": "修改密码",
+        "operationId": "UsersService_ChangePassword",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "用户ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "title": "密码"
+                },
+                "repeat_password": {
+                  "type": "string",
+                  "title": "重复密码"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/users/{id}/password/reset": {
       "post": {
         "tags": [
@@ -522,7 +717,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -555,22 +749,119 @@
     }
   },
   "definitions": {
-    "authV1LoginRequest": {
+    "authV1CreateRoleRequest": {
       "type": "object",
       "properties": {
-        "email": {
-          "type": "string"
+        "name": {
+          "type": "string",
+          "title": "角色名称"
         },
-        "password": {
-          "type": "string"
+        "permissions": {
+          "type": "array",
+          "title": "功能权限",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态"
         }
       }
     },
-    "authV1LoginResponse": {
+    "authV1GetRoleReply": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
+        "name": {
+          "type": "string",
+          "title": "角色名称"
+        },
+        "permissions": {
+          "type": "array",
+          "title": "功能权限",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        },
+        "status": {
+          "type": "string",
+          "title": "状态"
+        }
+      }
+    },
+    "authV1ListMenusReply": {
+      "type": "object",
+      "properties": {
+        "menus": {
+          "type": "string",
+          "title": "菜单列表"
+        }
+      }
+    },
+    "authV1ListRolesReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "角色列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/authV1Role"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "authV1Role": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "角色ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "角色名称"
+        },
+        "remark": {
+          "type": "string",
+          "title": "备注"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "创建人"
         }
       }
     },
@@ -626,7 +917,6 @@
         },
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "用户ID"
         },
         "nickname": {
@@ -727,6 +1017,7 @@
         }
       }
     },
+<<<<<<< Updated upstream
     "usersV1ChangePasswordRequest": {
       "type": "object",
       "properties": {
@@ -740,6 +1031,8 @@
         }
       }
     },
+=======
+>>>>>>> Stashed changes
     "usersV1CreateUserRequest": {
       "type": "object",
       "properties": {
@@ -784,6 +1077,7 @@
           "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
+<<<<<<< Updated upstream
     },
     "usersV1UpdateCurrentUserRequest": {
       "type": "object",
@@ -801,17 +1095,19 @@
           "title": "[] 手机号"
         }
       }
+=======
+>>>>>>> Stashed changes
     }
   },
   "tags": [
-    {
-      "name": "AuthService"
-    },
     {
       "name": "DictionaryService"
     },
     {
       "name": "UsersService"
+    },
+    {
+      "name": "AuthService"
     }
   ]
 }
