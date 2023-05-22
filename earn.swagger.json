@@ -87,6 +87,70 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "UsersService"
+        ],
+        "summary": "当前用户更新",
+        "operationId": "UsersService_UpdateCurrentUser",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/usersV1UpdateUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/password/change": {
+      "put": {
+        "tags": [
+          "UsersService"
+        ],
+        "summary": "当前用户修改密码",
+        "operationId": "UsersService_ChangePassword",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/usersV1ChangePasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
       }
     },
     "/v1/users": {
@@ -116,9 +180,14 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
-            "description": "状态",
+            "enum": [
+              "_",
+              "ENABLE",
+              "DISABLE"
+            ],
+            "type": "string",
+            "default": "_",
+            "description": "状态\n\n - ENABLE: 启用\n - DISABLE: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -129,15 +198,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -200,6 +269,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -230,6 +300,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -289,6 +360,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -321,6 +393,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -361,6 +434,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -401,6 +475,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -438,56 +513,6 @@
         }
       }
     },
-    "/v1/users/{id}/password/change": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "修改密码",
-        "operationId": "UsersService_ChangePassword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "title": "密码"
-                },
-                "repeat_password": {
-                  "type": "string",
-                  "title": "重复密码"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/users/{id}/password/reset": {
       "post": {
         "tags": [
@@ -498,6 +523,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -564,18 +590,18 @@
       "type": "object",
       "properties": {
         "page": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
+          "format": "int64",
           "title": "当前页码"
         },
         "page_count": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
+          "format": "int64",
           "title": "总页数"
         },
         "page_size": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
+          "format": "int64",
           "title": "每页数量"
         }
       }
@@ -601,6 +627,7 @@
         },
         "id": {
           "type": "string",
+          "format": "int64",
           "title": "用户ID"
         },
         "nickname": {
@@ -620,8 +647,8 @@
           }
         },
         "status": {
-          "type": "string",
-          "title": "用户状态"
+          "title": "用户状态",
+          "$ref": "#/definitions/componentsV1UserStatus"
         },
         "updated_at": {
           "type": "string",
@@ -632,6 +659,17 @@
           "title": "更新人"
         }
       }
+    },
+    "componentsV1UserStatus": {
+      "description": "- ENABLE: 启用\n - DISABLE: 禁用",
+      "type": "string",
+      "title": "用户状态",
+      "default": "_",
+      "enum": [
+        "_",
+        "ENABLE",
+        "DISABLE"
+      ]
     },
     "protobufAny": {
       "type": "object",
@@ -690,6 +728,24 @@
         }
       }
     },
+    "usersV1ChangePasswordRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "用户ID"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        },
+        "repeat_password": {
+          "type": "string",
+          "title": "重复密码"
+        }
+      }
+    },
     "usersV1CreateUserRequest": {
       "type": "object",
       "properties": {
@@ -732,6 +788,35 @@
         "page_info": {
           "title": "分页信息",
           "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "usersV1UpdateUserRequest": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string",
+          "title": "[] 头像"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "用户ID"
+        },
+        "nickname": {
+          "type": "string",
+          "title": "[] 姓名"
+        },
+        "phone": {
+          "type": "string",
+          "title": "[] 手机号"
+        },
+        "role_ids": {
+          "type": "array",
+          "title": "[] 角色IDs",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
