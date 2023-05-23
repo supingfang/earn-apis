@@ -7,17 +7,17 @@
   ],
   "swagger": "2.0",
   "info": {
-    "title": "v1/system/dictionary.proto",
+    "title": "v1/auth/auth.proto",
     "version": "version not set"
   },
   "paths": {
     "/v1/dictionary": {
       "get": {
         "tags": [
-          "DictionaryService"
+          "Dictionary"
         ],
         "summary": "字典列表",
-        "operationId": "DictionaryService_ListDictionary",
+        "operationId": "Dictionary_ListDictionary",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -37,15 +37,15 @@
     "/v1/menus": {
       "get": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "菜单列表",
-        "operationId": "AuthService_ListMenus",
+        "operationId": "Auth_ListMenus",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authV1ListMenusReply"
+              "$ref": "#/definitions/authV1Menus"
             }
           },
           "default": {
@@ -60,10 +60,10 @@
     "/v1/roles": {
       "get": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "角色列表",
-        "operationId": "AuthService_ListRoles",
+        "operationId": "Auth_ListRoles",
         "parameters": [
           {
             "type": "string",
@@ -72,9 +72,14 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
-            "description": "状态",
+            "enum": [
+              "_",
+              "ENABLE",
+              "DISABLE"
+            ],
+            "type": "string",
+            "default": "_",
+            "description": "状态\n\n - ENABLE: 启用\n - DISABLE: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -97,7 +102,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authV1ListRolesReply"
+              "$ref": "#/definitions/authV1Roles"
             }
           },
           "default": {
@@ -110,10 +115,10 @@
       },
       "post": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "新增角色",
-        "operationId": "AuthService_CreateRole",
+        "operationId": "Auth_CreateRole",
         "parameters": [
           {
             "name": "body",
@@ -143,10 +148,10 @@
     "/v1/roles/{id}": {
       "get": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "查看角色详情",
-        "operationId": "AuthService_GetRole",
+        "operationId": "Auth_GetRole",
         "parameters": [
           {
             "type": "string",
@@ -161,7 +166,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authV1GetRoleReply"
+              "$ref": "#/definitions/componentsV1Role"
             }
           },
           "default": {
@@ -174,10 +179,10 @@
       },
       "put": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "更新角色",
-        "operationId": "AuthService_UpdateRole",
+        "operationId": "Auth_UpdateRole",
         "parameters": [
           {
             "type": "string",
@@ -232,10 +237,10 @@
     "/v1/roles/{id}/enable": {
       "post": {
         "tags": [
-          "AuthService"
+          "Auth"
         ],
         "summary": "角色启用/禁用",
-        "operationId": "AuthService_EnableRole",
+        "operationId": "Auth_EnableRole",
         "parameters": [
           {
             "type": "string",
@@ -253,9 +258,8 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "状态"
+                  "title": "状态",
+                  "$ref": "#/definitions/componentsV1EnableStatus"
                 }
               }
             }
@@ -280,10 +284,10 @@
     "/v1/user": {
       "get": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "当前用户",
-        "operationId": "UsersService_User",
+        "operationId": "Users_User",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -298,15 +302,79 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "当前用户更新",
+        "operationId": "Users_UpdateCurrentUser",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/usersV1UpdateCurrentUserRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/password/change": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "当前用户修改密码",
+        "operationId": "Users_ChangePassword",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/usersV1ChangePasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
       }
     },
     "/v1/users": {
       "get": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "用户列表",
-        "operationId": "UsersService_ListUsers",
+        "operationId": "Users_ListUsers",
         "parameters": [
           {
             "type": "string",
@@ -376,10 +444,10 @@
       },
       "post": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "新增用户",
-        "operationId": "UsersService_CreateUser",
+        "operationId": "Users_CreateUser",
         "parameters": [
           {
             "name": "body",
@@ -409,13 +477,14 @@
     "/v1/users/{id}": {
       "get": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "查看用户详情",
-        "operationId": "UsersService_GetUser",
+        "operationId": "Users_GetUser",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -439,13 +508,14 @@
       },
       "put": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "更新用户",
-        "operationId": "UsersService_UpdateUser",
+        "operationId": "Users_UpdateUser",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -498,13 +568,14 @@
       },
       "delete": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "删除用户",
-        "operationId": "UsersService_DeleteUser",
+        "operationId": "Users_DeleteUser",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -530,13 +601,14 @@
     "/v1/users/{id}/2fa/reset": {
       "post": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "重置2fa",
-        "operationId": "UsersService_Reset2FA",
+        "operationId": "Users_Reset2FA",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -570,13 +642,14 @@
     "/v1/users/{id}/activate": {
       "post": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "重新激活",
-        "operationId": "UsersService_ResetActivate",
+        "operationId": "Users_ResetActivate",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -610,13 +683,14 @@
     "/v1/users/{id}/enable": {
       "post": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "用户启用/禁用",
-        "operationId": "UsersService_EnableUser",
+        "operationId": "Users_EnableUser",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -630,59 +704,8 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "状态"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/users/{id}/password/change": {
-      "put": {
-        "tags": [
-          "UsersService"
-        ],
-        "summary": "修改密码",
-        "operationId": "UsersService_ChangePassword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "用户ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "title": "密码"
-                },
-                "repeat_password": {
-                  "type": "string",
-                  "title": "重复密码"
+                  "title": "状态",
+                  "$ref": "#/definitions/componentsV1EnableStatus"
                 }
               }
             }
@@ -707,13 +730,14 @@
     "/v1/users/{id}/password/reset": {
       "post": {
         "tags": [
-          "UsersService"
+          "Users"
         ],
         "summary": "重置密码",
-        "operationId": "UsersService_ResetPassword",
+        "operationId": "Users_ResetPassword",
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "用户ID",
             "name": "id",
             "in": "path",
@@ -766,47 +790,24 @@
           "title": "备注"
         },
         "status": {
-          "type": "integer",
-          "format": "int32",
-          "title": "状态"
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
         }
       }
     },
-    "authV1GetRoleReply": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "角色名称"
-        },
-        "permissions": {
-          "type": "array",
-          "title": "功能权限",
-          "items": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "remark": {
-          "type": "string",
-          "title": "备注"
-        },
-        "status": {
-          "type": "string",
-          "title": "状态"
-        }
-      }
-    },
-    "authV1ListMenusReply": {
+    "authV1Menus": {
       "type": "object",
       "properties": {
         "menus": {
-          "type": "string",
-          "title": "菜单列表"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Menu"
+          }
         }
       }
     },
-    "authV1ListRolesReply": {
+    "authV1Roles": {
       "type": "object",
       "properties": {
         "list": {
@@ -814,7 +815,7 @@
           "title": "角色列表",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/authV1Role"
+            "$ref": "#/definitions/componentsV1Role"
           }
         },
         "page_info": {
@@ -823,7 +824,89 @@
         }
       }
     },
-    "authV1Role": {
+    "componentsV1Dictionary": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "componentsV1EnableStatus": {
+      "type": "string",
+      "title": "- ENABLE: 启用\n - DISABLE: 禁用",
+      "default": "_",
+      "enum": [
+        "_",
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
+    "componentsV1Menu": {
+      "type": "object",
+      "properties": {
+        "children": {
+          "type": "array",
+          "title": "子菜单",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Menu"
+          }
+        },
+        "hidden": {
+          "type": "integer",
+          "format": "int32",
+          "title": "菜单类型"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "菜单ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "菜单名称"
+        },
+        "parent_id": {
+          "type": "integer",
+          "format": "int32",
+          "title": "父级菜单ID"
+        },
+        "path": {
+          "type": "string",
+          "title": "菜单路径"
+        },
+        "sort": {
+          "type": "string",
+          "format": "int64",
+          "title": "菜单排序"
+        }
+      }
+    },
+    "componentsV1PageInfo": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "string",
+          "format": "int64",
+          "title": "当前页码"
+        },
+        "page_count": {
+          "type": "string",
+          "format": "int64",
+          "title": "总页数"
+        },
+        "page_size": {
+          "type": "string",
+          "format": "int64",
+          "title": "每页数量"
+        }
+      }
+    },
+    "componentsV1Role": {
       "type": "object",
       "properties": {
         "created_at": {
@@ -848,9 +931,8 @@
           "title": "备注"
         },
         "status": {
-          "type": "integer",
-          "format": "int32",
-          "title": "状态"
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "updated_at": {
           "type": "string",
@@ -859,37 +941,6 @@
         "updated_by": {
           "type": "string",
           "title": "创建人"
-        }
-      }
-    },
-    "componentsV1Dictionary": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
-    "componentsV1PageInfo": {
-      "type": "object",
-      "properties": {
-        "page": {
-          "type": "string",
-          "format": "int64",
-          "title": "当前页码"
-        },
-        "page_count": {
-          "type": "string",
-          "format": "int64",
-          "title": "总页数"
-        },
-        "page_size": {
-          "type": "string",
-          "format": "int64",
-          "title": "每页数量"
         }
       }
     },
@@ -914,6 +965,7 @@
         },
         "id": {
           "type": "string",
+          "format": "int64",
           "title": "用户ID"
         },
         "nickname": {
@@ -934,7 +986,7 @@
         },
         "status": {
           "title": "用户状态",
-          "$ref": "#/definitions/componentsV1UserStatus"
+          "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "updated_at": {
           "type": "string",
@@ -945,17 +997,6 @@
           "title": "更新人"
         }
       }
-    },
-    "componentsV1UserStatus": {
-      "description": "- ENABLE: 启用\n - DISABLE: 禁用",
-      "type": "string",
-      "title": "用户状态",
-      "default": "_",
-      "enum": [
-        "_",
-        "ENABLE",
-        "DISABLE"
-      ]
     },
     "protobufAny": {
       "type": "object",
@@ -1014,6 +1055,19 @@
         }
       }
     },
+    "usersV1ChangePasswordRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string",
+          "title": "密码"
+        },
+        "repeat_password": {
+          "type": "string",
+          "title": "重复密码"
+        }
+      }
+    },
     "usersV1CreateUserRequest": {
       "type": "object",
       "properties": {
@@ -1058,17 +1112,34 @@
           "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
+    },
+    "usersV1UpdateCurrentUserRequest": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string",
+          "title": "[] 头像"
+        },
+        "nickname": {
+          "type": "string",
+          "title": "[] 姓名"
+        },
+        "phone": {
+          "type": "string",
+          "title": "[] 手机号"
+        }
+      }
     }
   },
   "tags": [
     {
-      "name": "DictionaryService"
+      "name": "Auth"
     },
     {
-      "name": "UsersService"
+      "name": "Dictionary"
     },
     {
-      "name": "AuthService"
+      "name": "Users"
     }
   ]
 }
