@@ -60,10 +60,10 @@
     "/v1/roles": {
       "get": {
         "tags": [
-          "Auth"
+          "Role"
         ],
         "summary": "角色列表",
-        "operationId": "Auth_ListRoles",
+        "operationId": "Role_ListRoles",
         "parameters": [
           {
             "type": "string",
@@ -115,10 +115,10 @@
       },
       "post": {
         "tags": [
-          "Auth"
+          "Role"
         ],
         "summary": "新增角色",
-        "operationId": "Auth_CreateRole",
+        "operationId": "Role_CreateRole",
         "parameters": [
           {
             "name": "body",
@@ -148,10 +148,10 @@
     "/v1/roles/{id}": {
       "get": {
         "tags": [
-          "Auth"
+          "Role"
         ],
         "summary": "查看角色详情",
-        "operationId": "Auth_GetRole",
+        "operationId": "Role_GetRole",
         "parameters": [
           {
             "type": "string",
@@ -179,10 +179,10 @@
       },
       "put": {
         "tags": [
-          "Auth"
+          "Role"
         ],
         "summary": "更新角色",
-        "operationId": "Auth_UpdateRole",
+        "operationId": "Role_UpdateRole",
         "parameters": [
           {
             "type": "string",
@@ -237,10 +237,10 @@
     "/v1/roles/{id}/enable": {
       "post": {
         "tags": [
-          "Auth"
+          "Role"
         ],
         "summary": "角色启用/禁用",
-        "operationId": "Auth_EnableRole",
+        "operationId": "Role_EnableRole",
         "parameters": [
           {
             "type": "string",
@@ -824,6 +824,24 @@
         }
       }
     },
+    "componentsV1Btn": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "按钮id"
+        },
+        "name": {
+          "type": "string",
+          "title": "按钮名称"
+        },
+        "path": {
+          "type": "string",
+          "title": "按钮路径"
+        }
+      }
+    },
     "componentsV1Dictionary": {
       "type": "object",
       "properties": {
@@ -859,7 +877,7 @@
         "hidden": {
           "type": "integer",
           "format": "int32",
-          "title": "菜单类型"
+          "title": "是否隐藏"
         },
         "id": {
           "type": "string",
@@ -870,19 +888,24 @@
           "type": "string",
           "title": "菜单名称"
         },
-        "parent_id": {
-          "type": "integer",
-          "format": "int32",
-          "title": "父级菜单ID"
-        },
         "path": {
           "type": "string",
           "title": "菜单路径"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int32",
+          "title": "父级菜单ID"
         },
         "sort": {
           "type": "string",
           "format": "int64",
           "title": "菜单排序"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "菜单类型"
         }
       }
     },
@@ -926,6 +949,14 @@
           "type": "string",
           "title": "角色名称"
         },
+        "permissions": {
+          "type": "array",
+          "title": "权限",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
         "remark": {
           "type": "string",
           "title": "备注"
@@ -951,6 +982,13 @@
           "type": "string",
           "title": "头像"
         },
+        "btn_auth": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Btn"
+          }
+        },
         "created_at": {
           "type": "string",
           "title": "创建时间"
@@ -967,6 +1005,13 @@
           "type": "string",
           "format": "int64",
           "title": "用户ID"
+        },
+        "menu_auth": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Menu"
+          }
         },
         "nickname": {
           "type": "string",
@@ -1134,6 +1179,9 @@
   "tags": [
     {
       "name": "Auth"
+    },
+    {
+      "name": "Role"
     },
     {
       "name": "Dictionary"
