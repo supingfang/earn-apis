@@ -84,15 +84,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -186,6 +186,7 @@
         "parameters": [
           {
             "type": "string",
+            "format": "int64",
             "description": "角色Id",
             "name": "id",
             "in": "path",
@@ -206,8 +207,7 @@
                   "type": "array",
                   "title": "功能权限",
                   "items": {
-                    "type": "string",
-                    "format": "int64"
+                    "type": "string"
                   }
                 },
                 "remark": {
@@ -781,8 +781,7 @@
           "type": "array",
           "title": "功能权限",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         },
         "remark": {
@@ -957,8 +956,7 @@
           "type": "array",
           "title": "权限",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         },
         "remark": {
@@ -1009,6 +1007,7 @@
         },
         "permissions": {
           "type": "array",
+          "title": "权限",
           "items": {
             "type": "string"
           }
@@ -1026,7 +1025,7 @@
           }
         },
         "status": {
-          "title": "用户状态",
+          "title": "状态",
           "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "updated_at": {
