@@ -73,13 +73,13 @@
           },
           {
             "enum": [
-              "_",
+              "ENABLE_STATUS_DEFAULT",
               "ENABLE",
               "DISABLE"
             ],
             "type": "string",
-            "default": "_",
-            "description": "状态\n\n - ENABLE: 启用\n - DISABLE: 禁用",
+            "default": "ENABLE_STATUS_DEFAULT",
+            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -396,13 +396,13 @@
           },
           {
             "enum": [
-              "_",
+              "ENABLE_STATUS_DEFAULT",
               "ENABLE",
               "DISABLE"
             ],
             "type": "string",
-            "default": "_",
-            "description": "状态\n\n - ENABLE: 启用\n - DISABLE: 禁用",
+            "default": "ENABLE_STATUS_DEFAULT",
+            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -798,7 +798,7 @@
     "authV1Menus": {
       "type": "object",
       "properties": {
-        "menus": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -824,24 +824,6 @@
         }
       }
     },
-    "componentsV1Btn": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "按钮id"
-        },
-        "name": {
-          "type": "string",
-          "title": "按钮名称"
-        },
-        "path": {
-          "type": "string",
-          "title": "按钮路径"
-        }
-      }
-    },
     "componentsV1Dictionary": {
       "type": "object",
       "properties": {
@@ -855,10 +837,10 @@
     },
     "componentsV1EnableStatus": {
       "type": "string",
-      "title": "- ENABLE: 启用\n - DISABLE: 禁用",
-      "default": "_",
+      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
+      "default": "ENABLE_STATUS_DEFAULT",
       "enum": [
-        "_",
+        "ENABLE_STATUS_DEFAULT",
         "ENABLE",
         "DISABLE"
       ]
@@ -875,9 +857,8 @@
           }
         },
         "hidden": {
-          "type": "integer",
-          "format": "int32",
-          "title": "是否隐藏"
+          "title": "是否隐藏",
+          "$ref": "#/definitions/componentsV1MenuHidden"
         },
         "id": {
           "type": "string",
@@ -892,9 +873,13 @@
           "type": "string",
           "title": "菜单路径"
         },
+        "permission_code": {
+          "type": "string",
+          "title": "权限码"
+        },
         "pid": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
+          "format": "int64",
           "title": "父级菜单ID"
         },
         "sort": {
@@ -903,11 +888,30 @@
           "title": "菜单排序"
         },
         "type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "菜单类型"
+          "title": "菜单类型",
+          "$ref": "#/definitions/componentsV1MenuType"
         }
       }
+    },
+    "componentsV1MenuHidden": {
+      "type": "string",
+      "title": "- MENU_HIDDEN_DEFAULT: 默认值\n - TRUE: 隐藏\n - FALSE: 显示",
+      "default": "MENU_HIDDEN_DEFAULT",
+      "enum": [
+        "MENU_HIDDEN_DEFAULT",
+        "TRUE",
+        "FALSE"
+      ]
+    },
+    "componentsV1MenuType": {
+      "type": "string",
+      "title": "- MENU_TYPE_DEFAULT: 默认值\n - MENU: 菜单\n - BUTTON: 按钮",
+      "default": "MENU_TYPE_DEFAULT",
+      "enum": [
+        "MENU_TYPE_DEFAULT",
+        "MENU",
+        "BUTTON"
+      ]
     },
     "componentsV1PageInfo": {
       "type": "object",
@@ -982,13 +986,6 @@
           "type": "string",
           "title": "头像"
         },
-        "btn_auth": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Btn"
-          }
-        },
         "created_at": {
           "type": "string",
           "title": "创建时间"
@@ -1006,16 +1003,15 @@
           "format": "int64",
           "title": "用户ID"
         },
-        "menu_auth": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Menu"
-          }
-        },
         "nickname": {
           "type": "string",
           "title": "姓名"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "phone": {
           "type": "string",
