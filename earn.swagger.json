@@ -7,9 +7,9 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "用户管理",
-    "title": "v1/auth/auth.proto",
-    "version": "version not set"
+    "description": "Earn API`s",
+    "title": "Earn API",
+    "version": "1.0.0"
   },
   "paths": {
     "/v1/dictionary": {
@@ -536,12 +536,20 @@
                   "type": "string",
                   "title": "[] 手机号"
                 },
+                "phone_code": {
+                  "type": "string",
+                  "title": "[] 手机区号"
+                },
                 "role_ids": {
                   "type": "array",
                   "title": "[] 角色IDs",
                   "items": {
                     "type": "string"
                   }
+                },
+                "timezone": {
+                  "type": "string",
+                  "title": "[] 时区"
                 }
               }
             }
@@ -820,6 +828,9 @@
         "key": {
           "type": "string"
         },
+        "label": {
+          "type": "string"
+        },
         "value": {
           "type": "string"
         }
@@ -893,10 +904,11 @@
     },
     "componentsV1MenuType": {
       "type": "string",
-      "title": "- MENU_TYPE_DEFAULT: 默认值\n - MENU: 菜单\n - BUTTON: 按钮",
+      "title": "- MENU_TYPE_DEFAULT: 默认值\n - DIRECTORY: 目录\n - MENU: 菜单\n - BUTTON: 按钮",
       "default": "MENU_TYPE_DEFAULT",
       "enum": [
         "MENU_TYPE_DEFAULT",
+        "DIRECTORY",
         "MENU",
         "BUTTON"
       ]
@@ -1003,6 +1015,10 @@
           "type": "string",
           "title": "手机号"
         },
+        "phone_code": {
+          "type": "string",
+          "title": "手机区号"
+        },
         "roles": {
           "type": "array",
           "title": "角色",
@@ -1014,6 +1030,10 @@
         "status": {
           "title": "状态",
           "$ref": "#/definitions/componentsV1EnableStatus"
+        },
+        "timezone": {
+          "type": "string",
+          "title": "时区"
         },
         "updated_at": {
           "type": "string",
@@ -1064,6 +1084,30 @@
             "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
+        "menu_hidden_status": {
+          "type": "array",
+          "title": "菜单隐藏状态",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "menu_type": {
+          "type": "array",
+          "title": "菜单类型",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "role_status": {
+          "type": "array",
+          "title": "角色状态",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
         "roles": {
           "type": "array",
           "title": "角色",
@@ -1103,8 +1147,8 @@
           "title": "邮箱"
         },
         "enabled": {
-          "type": "string",
-          "title": "启用状态"
+          "title": "启用状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "nickname": {
           "type": "string",
@@ -1113,6 +1157,10 @@
         "phone": {
           "type": "string",
           "title": "手机号"
+        },
+        "phone_code": {
+          "type": "string",
+          "title": "手机区号"
         },
         "role_ids": {
           "type": "array",
@@ -1154,6 +1202,14 @@
         "phone": {
           "type": "string",
           "title": "[] 手机号"
+        },
+        "phone_code": {
+          "type": "string",
+          "title": "[] 手机区号"
+        },
+        "timezone": {
+          "type": "string",
+          "title": "[] 时区"
         }
       }
     }
