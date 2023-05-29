@@ -1077,51 +1077,45 @@
       "type": "object",
       "properties": {
         "default_status": {
-          "type": "array",
+          "type": "object",
           "title": "默认状态",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "menu_hidden_status": {
-          "type": "array",
+          "type": "object",
           "title": "菜单隐藏状态",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "menu_type": {
-          "type": "array",
+          "type": "object",
           "title": "菜单类型",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "role_status": {
-          "type": "array",
+          "type": "object",
           "title": "角色状态",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "roles": {
-          "type": "array",
+          "type": "object",
           "title": "角色",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "user_status": {
-          "type": "array",
+          "type": "object",
           "title": "用户状态",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1Dictionary"
+          "additionalProperties": {
+            "type": "string"
           }
         }
       }
