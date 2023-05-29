@@ -1076,46 +1076,39 @@
     "systemV1ListDictionaryReply": {
       "type": "object",
       "properties": {
-        "default_status": {
-          "type": "object",
-          "title": "默认状态",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
         "menu_hidden_status": {
           "type": "object",
           "title": "菜单隐藏状态",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
         "menu_type": {
           "type": "object",
           "title": "菜单类型",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
         "role_status": {
           "type": "object",
           "title": "角色状态",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
         "roles": {
           "type": "object",
           "title": "角色",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
         "user_status": {
           "type": "object",
           "title": "用户状态",
           "additionalProperties": {
-            "type": "string"
+            "$ref": "#/definitions/componentsV1Dictionary"
           }
         }
       }
