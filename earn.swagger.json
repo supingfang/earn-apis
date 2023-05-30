@@ -279,6 +279,29 @@
         }
       }
     },
+    "/v1/session": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "summary": "会话",
+        "operationId": "Session_Session",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/systemV1SessionReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/user": {
       "get": {
         "tags": [
@@ -1113,6 +1136,16 @@
         }
       }
     },
+    "systemV1SessionReply": {
+      "type": "object",
+      "properties": {
+        "expire_at": {
+          "type": "string",
+          "format": "int64",
+          "title": "过期时间(时间戳)"
+        }
+      }
+    },
     "usersV1ChangePasswordRequest": {
       "type": "object",
       "properties": {
@@ -1203,6 +1236,9 @@
     },
     {
       "name": "Role"
+    },
+    {
+      "name": "Session"
     },
     {
       "name": "Dictionary"
