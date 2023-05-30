@@ -1119,10 +1119,6 @@
         "password": {
           "type": "string",
           "title": "密码"
-        },
-        "repeat_password": {
-          "type": "string",
-          "title": "重复密码"
         }
       }
     },
