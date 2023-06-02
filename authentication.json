@@ -57,7 +57,8 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/componentsV1AccessToken"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -176,9 +177,9 @@
     "authenticationV1ActivateRequest": {
       "type": "object",
       "properties": {
-        "token": {
+        "email": {
           "type": "string",
-          "title": "激活 token"
+          "title": "邮箱"
         }
       }
     },
