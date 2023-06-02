@@ -49,6 +49,29 @@
         ]
       }
     },
+    "/v1/auth/config": {
+      "get": {
+        "summary": "配置信息",
+        "operationId": "Authentication_Config",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ConfigReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
     "/v1/auth/forgot-password": {
       "post": {
         "summary": "忘记密码",
@@ -143,6 +166,39 @@
             "schema": {
               "type": "object",
               "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/v1/auth/oauth2-login": {
+      "post": {
+        "summary": "oauth2登录",
+        "operationId": "Authentication_OAuth2Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1OAuth2LoginRequest"
             }
           }
         ],
@@ -289,6 +345,14 @@
         }
       }
     },
+    "authenticationV1ConfigReply": {
+      "type": "object",
+      "properties": {
+        "google_client_id": {
+          "type": "string"
+        }
+      }
+    },
     "authenticationV1ForgotPasswordRequest": {
       "type": "object",
       "properties": {
@@ -308,6 +372,15 @@
         "password": {
           "type": "string",
           "title": "密码"
+        }
+      }
+    },
+    "authenticationV1OAuth2LoginRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
         }
       }
     },
