@@ -12,6 +12,314 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/v1/auth/activate": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "激活",
+        "operationId": "Authentication_Activate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ActivateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/config": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "配置信息",
+        "operationId": "Authentication_Config",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ConfigReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "忘记密码",
+        "operationId": "Authentication_ForgotPassword",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ForgotPasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "登录",
+        "operationId": "Authentication_Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "登出",
+        "operationId": "Authentication_Logout",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/oauth2-login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "oauth2登录",
+        "operationId": "Authentication_OAuth2Login",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1OAuth2LoginRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "刷新 token",
+        "operationId": "Authentication_RefreshToken",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "重置密码",
+        "operationId": "Authentication_ResetPassword",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ResetPasswordRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/totp": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "获取 Totp",
+        "operationId": "Authentication_Totp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1QrCode"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "确认 Totp",
+        "operationId": "Authentication_TotpConfirm",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/authenticationV1ValidateTotpRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1AccessToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/dictionary": {
       "get": {
         "tags": [
@@ -46,7 +354,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authV1Menus"
+              "$ref": "#/definitions/authorizationV1Menus"
             }
           },
           "default": {
@@ -103,7 +411,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/authV1Roles"
+              "$ref": "#/definitions/authorizationV1Roles"
             }
           },
           "default": {
@@ -126,7 +434,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/authV1CreateRoleRequest"
+              "$ref": "#/definitions/authorizationV1CreateRoleRequest"
             }
           }
         ],
@@ -417,13 +725,14 @@
           },
           {
             "enum": [
-              "ENABLE_STATUS_DEFAULT",
-              "ENABLE",
-              "DISABLE"
+              "USER_STATUS_DEFAULT",
+              "USER_STATUS_ENABLE",
+              "USER_STATUS_DISABLE",
+              "USER_STATUS_UNACTIVATED"
             ],
             "type": "string",
-            "default": "ENABLE_STATUS_DEFAULT",
-            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
+            "default": "USER_STATUS_DEFAULT",
+            "description": "状态\n\n - USER_STATUS_DEFAULT: 默认值\n - USER_STATUS_ENABLE: 启用\n - USER_STATUS_DISABLE: 禁用\n - USER_STATUS_UNACTIVATED: 未激活",
             "name": "status",
             "in": "query"
           },
@@ -728,7 +1037,7 @@
               "properties": {
                 "status": {
                   "title": "状态",
-                  "$ref": "#/definitions/componentsV1EnableStatus"
+                  "$ref": "#/definitions/componentsV1UserStatus"
                 }
               }
             }
@@ -792,7 +1101,77 @@
     }
   },
   "definitions": {
-    "authV1CreateRoleRequest": {
+    "authenticationV1ActivateRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string",
+          "title": "密码"
+        },
+        "token": {
+          "type": "string",
+          "title": "激活 token"
+        }
+      }
+    },
+    "authenticationV1ConfigReply": {
+      "type": "object",
+      "properties": {
+        "google_client_id": {
+          "type": "string"
+        }
+      }
+    },
+    "authenticationV1ForgotPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "邮箱"
+        }
+      }
+    },
+    "authenticationV1LoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "title": "邮箱"
+        },
+        "password": {
+          "type": "string",
+          "title": "密码"
+        }
+      }
+    },
+    "authenticationV1OAuth2LoginRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        }
+      }
+    },
+    "authenticationV1ResetPasswordRequest": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string",
+          "title": "密码"
+        }
+      }
+    },
+    "authenticationV1ValidateTotpRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Totp code"
+        }
+      }
+    },
+    "authorizationV1CreateRoleRequest": {
       "type": "object",
       "properties": {
         "name": {
@@ -816,7 +1195,7 @@
         }
       }
     },
-    "authV1Menus": {
+    "authorizationV1Menus": {
       "type": "object",
       "properties": {
         "list": {
@@ -828,7 +1207,7 @@
         }
       }
     },
-    "authV1Roles": {
+    "authorizationV1Roles": {
       "type": "object",
       "properties": {
         "list": {
@@ -842,6 +1221,24 @@
         "page_info": {
           "title": "分页信息",
           "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "componentsV1AccessToken": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "title": "访问 Token"
+        },
+        "expires_in": {
+          "type": "string",
+          "format": "int64",
+          "title": "过期(秒)"
+        },
+        "token_type": {
+          "type": "string",
+          "title": "Token 类型"
         }
       }
     },
@@ -956,6 +1353,14 @@
         }
       }
     },
+    "componentsV1QrCode": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "type": "string"
+        }
+      }
+    },
     "componentsV1Role": {
       "type": "object",
       "properties": {
@@ -1052,11 +1457,15 @@
         },
         "status": {
           "title": "状态",
-          "$ref": "#/definitions/componentsV1EnableStatus"
+          "$ref": "#/definitions/componentsV1UserStatus"
         },
         "timezone": {
           "type": "string",
           "title": "时区"
+        },
+        "totp_not_bound": {
+          "type": "boolean",
+          "title": "没有绑定 Totp"
         },
         "updated_at": {
           "type": "string",
@@ -1067,6 +1476,17 @@
           "title": "更新人"
         }
       }
+    },
+    "componentsV1UserStatus": {
+      "type": "string",
+      "title": "- USER_STATUS_DEFAULT: 默认值\n - USER_STATUS_ENABLE: 启用\n - USER_STATUS_DISABLE: 禁用\n - USER_STATUS_UNACTIVATED: 未激活",
+      "default": "USER_STATUS_DEFAULT",
+      "enum": [
+        "USER_STATUS_DEFAULT",
+        "USER_STATUS_ENABLE",
+        "USER_STATUS_DISABLE",
+        "USER_STATUS_UNACTIVATED"
+      ]
     },
     "protobufAny": {
       "type": "object",
@@ -1164,7 +1584,7 @@
         },
         "enabled": {
           "title": "启用状态",
-          "$ref": "#/definitions/componentsV1EnableStatus"
+          "$ref": "#/definitions/componentsV1UserStatus"
         },
         "nickname": {
           "type": "string",
@@ -1232,12 +1652,6 @@
   },
   "tags": [
     {
-      "name": "Auth"
-    },
-    {
-      "name": "Role"
-    },
-    {
       "name": "Session"
     },
     {
@@ -1245,6 +1659,15 @@
     },
     {
       "name": "Users"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Role"
+    },
+    {
+      "name": "Authentication"
     }
   ]
 }
