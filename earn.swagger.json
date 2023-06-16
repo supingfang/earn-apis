@@ -697,6 +697,39 @@
         }
       }
     },
+    "/v1/user/upload-profile": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "上传头像",
+        "operationId": "Users_UploadProfile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/usersV1UploadProfileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/usersV1UploadProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/users": {
       "get": {
         "tags": [
@@ -725,14 +758,13 @@
           },
           {
             "enum": [
-              "USER_STATUS_DEFAULT",
-              "USER_STATUS_ENABLE",
-              "USER_STATUS_DISABLE",
-              "USER_STATUS_UNACTIVATED"
+              "ENABLE_STATUS_DEFAULT",
+              "ENABLE",
+              "DISABLE"
             ],
             "type": "string",
-            "default": "USER_STATUS_DEFAULT",
-            "description": "状态\n\n - USER_STATUS_DEFAULT: 默认值\n - USER_STATUS_ENABLE: 启用\n - USER_STATUS_DISABLE: 禁用\n - USER_STATUS_UNACTIVATED: 未激活",
+            "default": "ENABLE_STATUS_DEFAULT",
+            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -1037,7 +1069,7 @@
               "properties": {
                 "status": {
                   "title": "状态",
-                  "$ref": "#/definitions/componentsV1UserStatus"
+                  "$ref": "#/definitions/componentsV1EnableStatus"
                 }
               }
             }
@@ -1107,10 +1139,6 @@
         "password": {
           "type": "string",
           "title": "密码"
-        },
-        "token": {
-          "type": "string",
-          "title": "激活 token"
         }
       }
     },
@@ -1424,6 +1452,10 @@
           "type": "string",
           "title": "邮箱"
         },
+        "email_verified_at": {
+          "type": "string",
+          "title": "邮箱验证时间"
+        },
         "id": {
           "type": "string",
           "title": "用户ID"
@@ -1457,15 +1489,11 @@
         },
         "status": {
           "title": "状态",
-          "$ref": "#/definitions/componentsV1UserStatus"
+          "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "timezone": {
           "type": "string",
           "title": "时区"
-        },
-        "totp_not_bound": {
-          "type": "boolean",
-          "title": "没有绑定 Totp"
         },
         "updated_at": {
           "type": "string",
@@ -1476,17 +1504,6 @@
           "title": "更新人"
         }
       }
-    },
-    "componentsV1UserStatus": {
-      "type": "string",
-      "title": "- USER_STATUS_DEFAULT: 默认值\n - USER_STATUS_ENABLE: 启用\n - USER_STATUS_DISABLE: 禁用\n - USER_STATUS_UNACTIVATED: 未激活",
-      "default": "USER_STATUS_DEFAULT",
-      "enum": [
-        "USER_STATUS_DEFAULT",
-        "USER_STATUS_ENABLE",
-        "USER_STATUS_DISABLE",
-        "USER_STATUS_UNACTIVATED"
-      ]
     },
     "protobufAny": {
       "type": "object",
@@ -1584,7 +1601,7 @@
         },
         "enabled": {
           "title": "启用状态",
-          "$ref": "#/definitions/componentsV1UserStatus"
+          "$ref": "#/definitions/componentsV1EnableStatus"
         },
         "nickname": {
           "type": "string",
@@ -1646,6 +1663,24 @@
         "timezone": {
           "type": "string",
           "title": "[] 时区"
+        }
+      }
+    },
+    "usersV1UploadProfileRequest": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string",
+          "title": "图片信息"
+        }
+      }
+    },
+    "usersV1UploadProfileResponse": {
+      "type": "object",
+      "properties": {
+        "avatar_url": {
+          "type": "string",
+          "title": "头像路径"
         }
       }
     }
