@@ -6,7 +6,7 @@
   },
   "tags": [
     {
-      "name": "Party"
+      "name": "Parties"
     }
   ],
   "consumes": [
@@ -19,12 +19,12 @@
     "/v1/parties": {
       "get": {
         "summary": "参与方列表",
-        "operationId": "Party_ListParties",
+        "operationId": "Parties_ListParties",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/partyV1Parties"
+              "$ref": "#/definitions/partyV1ListParty"
             }
           },
           "default": {
@@ -58,13 +58,22 @@
           },
           {
             "name": "status",
-            "description": "[] 参与方状态",
+            "description": "[] 参与方状态\n\n - PARTY_STATUS_DEFAULT: 默认值\n - CRAFT: 草稿\n - PENDING: 待审核\n - APPROVED: 可用\n - WAITING: 等待提交\n - REJECT: 拒绝\n - FROZEN: 冻结\n - CLOSED: 关闭",
             "in": "query",
             "required": false,
             "type": "array",
             "items": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "enum": [
+                "PARTY_STATUS_DEFAULT",
+                "CRAFT",
+                "PENDING",
+                "APPROVED",
+                "WAITING",
+                "REJECT",
+                "FROZEN",
+                "CLOSED"
+              ]
             },
             "collectionFormat": "multi"
           },
@@ -112,14 +121,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party": {
       "post": {
         "summary": "创建参与方",
-        "operationId": "Party_CreateParty",
+        "operationId": "Parties_CreateParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -146,14 +155,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/roles": {
       "get": {
         "summary": "参与方角色列表",
-        "operationId": "Party_GetPartyRoles",
+        "operationId": "Parties_GetPartyRoles",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -169,14 +178,14 @@
           }
         },
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/upload": {
       "post": {
         "summary": "上传文件",
-        "operationId": "Party_UploadFile",
+        "operationId": "Parties_UploadFile",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -203,12 +212,12 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       },
       "put": {
         "summary": "修改上传文件",
-        "operationId": "Party_UpdateUploadFile",
+        "operationId": "Parties_UpdateUploadFile",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -236,19 +245,19 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}": {
       "get": {
         "summary": "参与方详情",
-        "operationId": "Party_GetParty",
+        "operationId": "Parties_GetParty",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/partyV1PartyInfo"
+              "$ref": "#/definitions/partyV1Party"
             }
           },
           "default": {
@@ -268,12 +277,12 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       },
       "put": {
         "summary": "修改参与方",
-        "operationId": "Party_UpdateParty",
+        "operationId": "Parties_UpdateParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -329,14 +338,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/accounts": {
       "get": {
         "summary": "参与方账户列表",
-        "operationId": "Party_ListPartyAccounts",
+        "operationId": "Parties_ListPartyAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -362,14 +371,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
-    "/v1/party/{id}/apikes": {
+    "/v1/party/{id}/apikeys": {
       "get": {
         "summary": "todo apikey\n参与方api key列表",
-        "operationId": "Party_ListPartyApiKeys",
+        "operationId": "Parties_ListPartyApiKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -394,14 +403,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/approve": {
       "post": {
         "summary": "审批",
-        "operationId": "Party_ApproveParty",
+        "operationId": "Parties_ApproveParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -430,25 +439,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/callby": {
       "get": {
         "summary": "参与方call by列表",
-        "operationId": "Party_ListPartyCallBy",
+        "operationId": "Parties_ListPartyCallBy",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -474,14 +477,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/close": {
       "post": {
         "summary": "关闭",
-        "operationId": "Party_CloseParty",
+        "operationId": "Parties_CloseParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -510,25 +513,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/contacts": {
       "get": {
         "summary": "参与方联系人列表",
-        "operationId": "Party_ListPartyContacts",
+        "operationId": "Parties_ListPartyContacts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -553,14 +550,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/documents": {
       "get": {
         "summary": "参与方文档列表",
-        "operationId": "Party_ListPartyDocuments",
+        "operationId": "Parties_ListPartyDocuments",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -585,14 +582,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/edit": {
       "post": {
         "summary": "编辑",
-        "operationId": "Party_EditParty",
+        "operationId": "Parties_EditParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -621,25 +618,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/frozen": {
       "post": {
         "summary": "冻结",
-        "operationId": "Party_FreezeParty",
+        "operationId": "Parties_FreezeParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -668,25 +659,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/histories": {
       "get": {
         "summary": "参与方操作历史列表",
-        "operationId": "Party_ListPartyHistories",
+        "operationId": "Parties_ListPartyHistories",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -712,14 +697,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/orders": {
       "get": {
         "summary": "参与方订单列表",
-        "operationId": "Party_ListPartyOrders",
+        "operationId": "Parties_ListPartyOrders",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -745,14 +730,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/products": {
       "get": {
         "summary": "参与方产品列表",
-        "operationId": "Party_ListPartyProducts",
+        "operationId": "Parties_ListPartyProducts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -778,14 +763,14 @@
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/reject": {
       "post": {
         "summary": "拒绝",
-        "operationId": "Party_RejectParty",
+        "operationId": "Parties_RejectParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -814,25 +799,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/submit": {
       "post": {
         "summary": "提交",
-        "operationId": "Party_SubmitParty",
+        "operationId": "Parties_SubmitParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -861,25 +840,19 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     },
     "/v1/party/{id}/unfrozen": {
       "post": {
         "summary": "解冻",
-        "operationId": "Party_UnfreezeParty",
+        "operationId": "Parties_UnfreezeParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -908,18 +881,12 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/partyV1PartyStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
         "tags": [
-          "Party"
+          "Parties"
         ]
       }
     }
@@ -966,6 +933,23 @@
       "default": "API_KEY_TYPE_DEFAULT",
       "title": "- API_KEY_TYPE_DEFAULT: 默认值\n - READ: read\n - WRITE: write\n - READ_WRITE: read and write"
     },
+    "partyV1CallBack": {
+      "type": "object",
+      "properties": {
+        "callback": {
+          "type": "string",
+          "title": "回调"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
     "partyV1Callby": {
       "type": "object",
       "properties": {
@@ -988,14 +972,16 @@
         "ips": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/partyV1Ip"
           },
           "title": "IPs"
         },
         "callback": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/partyV1CallBack"
           },
           "title": "回调"
         },
@@ -1126,20 +1112,74 @@
         }
       }
     },
-    "partyV1Parties": {
+    "partyV1Ip": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string",
+          "title": "IP"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
+    "partyV1ListParty": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/partyV1PartyInfo"
+            "$ref": "#/definitions/partyV1Party"
           },
           "title": "参与方列表"
         },
         "page_info": {
           "$ref": "#/definitions/componentsV1PageInfo",
           "title": "分页信息"
+        }
+      }
+    },
+    "partyV1Party": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "status": {
+          "$ref": "#/definitions/partyV1PartyStatus",
+          "title": "状态"
+        },
+        "type": {
+          "$ref": "#/definitions/partyV1PartyType",
+          "title": "类型"
+        },
+        "role": {
+          "type": "string",
+          "title": "角色"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
         }
       }
     },
@@ -1258,43 +1298,6 @@
         "page_info": {
           "$ref": "#/definitions/componentsV1PageInfo",
           "title": "分页信息"
-        }
-      }
-    },
-    "partyV1PartyInfo": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "ID"
-        },
-        "code": {
-          "type": "string",
-          "title": "code"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "status": {
-          "$ref": "#/definitions/partyV1PartyStatus",
-          "title": "状态"
-        },
-        "type": {
-          "$ref": "#/definitions/partyV1PartyType",
-          "title": "类型"
-        },
-        "role": {
-          "type": "string",
-          "title": "角色"
-        },
-        "created_at": {
-          "type": "string",
-          "title": "创建日期"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "更新日期"
         }
       }
     },
@@ -1436,7 +1439,7 @@
           "type": "string",
           "title": "ID"
         },
-        "context": {
+        "file": {
           "type": "string",
           "format": "byte",
           "title": "文件"
