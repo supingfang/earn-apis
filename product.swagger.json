@@ -107,7 +107,7 @@
           },
           {
             "type": "string",
-            "description": "[] 排序(id desc, id asc)",
+            "description": "[] 排序(id desc/asc,code desc/asc,name desc/asc,coin desc/asc,created_at desc/asc,updated_at desc/asc)",
             "name": "sort",
             "in": "query"
           },
@@ -183,7 +183,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "[] 排序(id desc, id asc)",
+            "description": "[] 排序(id desc/asc, parent_id desc/asc,created_at desc/asc, updated_at desc/asc)",
             "name": "sort",
             "in": "query"
           },
@@ -423,7 +423,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "[] 排序(id desc, id asc)",
+            "description": "[] 排序(id desc/asc)",
             "name": "sort",
             "in": "query"
           },
