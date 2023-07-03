@@ -21,54 +21,33 @@
           {
             "type": "string",
             "format": "int64",
-            "description": "当前页码",
-            "name": "page_info.page",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "每页数量",
-            "name": "page_info.page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "总数量",
-            "name": "page_info.total",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
+            "description": "[]id",
             "name": "id",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "编码",
+            "description": "[]编码",
             "name": "code",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "名称",
+            "description": "[]名称",
             "name": "name",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "分类",
+            "description": "[]分类",
             "name": "category",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "币种",
+            "description": "[]币种",
             "name": "coin_id",
             "in": "query"
           },
@@ -83,7 +62,7 @@
             ],
             "type": "string",
             "default": "PRODUCT_STATUS_DRAFT",
-            "description": "状态\n\n - PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
+            "description": "[]状态\n\n - PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -95,34 +74,54 @@
             ],
             "type": "string",
             "default": "USE_TYPE_DEFAULT",
-            "description": "使用方式\n\n - USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
+            "description": "[]使用方式\n\n - USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
             "name": "use_type",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "创建开始日期",
+            "description": "[]创建开始日期",
             "name": "start_date",
             "in": "query"
           },
           {
             "type": "string",
-            "description": "创建结束日期",
+            "description": "[]创建结束日期",
             "name": "end_date",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "角色",
+            "description": "[]角色",
             "name": "role_id",
             "in": "query"
           },
           {
             "type": "string",
             "format": "int64",
-            "description": "参与方",
+            "description": "[]参与方",
             "name": "party_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
             "in": "query"
           }
         ],
@@ -178,6 +177,28 @@
           "ProductCategory"
         ],
         "operationId": "ProductCategory_ListProductCategories",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 排序",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -392,23 +413,23 @@
         "operationId": "ProductFeature_ListProductFeatures",
         "parameters": [
           {
+            "type": "string",
+            "description": "[] 排序",
+            "name": "sort",
+            "in": "query"
+          },
+          {
             "type": "integer",
             "format": "int32",
-            "description": "页码",
+            "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
             "type": "integer",
             "format": "int32",
-            "description": "每页数量",
+            "description": "[] 每页数量",
             "name": "page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "排序字段",
-            "name": "order_by",
             "in": "query"
           }
         ],
