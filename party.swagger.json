@@ -30,7 +30,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -106,18 +106,41 @@
             "collectionFormat": "multi"
           },
           {
-            "name": "created_at",
-            "description": "[] 创建日期",
+            "name": "start",
+            "description": "[] 开始时间",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "updated_at",
-            "description": "[] 更新日期",
+            "name": "end",
+            "description": "[] 结束时间",
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "sort",
+            "description": "[] 排序",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "[] 页码",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "[] 每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -133,14 +156,13 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/partyV1CreatePartyResponse"
             }
           },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -151,6 +173,69 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/partyV1CreatePartyRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Parties"
+        ]
+      }
+    },
+    "/v1/party/apikey/{id}": {
+      "put": {
+        "summary": "编辑apikey",
+        "operationId": "Parties_UpdatePartyApiKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "apikey id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/definitions/partyV1ApiKeyType",
+                  "title": "api类型"
+                },
+                "secret": {
+                  "type": "string",
+                  "title": "密钥"
+                },
+                "ips": {
+                  "type": "string",
+                  "title": "ip地址，多ip以逗号分隔"
+                },
+                "callback": {
+                  "type": "string",
+                  "title": "callback"
+                },
+                "memo": {
+                  "type": "string",
+                  "title": "[] 备注"
+                }
+              }
             }
           }
         ],
@@ -173,7 +258,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -196,7 +281,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -229,7 +314,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -263,7 +348,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -294,7 +379,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -357,7 +442,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -367,6 +452,29 @@
             "description": "参与方ID",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -375,21 +483,21 @@
         ]
       }
     },
-    "/v1/party/{id}/apikeys": {
+    "/v1/party/{id}/apikey": {
       "get": {
-        "summary": "todo apikey\n参与方api key列表",
+        "summary": "参与方apikey列表",
         "operationId": "Parties_ListPartyApiKeys",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/partyV1Callbys"
+              "$ref": "#/definitions/partyV1ApiKeys"
             }
           },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -400,6 +508,89 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Parties"
+        ]
+      },
+      "post": {
+        "summary": "创建apikey",
+        "operationId": "Parties_CreatePartyApiKey",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1CreatePartyApiKeyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "party ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "apiType": {
+                  "$ref": "#/definitions/partyV1ApiKeyType",
+                  "title": "api类型"
+                },
+                "secret": {
+                  "type": "string",
+                  "title": "密钥"
+                },
+                "ips": {
+                  "type": "string",
+                  "title": "ip地址，多ip以逗号分隔"
+                },
+                "callback": {
+                  "type": "string",
+                  "title": "callback"
+                },
+                "memo": {
+                  "type": "string",
+                  "title": "[] 备注"
+                }
+              }
+            }
           }
         ],
         "tags": [
@@ -422,7 +613,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -448,39 +639,6 @@
         ]
       }
     },
-    "/v1/party/{id}/callby": {
-      "get": {
-        "summary": "参与方call by列表",
-        "operationId": "Parties_ListPartyCallBy",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "参与方ID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Parties"
-        ]
-      }
-    },
     "/v1/party/{id}/close": {
       "post": {
         "summary": "关闭",
@@ -496,7 +654,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -536,7 +694,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -546,6 +704,29 @@
             "description": "参与方ID",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -568,7 +749,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -579,47 +760,29 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Parties"
-        ]
-      }
-    },
-    "/v1/party/{id}/edit": {
-      "post": {
-        "summary": "编辑",
-        "operationId": "Parties_EditParty",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object",
-              "properties": {}
-            }
           },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
           {
-            "name": "id",
-            "description": "ID",
-            "in": "path",
-            "required": true,
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
           }
         ],
         "tags": [
@@ -642,7 +805,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -683,7 +846,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -693,6 +856,29 @@
             "description": "参与方ID",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -716,7 +902,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -726,6 +912,29 @@
             "description": "参与方ID",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -749,7 +958,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -759,6 +968,29 @@
             "description": "参与方ID",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "页数",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "description": "排序",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
@@ -782,7 +1014,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -823,7 +1055,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -864,7 +1096,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         },
@@ -892,6 +1124,16 @@
     }
   },
   "definitions": {
+    "componentsV1EnableStatus": {
+      "type": "string",
+      "enum": [
+        "ENABLE_STATUS_DEFAULT",
+        "ENABLE",
+        "DISABLE"
+      ],
+      "default": "ENABLE_STATUS_DEFAULT",
+      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用"
+    },
     "componentsV1PageInfo": {
       "type": "object",
       "properties": {
@@ -912,45 +1154,26 @@
         }
       }
     },
-    "partyV1ApiKeyStatus": {
-      "type": "string",
-      "enum": [
-        "API_KEY_STATUS_DEFAULT",
-        "AVAILABLE",
-        "DISABLED"
-      ],
-      "default": "API_KEY_STATUS_DEFAULT",
-      "title": "- API_KEY_STATUS_DEFAULT: 默认值\n - AVAILABLE: 启用\n - DISABLED: 禁用"
-    },
-    "partyV1ApiKeyType": {
-      "type": "string",
-      "enum": [
-        "API_KEY_TYPE_DEFAULT",
-        "READ",
-        "WRITE",
-        "READ_WRITE"
-      ],
-      "default": "API_KEY_TYPE_DEFAULT",
-      "title": "- API_KEY_TYPE_DEFAULT: 默认值\n - READ: read\n - WRITE: write\n - READ_WRITE: read and write"
-    },
-    "partyV1CallBack": {
+    "googlerpcStatus": {
       "type": "object",
       "properties": {
-        "callback": {
-          "type": "string",
-          "title": "回调"
+        "code": {
+          "type": "integer",
+          "format": "int32"
         },
-        "created_at": {
-          "type": "string",
-          "title": "创建日期"
+        "message": {
+          "type": "string"
         },
-        "updated_at": {
-          "type": "string",
-          "title": "更新日期"
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
         }
       }
     },
-    "partyV1Callby": {
+    "partyV1ApiKey": {
       "type": "object",
       "properties": {
         "id": {
@@ -966,22 +1189,20 @@
           "title": "key"
         },
         "status": {
-          "$ref": "#/definitions/partyV1ApiKeyStatus",
+          "$ref": "#/definitions/componentsV1EnableStatus",
           "title": "状态"
         },
-        "ips": {
+        "ip": {
           "type": "array",
           "items": {
-            "type": "object",
-            "$ref": "#/definitions/partyV1Ip"
+            "type": "string"
           },
           "title": "IPs"
         },
         "callback": {
           "type": "array",
           "items": {
-            "type": "object",
-            "$ref": "#/definitions/partyV1CallBack"
+            "type": "string"
           },
           "title": "回调"
         },
@@ -999,16 +1220,27 @@
         }
       }
     },
-    "partyV1Callbys": {
+    "partyV1ApiKeyType": {
+      "type": "string",
+      "enum": [
+        "API_KEY_TYPE_DEFAULT",
+        "READ",
+        "WRITE",
+        "READ_WRITE"
+      ],
+      "default": "API_KEY_TYPE_DEFAULT",
+      "title": "- API_KEY_TYPE_DEFAULT: 默认值\n - READ: read\n - WRITE: write\n - READ_WRITE: read and write"
+    },
+    "partyV1ApiKeys": {
       "type": "object",
       "properties": {
         "list": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/partyV1Callby"
+            "$ref": "#/definitions/partyV1ApiKey"
           },
-          "title": "Callby列表"
+          "title": "ApiKey列表"
         }
       }
     },
@@ -1023,10 +1255,6 @@
           "type": "string",
           "title": "名称"
         },
-        "status": {
-          "$ref": "#/definitions/partyV1PartyStatus",
-          "title": "状态"
-        },
         "level": {
           "type": "integer",
           "format": "int32",
@@ -1040,12 +1268,21 @@
           "$ref": "#/definitions/partyV1PartyType",
           "title": "类型"
         },
-        "roleId": {
+        "role_id": {
           "type": "array",
           "items": {
             "type": "string"
           },
           "title": "角色"
+        }
+      }
+    },
+    "partyV1CreatePartyApiKeyResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "apikey ID"
         }
       }
     },
@@ -1112,20 +1349,12 @@
         }
       }
     },
-    "partyV1Ip": {
+    "partyV1CreatePartyResponse": {
       "type": "object",
       "properties": {
-        "ip": {
+        "id": {
           "type": "string",
-          "title": "IP"
-        },
-        "created_at": {
-          "type": "string",
-          "title": "创建日期"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "更新日期"
+          "title": "ID"
         }
       }
     },
@@ -1162,7 +1391,7 @@
           "title": "名称"
         },
         "status": {
-          "$ref": "#/definitions/partyV1PartyStatus",
+          "$ref": "#/definitions/partyV1Status",
           "title": "状态"
         },
         "type": {
@@ -1170,7 +1399,10 @@
           "title": "类型"
         },
         "role": {
-          "type": "string",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
           "title": "角色"
         },
         "created_at": {
@@ -1259,9 +1491,13 @@
           "type": "string",
           "title": "名称"
         },
-        "doc_url": {
+        "url": {
           "type": "string",
           "title": "文档连接"
+        },
+        "thumbnail": {
+          "type": "string",
+          "title": "缩略图连接"
         },
         "created_at": {
           "type": "string",
@@ -1324,7 +1560,17 @@
       "default": "PARTY_SOURCE_DEFAULT",
       "title": "- PARTY_SOURCE_DEFAULT: 默认值\n - OUTSIDE: 外部\n - INSIDE: 内部"
     },
-    "partyV1PartyStatus": {
+    "partyV1PartyType": {
+      "type": "string",
+      "enum": [
+        "PARTY_TYPE_DEFAULT",
+        "PERSONAL",
+        "ENTERPRISE"
+      ],
+      "default": "PARTY_TYPE_DEFAULT",
+      "title": "- PARTY_TYPE_DEFAULT: 默认值\n - PERSONAL: 个人\n - ENTERPRISE: 组织"
+    },
+    "partyV1Status": {
       "type": "string",
       "enum": [
         "PARTY_STATUS_DEFAULT",
@@ -1339,23 +1585,9 @@
       "default": "PARTY_STATUS_DEFAULT",
       "title": "- PARTY_STATUS_DEFAULT: 默认值\n - CRAFT: 草稿\n - PENDING: 待审核\n - APPROVED: 可用\n - WAITING: 等待提交\n - REJECT: 拒绝\n - FROZEN: 冻结\n - CLOSED: 关闭"
     },
-    "partyV1PartyType": {
-      "type": "string",
-      "enum": [
-        "PARTY_TYPE_DEFAULT",
-        "PERSONAL",
-        "ENTERPRISE"
-      ],
-      "default": "PARTY_TYPE_DEFAULT",
-      "title": "- PARTY_TYPE_DEFAULT: 默认值\n - PERSONAL: 个人\n - ENTERPRISE: 组织"
-    },
     "partyV1UpdateParty": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "title": "ID"
-        },
         "code": {
           "type": "string",
           "title": "code"
@@ -1363,10 +1595,6 @@
         "name": {
           "type": "string",
           "title": "名称"
-        },
-        "status": {
-          "$ref": "#/definitions/partyV1PartyStatus",
-          "title": "状态"
         },
         "level": {
           "type": "integer",
@@ -1381,7 +1609,7 @@
           "$ref": "#/definitions/partyV1PartyType",
           "title": "类型"
         },
-        "roleId": {
+        "role_id": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1473,25 +1701,6 @@
         }
       },
       "additionalProperties": {}
-    },
-    "rpcStatus": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/protobufAny"
-          }
-        }
-      }
     }
   }
 }
