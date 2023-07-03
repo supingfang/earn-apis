@@ -1,131 +1,25 @@
 {
+  "swagger": "2.0",
+  "info": {
+    "title": "v1/product/product.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "Product"
+    }
+  ],
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
   ],
-  "swagger": "2.0",
-  "info": {
-    "title": "v1/product/productFeature.proto",
-    "version": "version not set"
-  },
   "paths": {
     "/v1/products": {
       "get": {
-        "tags": [
-          "Product"
-        ],
         "summary": "产品列表",
         "operationId": "Product_ListProducts",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]id",
-            "name": "id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]编码",
-            "name": "code",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]名称",
-            "name": "name",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]分类",
-            "name": "category",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]币种",
-            "name": "coin_id",
-            "in": "query"
-          },
-          {
-            "enum": [
-              "PRODUCT_STATUS_DRAFT",
-              "PRODUCT_STATUS_PENDING",
-              "PRODUCT_STATUS_APPROVED",
-              "PRODUCT_STATUS_REJECTED",
-              "PRODUCT_STATUS_FROZEN",
-              "PRODUCT_STATUS_CLOSED"
-            ],
-            "type": "string",
-            "default": "PRODUCT_STATUS_DRAFT",
-            "description": "[]状态\n\n - PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
-            "name": "status",
-            "in": "query"
-          },
-          {
-            "enum": [
-              "USE_TYPE_DEFAULT",
-              "USE_TYPE_REUSE",
-              "USE_TYPE_CUSTOM"
-            ],
-            "type": "string",
-            "default": "USE_TYPE_DEFAULT",
-            "description": "[]使用方式\n\n - USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
-            "name": "use_type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]创建开始日期",
-            "name": "start_date",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]创建结束日期",
-            "name": "end_date",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]角色",
-            "name": "role_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]参与方",
-            "name": "party_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 排序",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -139,14 +33,150 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
-      },
-      "post": {
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "[]id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "code",
+            "description": "[]编码",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "description": "[]名称",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "description": "[]分类",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "coin_id",
+            "description": "[]币种",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "status",
+            "description": "[]状态\n\n - PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PRODUCT_STATUS_DRAFT",
+              "PRODUCT_STATUS_PENDING",
+              "PRODUCT_STATUS_APPROVED",
+              "PRODUCT_STATUS_REJECTED",
+              "PRODUCT_STATUS_FROZEN",
+              "PRODUCT_STATUS_CLOSED"
+            ],
+            "default": "PRODUCT_STATUS_DRAFT"
+          },
+          {
+            "name": "use_type",
+            "description": "[]使用方式\n\n - USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "USE_TYPE_DEFAULT",
+              "USE_TYPE_REUSE",
+              "USE_TYPE_CUSTOM"
+            ],
+            "default": "USE_TYPE_DEFAULT"
+          },
+          {
+            "name": "start_date",
+            "description": "[]创建开始日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end_date",
+            "description": "[]创建结束日期",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "role_id",
+            "description": "[]角色",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "party_id",
+            "description": "[]参与方",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "sort",
+            "description": "[] 排序(id desc, id asc)",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "description": "[] 页码",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "page_size",
+            "description": "[] 每页数量",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
         "tags": [
           "Product"
-        ],
+        ]
+      },
+      "post": {
         "summary": "创建产品",
         "operationId": "Product_CreateProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "parameters": [
           {
             "name": "body",
@@ -157,481 +187,15 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/products/categories": {
-      "get": {
         "tags": [
-          "ProductCategory"
-        ],
-        "summary": "获取产品分类列表",
-        "operationId": "ProductCategory_ListProductCategories",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "[] 排序",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/productV1ProductCategories"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "ProductCategory"
-        ],
-        "summary": "创建产品分类",
-        "operationId": "ProductCategory_CreateProductCategory",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/productV1CreateProductCategoryRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/products/categories/{id}": {
-      "get": {
-        "tags": [
-          "ProductCategory"
-        ],
-        "summary": "获取产品分类详情",
-        "operationId": "ProductCategory_GetProductCategory",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/componentsV1ProductCategory"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "ProductCategory"
-        ],
-        "summary": "更新产品分类",
-        "operationId": "ProductCategory_UpdateProductCategory",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "parent_id": {
-                  "type": "string",
-                  "format": "int64"
-                },
-                "product_features": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-                  }
-                },
-                "status": {
-                  "$ref": "#/definitions/componentsV1EnableStatus"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "ProductCategory"
-        ],
-        "summary": "删除产品分类",
-        "operationId": "ProductCategory_DeleteProductCategory",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/products/categories/{id}/enable": {
-      "put": {
-        "tags": [
-          "ProductCategory"
-        ],
-        "summary": "启用/禁用产品分类",
-        "operationId": "ProductCategory_EnableProductCategory",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/componentsV1EnableStatus"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/products/features": {
-      "get": {
-        "tags": [
-          "ProductFeature"
-        ],
-        "summary": "获取产品特性列表",
-        "operationId": "ProductFeature_ListProductFeatures",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "[] 排序",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/productV1ProductFeatures"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "ProductFeature"
-        ],
-        "summary": "创建产品特性",
-        "operationId": "ProductFeature_CreateProductFeature",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/productV1CreateProductFeatureRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/products/features/{id}": {
-      "get": {
-        "tags": [
-          "ProductFeature"
-        ],
-        "summary": "获取产品特性详情",
-        "operationId": "ProductFeature_GetProductFeature",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/componentsV1ProductFeature"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "ProductFeature"
-        ],
-        "summary": "更新产品特性",
-        "operationId": "ProductFeature_UpdateProductFeature",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "default_period": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "默认周期"
-                },
-                "default_value": {
-                  "type": "string",
-                  "title": "默认值"
-                },
-                "name": {
-                  "type": "string",
-                  "title": "名称"
-                },
-                "need_value": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "是否有值"
-                },
-                "task_type": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "任务类型"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "ProductFeature"
-        ],
-        "summary": "删除产品特性",
-        "operationId": "ProductFeature_DeleteProductFeature",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
+          "Product"
+        ]
       }
     },
     "/v1/products/{id}": {
       "get": {
-        "tags": [
-          "Product"
-        ],
         "summary": "获取产品详情",
         "operationId": "Product_GetProduct",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -645,22 +209,77 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
-      },
-      "put": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "更新产品",
-        "operationId": "Product_UpdateProduct",
+        },
         "parameters": [
           {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
             "name": "id",
             "in": "path",
-            "required": true
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Product"
+        ]
+      },
+      "delete": {
+        "summary": "删除产品",
+        "operationId": "Product_DeleteProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Product"
+        ]
+      },
+      "put": {
+        "summary": "更新产品",
+        "operationId": "Product_UpdateProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -669,43 +288,22 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "分类"
-                },
                 "code": {
                   "type": "string",
                   "title": "编码"
-                },
-                "coin_id": {
-                  "type": "string",
-                  "format": "int64",
-                  "title": "币种"
-                },
-                "description": {
-                  "type": "string",
-                  "title": "描述"
-                },
-                "features": {
-                  "type": "array",
-                  "title": "产品特征",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-                  }
                 },
                 "name": {
                   "type": "string",
                   "title": "名称"
                 },
-                "parties": {
-                  "type": "array",
-                  "title": "参与方",
-                  "items": {
-                    "type": "string",
-                    "format": "int64"
-                  }
+                "description": {
+                  "type": "string",
+                  "title": "描述"
+                },
+                "coin_id": {
+                  "type": "string",
+                  "format": "int64",
+                  "title": "币种"
                 },
                 "price": {
                   "type": "string",
@@ -716,76 +314,67 @@
                   "format": "int32",
                   "title": "状态"
                 },
+                "category": {
+                  "type": "integer",
+                  "format": "int32",
+                  "title": "分类"
+                },
                 "use_type": {
-                  "title": "使用方式",
-                  "$ref": "#/definitions/componentsV1UseType"
+                  "$ref": "#/definitions/componentsV1UseType",
+                  "title": "使用方式"
+                },
+                "features": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+                  },
+                  "title": "产品特征"
+                },
+                "parties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "int64"
+                  },
+                  "title": "参与方"
                 }
               }
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      },
-      "delete": {
         "tags": [
           "Product"
-        ],
-        "summary": "删除产品",
-        "operationId": "Product_DeleteProduct",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
+        ]
       }
     },
     "/v1/products/{id}/approve": {
       "put": {
-        "tags": [
-          "Product"
-        ],
         "summary": "审核产品",
         "operationId": "Product_ApproveProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "parameters": [
           {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
             "name": "id",
+            "description": "id",
             "in": "path",
-            "required": true
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -795,44 +384,45 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "title": "状态",
-                  "$ref": "#/definitions/componentsV1ApproveStatus"
+                  "$ref": "#/definitions/componentsV1ApproveStatus",
+                  "title": "状态"
                 }
               }
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
+        "tags": [
+          "Product"
+        ]
       }
     },
     "/v1/products/{id}/close": {
       "put": {
-        "tags": [
-          "Product"
-        ],
         "summary": "关闭产品",
         "operationId": "Product_CloseProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "parameters": [
           {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
             "name": "id",
+            "description": "id",
             "in": "path",
-            "required": true
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -843,11 +433,21 @@
             }
           }
         ],
+        "tags": [
+          "Product"
+        ]
+      }
+    },
+    "/v1/products/{id}/enable": {
+      "put": {
+        "summary": "启用/禁用产品",
+        "operationId": "Product_EnableProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -856,24 +456,15 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
-      }
-    },
-    "/v1/products/{id}/enable": {
-      "put": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "启用/禁用产品",
-        "operationId": "Product_EnableProduct",
+        },
         "parameters": [
           {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
             "name": "id",
+            "description": "id",
             "in": "path",
-            "required": true
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -883,18 +474,28 @@
               "type": "object",
               "properties": {
                 "status": {
-                  "title": "状态",
-                  "$ref": "#/definitions/componentsV1EnableStatus"
+                  "$ref": "#/definitions/componentsV1EnableStatus",
+                  "title": "状态"
                 }
               }
             }
           }
         ],
+        "tags": [
+          "Product"
+        ]
+      }
+    },
+    "/v1/products/{id}/submit": {
+      "put": {
+        "summary": "提交产品",
+        "operationId": "Product_SubmitProduct",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {}
             }
           },
           "default": {
@@ -903,24 +504,15 @@
               "$ref": "#/definitions/rpcStatus"
             }
           }
-        }
-      }
-    },
-    "/v1/products/{id}/submit": {
-      "put": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "提交产品",
-        "operationId": "Product_SubmitProduct",
+        },
         "parameters": [
           {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
             "name": "id",
+            "description": "id",
             "in": "path",
-            "required": true
+            "required": true,
+            "type": "string",
+            "format": "int64"
           },
           {
             "name": "body",
@@ -931,43 +523,32 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
+        "tags": [
+          "Product"
+        ]
       }
     }
   },
   "definitions": {
     "componentsV1ApproveStatus": {
       "type": "string",
-      "title": "- APPROVE_STATUS_DEFAULT: 默认值\n - APPROVED: 通过\n - REJECTED: 拒绝",
-      "default": "APPROVE_STATUS_DEFAULT",
       "enum": [
         "APPROVE_STATUS_DEFAULT",
         "APPROVED",
         "REJECTED"
-      ]
+      ],
+      "default": "APPROVE_STATUS_DEFAULT",
+      "title": "- APPROVE_STATUS_DEFAULT: 默认值\n - APPROVED: 通过\n - REJECTED: 拒绝"
     },
     "componentsV1EnableStatus": {
       "type": "string",
-      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
-      "default": "ENABLE_STATUS_DEFAULT",
       "enum": [
         "ENABLE_STATUS_DEFAULT",
         "ENABLE",
         "DISABLE"
-      ]
+      ],
+      "default": "ENABLE_STATUS_DEFAULT",
+      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用"
     },
     "componentsV1PageInfo": {
       "type": "object",
@@ -992,143 +573,63 @@
     "componentsV1Product": {
       "type": "object",
       "properties": {
-        "category": {
+        "id": {
           "type": "string",
-          "title": "分类"
+          "format": "int64",
+          "title": "id"
         },
         "code": {
           "type": "string",
           "title": "编码"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "desc": {
+          "type": "string",
+          "title": "描述"
+        },
+        "status": {
+          "$ref": "#/definitions/componentsV1ProductStatus",
+          "title": "状态"
+        },
+        "category": {
+          "type": "string",
+          "title": "分类"
+        },
+        "use_type": {
+          "$ref": "#/definitions/componentsV1UseType",
+          "title": "使用方式"
         },
         "coin_id": {
           "type": "string",
           "format": "int64",
           "title": "币种"
         },
-        "created_at": {
-          "type": "string",
-          "title": "创建时间"
-        },
-        "desc": {
-          "type": "string",
-          "title": "描述"
-        },
-        "features": {
-          "type": "array",
-          "title": "特性",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-          }
-        },
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "participants": {
-          "type": "array",
-          "title": "参与方",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
-          }
-        },
         "price": {
           "type": "string",
           "title": "价格"
         },
-        "status": {
-          "title": "状态",
-          "$ref": "#/definitions/componentsV1ProductStatus"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "更新时间"
-        },
-        "use_type": {
-          "title": "使用方式",
-          "$ref": "#/definitions/componentsV1UseType"
-        }
-      }
-    },
-    "componentsV1ProductCategory": {
-      "type": "object",
-      "properties": {
-        "created_at": {
-          "type": "string",
-          "title": "创建时间"
-        },
         "features": {
           "type": "array",
-          "title": "特性",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-          }
+          },
+          "title": "特性"
         },
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "id"
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          },
+          "title": "参与方"
         },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "parent_id": {
-          "type": "string",
-          "format": "int64",
-          "title": "父级分类"
-        },
-        "status": {
-          "title": "状态",
-          "$ref": "#/definitions/componentsV1EnableStatus"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "更新时间"
-        }
-      }
-    },
-    "componentsV1ProductFeature": {
-      "type": "object",
-      "properties": {
         "created_at": {
           "type": "string",
           "title": "创建时间"
-        },
-        "default_period": {
-          "type": "integer",
-          "format": "int32",
-          "title": "默认周期"
-        },
-        "default_value": {
-          "type": "string",
-          "title": "默认值"
-        },
-        "id": {
-          "type": "string",
-          "format": "int64",
-          "title": "id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "need_value": {
-          "type": "integer",
-          "format": "int32",
-          "title": "是否有值"
-        },
-        "task_type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "任务类型"
         },
         "updated_at": {
           "type": "string",
@@ -1139,14 +640,14 @@
     "componentsV1ProductFeatureRelation": {
       "type": "object",
       "properties": {
-        "end_date": {
-          "type": "string",
-          "title": "结束时间"
-        },
         "feature_id": {
           "type": "string",
           "format": "int64",
           "title": "特性id"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
         },
         "period": {
           "type": "integer",
@@ -1157,24 +658,24 @@
           "type": "string",
           "title": "开始时间"
         },
-        "value": {
+        "end_date": {
           "type": "string",
-          "title": "值"
+          "title": "结束时间"
         }
       }
     },
     "componentsV1ProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "party_id": {
-          "type": "string",
-          "format": "int64",
-          "title": "参与方id"
-        },
         "role_id": {
           "type": "string",
           "format": "int64",
           "title": "角色id"
+        },
+        "party_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "参与方id"
         },
         "value": {
           "type": "string",
@@ -1184,8 +685,6 @@
     },
     "componentsV1ProductStatus": {
       "type": "string",
-      "title": "- PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
-      "default": "PRODUCT_STATUS_DRAFT",
       "enum": [
         "PRODUCT_STATUS_DRAFT",
         "PRODUCT_STATUS_PENDING",
@@ -1193,108 +692,39 @@
         "PRODUCT_STATUS_REJECTED",
         "PRODUCT_STATUS_FROZEN",
         "PRODUCT_STATUS_CLOSED"
-      ]
+      ],
+      "default": "PRODUCT_STATUS_DRAFT",
+      "title": "- PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭"
     },
     "componentsV1UseType": {
       "type": "string",
-      "title": "- USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
-      "default": "USE_TYPE_DEFAULT",
       "enum": [
         "USE_TYPE_DEFAULT",
         "USE_TYPE_REUSE",
         "USE_TYPE_CUSTOM"
-      ]
-    },
-    "productV1CreateProductCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "parent_id": {
-          "type": "string",
-          "format": "int64"
-        },
-        "product_features": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-          }
-        },
-        "status": {
-          "$ref": "#/definitions/componentsV1EnableStatus"
-        }
-      }
-    },
-    "productV1CreateProductFeatureRequest": {
-      "type": "object",
-      "properties": {
-        "default_period": {
-          "type": "integer",
-          "format": "int32",
-          "title": "默认周期"
-        },
-        "default_value": {
-          "type": "string",
-          "title": "默认值"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "need_value": {
-          "type": "integer",
-          "format": "int32",
-          "title": "是否有值"
-        },
-        "task_type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "任务类型"
-        }
-      }
+      ],
+      "default": "USE_TYPE_DEFAULT",
+      "title": "- USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制"
     },
     "productV1CreateProductRequest": {
       "type": "object",
       "properties": {
-        "category": {
-          "type": "integer",
-          "format": "int32",
-          "title": "分类"
-        },
         "code": {
           "type": "string",
           "title": "编码"
         },
-        "coin_id": {
+        "name": {
           "type": "string",
-          "format": "int64",
-          "title": "币种"
+          "title": "名称"
         },
         "description": {
           "type": "string",
           "title": "描述"
         },
-        "features": {
-          "type": "array",
-          "title": "产品特征",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-          }
-        },
-        "name": {
+        "coin_id": {
           "type": "string",
-          "title": "名称"
-        },
-        "parites": {
-          "type": "array",
-          "title": "参与方",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
-          }
+          "format": "int64",
+          "title": "币种"
         },
         "price": {
           "type": "string",
@@ -1305,41 +735,40 @@
           "format": "int32",
           "title": "状态"
         },
+        "category": {
+          "type": "integer",
+          "format": "int32",
+          "title": "分类"
+        },
         "use_type": {
-          "title": "使用方式",
-          "$ref": "#/definitions/componentsV1UseType"
-        }
-      }
-    },
-    "productV1ProductCategories": {
-      "type": "object",
-      "properties": {
-        "data": {
+          "$ref": "#/definitions/componentsV1UseType",
+          "title": "使用方式"
+        },
+        "features": {
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductCategory"
-          }
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          },
+          "title": "产品特征"
         },
-        "page_info": {
-          "$ref": "#/definitions/componentsV1PageInfo"
+        "parites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          },
+          "title": "参与方"
         }
       }
     },
-    "productV1ProductFeatures": {
+    "productV1CreateProductResponse": {
       "type": "object",
       "properties": {
-        "list": {
-          "type": "array",
-          "title": "特征列表",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeature"
-          }
-        },
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "title": "id"
         }
       }
     },
@@ -1348,15 +777,15 @@
       "properties": {
         "list": {
           "type": "array",
-          "title": "产品列表",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1Product"
-          }
+          },
+          "title": "产品列表"
         },
         "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
+          "$ref": "#/definitions/componentsV1PageInfo",
+          "title": "分页信息"
         }
       }
     },
@@ -1367,7 +796,7 @@
           "type": "string"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -1376,28 +805,17 @@
           "type": "integer",
           "format": "int32"
         },
+        "message": {
+          "type": "string"
+        },
         "details": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
-        },
-        "message": {
-          "type": "string"
         }
       }
     }
-  },
-  "tags": [
-    {
-      "name": "ProductFeature"
-    },
-    {
-      "name": "ProductCategory"
-    },
-    {
-      "name": "Product"
-    }
-  ]
+  }
 }
