@@ -16,6 +16,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "产品列表",
         "operationId": "Product_ListProducts",
         "parameters": [
           {
@@ -144,6 +145,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "创建产品",
         "operationId": "Product_CreateProduct",
         "parameters": [
           {
@@ -176,6 +178,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "获取产品分类列表",
         "operationId": "ProductCategory_ListProductCategories",
         "parameters": [
           {
@@ -218,6 +221,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "创建产品分类",
         "operationId": "ProductCategory_CreateProductCategory",
         "parameters": [
           {
@@ -250,6 +254,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "获取产品分类详情",
         "operationId": "ProductCategory_GetProductCategory",
         "parameters": [
           {
@@ -279,6 +284,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "更新产品分类",
         "operationId": "ProductCategory_UpdateProductCategory",
         "parameters": [
           {
@@ -335,6 +341,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "删除产品分类",
         "operationId": "ProductCategory_DeleteProductCategory",
         "parameters": [
           {
@@ -366,6 +373,7 @@
         "tags": [
           "ProductCategory"
         ],
+        "summary": "启用/禁用产品分类",
         "operationId": "ProductCategory_EnableProductCategory",
         "parameters": [
           {
@@ -410,6 +418,7 @@
         "tags": [
           "ProductFeature"
         ],
+        "summary": "获取产品特性列表",
         "operationId": "ProductFeature_ListProductFeatures",
         "parameters": [
           {
@@ -452,6 +461,7 @@
         "tags": [
           "ProductFeature"
         ],
+        "summary": "创建产品特性",
         "operationId": "ProductFeature_CreateProductFeature",
         "parameters": [
           {
@@ -484,6 +494,7 @@
         "tags": [
           "ProductFeature"
         ],
+        "summary": "获取产品特性详情",
         "operationId": "ProductFeature_GetProductFeature",
         "parameters": [
           {
@@ -514,6 +525,7 @@
         "tags": [
           "ProductFeature"
         ],
+        "summary": "更新产品特性",
         "operationId": "ProductFeature_UpdateProductFeature",
         "parameters": [
           {
@@ -577,6 +589,7 @@
         "tags": [
           "ProductFeature"
         ],
+        "summary": "删除产品特性",
         "operationId": "ProductFeature_DeleteProductFeature",
         "parameters": [
           {
@@ -609,6 +622,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "获取产品详情",
         "operationId": "Product_GetProduct",
         "parameters": [
           {
@@ -637,6 +651,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "更新产品",
         "operationId": "Product_UpdateProduct",
         "parameters": [
           {
@@ -728,6 +743,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "删除产品",
         "operationId": "Product_DeleteProduct",
         "parameters": [
           {
@@ -760,6 +776,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "审核产品",
         "operationId": "Product_ApproveProduct",
         "parameters": [
           {
@@ -806,6 +823,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "关闭产品",
         "operationId": "Product_CloseProduct",
         "parameters": [
           {
@@ -846,6 +864,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "启用/禁用产品",
         "operationId": "Product_EnableProduct",
         "parameters": [
           {
@@ -892,6 +911,7 @@
         "tags": [
           "Product"
         ],
+        "summary": "提交产品",
         "operationId": "Product_SubmitProduct",
         "parameters": [
           {
