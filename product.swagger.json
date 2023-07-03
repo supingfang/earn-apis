@@ -381,13 +381,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "$ref": "#/definitions/componentsV1ApproveStatus",
-                  "title": "状态"
-                }
-              }
+              "type": "object"
             }
           }
         ],
@@ -486,6 +480,48 @@
         ]
       }
     },
+    "/v1/products/{id}/reject": {
+      "put": {
+        "summary": "驳回",
+        "operationId": "Product_RejectProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "tags": [
+          "Product"
+        ]
+      }
+    },
     "/v1/products/{id}/submit": {
       "put": {
         "summary": "提交产品",
@@ -530,16 +566,6 @@
     }
   },
   "definitions": {
-    "componentsV1ApproveStatus": {
-      "type": "string",
-      "enum": [
-        "APPROVE_STATUS_DEFAULT",
-        "APPROVED",
-        "REJECTED"
-      ],
-      "default": "APPROVE_STATUS_DEFAULT",
-      "title": "- APPROVE_STATUS_DEFAULT: 默认值\n - APPROVED: 通过\n - REJECTED: 拒绝"
-    },
     "componentsV1EnableStatus": {
       "type": "string",
       "enum": [
