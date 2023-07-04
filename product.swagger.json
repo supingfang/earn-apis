@@ -389,8 +389,7 @@
               "type": "object",
               "properties": {
                 "default_period": {
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "string",
                   "title": "默认周期"
                 },
                 "default_value": {
@@ -1160,8 +1159,7 @@
           "title": "创建时间"
         },
         "default_period": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "title": "默认周期"
         },
         "default_value": {
