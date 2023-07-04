@@ -140,13 +140,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "delete_product_features": {
-                  "type": "array",
-                  "title": "[]删除的特性id",
-                  "items": {
-                    "type": "string",
-                    "format": "int64"
-                  }
+                "features": {
+                  "title": "[]产品特性",
+                  "$ref": "#/definitions/productV1UpdateProductCategoryRequestupdateFeatures"
                 },
                 "name": {
                   "type": "string",
@@ -156,14 +152,6 @@
                   "type": "string",
                   "format": "int64",
                   "title": "父级id"
-                },
-                "product_features": {
-                  "type": "array",
-                  "title": "[]产品特性",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-                  }
                 },
                 "status": {
                   "title": "启用状态",
@@ -696,33 +684,13 @@
                   "format": "int64",
                   "title": "币种"
                 },
-                "delete_parties": {
-                  "type": "array",
-                  "title": "[]删除的参与方",
-                  "items": {
-                    "type": "string",
-                    "format": "int64"
-                  }
-                },
-                "delete_product_features": {
-                  "type": "array",
-                  "title": "[]删除的产品特征",
-                  "items": {
-                    "type": "string",
-                    "format": "int64"
-                  }
-                },
                 "description": {
                   "type": "string",
                   "title": "[]描述"
                 },
                 "features": {
-                  "type": "array",
                   "title": "[]产品特性",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/componentsV1ProductFeatureRelation"
-                  }
+                  "$ref": "#/definitions/productV1UpdateProductRequestupdateFeatures"
                 },
                 "name": {
                   "type": "string",
@@ -732,8 +700,8 @@
                   "type": "array",
                   "title": "[]参与方",
                   "items": {
-                    "type": "string",
-                    "format": "int64"
+                    "type": "object",
+                    "$ref": "#/definitions/UpdateProductRequestupdateParties"
                   }
                 },
                 "price": {
@@ -1012,6 +980,35 @@
     }
   },
   "definitions": {
+    "UpdateProductRequestupdateParties": {
+      "type": "object",
+      "properties": {
+        "add_features": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          }
+        },
+        "delete_parties": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "update_features": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          }
+        }
+      }
+    },
     "componentsV1EnableStatus": {
       "type": "string",
       "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
@@ -1444,6 +1441,64 @@
         "page_info": {
           "title": "分页信息",
           "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "productV1UpdateProductCategoryRequestupdateFeatures": {
+      "type": "object",
+      "properties": {
+        "add_features": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        },
+        "delete_features": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "update_features": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        }
+      }
+    },
+    "productV1UpdateProductRequestupdateFeatures": {
+      "type": "object",
+      "properties": {
+        "add_features": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        },
+        "delete_features": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "update_features": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
         }
       }
     },
