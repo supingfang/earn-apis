@@ -983,7 +983,7 @@
     "UpdateProductRequestupdateParties": {
       "type": "object",
       "properties": {
-        "add_features": {
+        "add": {
           "type": "array",
           "title": "新增",
           "items": {
@@ -991,7 +991,7 @@
             "$ref": "#/definitions/componentsV1ProductPartiesRelation"
           }
         },
-        "delete_parties": {
+        "delete": {
           "type": "array",
           "title": "删除",
           "items": {
@@ -999,7 +999,7 @@
             "format": "int64"
           }
         },
-        "update_features": {
+        "update": {
           "type": "array",
           "title": "修改",
           "items": {
@@ -1447,7 +1447,7 @@
     "productV1UpdateProductCategoryRequestupdateFeatures": {
       "type": "object",
       "properties": {
-        "add_features": {
+        "add": {
           "type": "array",
           "title": "新增",
           "items": {
@@ -1455,7 +1455,7 @@
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
           }
         },
-        "delete_features": {
+        "delete": {
           "type": "array",
           "title": "删除",
           "items": {
@@ -1463,7 +1463,7 @@
             "format": "int64"
           }
         },
-        "update_features": {
+        "update": {
           "type": "array",
           "title": "修改",
           "items": {
@@ -1476,7 +1476,7 @@
     "productV1UpdateProductRequestupdateFeatures": {
       "type": "object",
       "properties": {
-        "add_features": {
+        "add": {
           "type": "array",
           "title": "新增",
           "items": {
@@ -1484,7 +1484,7 @@
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
           }
         },
-        "delete_features": {
+        "delete": {
           "type": "array",
           "title": "删除",
           "items": {
@@ -1492,7 +1492,7 @@
             "format": "int64"
           }
         },
-        "update_features": {
+        "update": {
           "type": "array",
           "title": "修改",
           "items": {
