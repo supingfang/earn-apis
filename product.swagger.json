@@ -630,47 +630,6 @@
         }
       }
     },
-    "/v1/products/{id_1}/frozen": {
-      "put": {
-        "tags": [
-          "Product"
-        ],
-        "summary": "解冻产品",
-        "operationId": "Product_UnFrozenProduct",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "id",
-            "name": "id_1",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/products/{id}": {
       "get": {
         "tags": [
@@ -976,6 +935,47 @@
         ],
         "summary": "提交产品",
         "operationId": "Product_SubmitProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/unfrozen": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "解冻产品",
+        "operationId": "Product_UnFrozenProduct",
         "parameters": [
           {
             "type": "string",
