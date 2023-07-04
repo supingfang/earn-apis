@@ -1090,7 +1090,7 @@
           "type": "string",
           "title": "名称"
         },
-        "participants": {
+        "parties": {
           "type": "array",
           "title": "参与方",
           "items": {
@@ -1211,6 +1211,11 @@
           "type": "string",
           "title": "周期"
         },
+        "relation_id": {
+          "type": "string",
+          "format": "int64",
+          "title": "id"
+        },
         "start_date": {
           "type": "string",
           "title": "开始时间"
@@ -1228,6 +1233,10 @@
           "type": "string",
           "format": "int64",
           "title": "参与方id"
+        },
+        "relation_id": {
+          "type": "string",
+          "format": "int64"
         },
         "role_id": {
           "type": "string",
