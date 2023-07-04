@@ -1206,8 +1206,7 @@
           "title": "特性id"
         },
         "period": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "title": "周期"
         },
         "start_date": {
@@ -1297,8 +1296,7 @@
       "type": "object",
       "properties": {
         "default_period": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "title": "默认周期"
         },
         "default_value": {
