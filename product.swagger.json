@@ -7,7 +7,7 @@
   ],
   "swagger": "2.0",
   "info": {
-    "title": "v1/product/productFeature.proto",
+    "title": "v1/product/product_feature.proto",
     "version": "version not set"
   },
   "paths": {
@@ -97,7 +97,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "name": "id",
             "in": "path",
             "required": true
@@ -127,7 +126,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -150,7 +148,6 @@
                 },
                 "parent_id": {
                   "type": "string",
-                  "format": "int64",
                   "title": "父级id"
                 },
                 "status": {
@@ -185,7 +182,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -218,7 +214,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "name": "id",
             "in": "path",
             "required": true
@@ -339,7 +334,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -370,7 +364,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -433,7 +426,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -466,7 +458,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "[]id",
             "name": "id",
             "in": "query"
@@ -485,67 +476,59 @@
           },
           {
             "type": "string",
-            "format": "int64",
             "description": "[]分类",
-            "name": "category",
+            "name": "category_id",
             "in": "query"
           },
           {
             "type": "string",
-            "format": "int64",
             "description": "[]币种",
-            "name": "coin_id",
+            "name": "coin",
             "in": "query"
           },
           {
             "enum": [
-              "PRODUCT_STATUS_DRAFT",
-              "PRODUCT_STATUS_PENDING",
-              "PRODUCT_STATUS_APPROVED",
-              "PRODUCT_STATUS_REJECTED",
-              "PRODUCT_STATUS_FROZEN",
-              "PRODUCT_STATUS_CLOSED"
+              1,
+              2,
+              3,
+              4,
+              5
             ],
-            "type": "string",
-            "default": "PRODUCT_STATUS_DRAFT",
-            "description": "[]状态\n\n - PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
+            "type": "integer",
+            "description": "[]状态\n\n - 0: 草稿\n - 1: 待审批\n - 2: 已通过\n - 3: 已拒绝\n - 4: 已冻结\n - 5: 已关闭",
             "name": "status",
             "in": "query"
           },
           {
             "enum": [
-              "USE_TYPE_DEFAULT",
-              "USE_TYPE_REUSE",
-              "USE_TYPE_CUSTOM"
+              1,
+              2
             ],
-            "type": "string",
-            "default": "USE_TYPE_DEFAULT",
-            "description": "[]使用方式\n\n - USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
+            "type": "integer",
+            "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
             "name": "use_type",
             "in": "query"
           },
           {
             "type": "string",
             "description": "[]创建开始日期",
-            "name": "start_date",
+            "name": "created_start",
             "in": "query"
           },
           {
             "type": "string",
             "description": "[]创建结束日期",
-            "name": "end_date",
+            "name": "created_end",
             "in": "query"
           },
           {
             "type": "string",
-            "format": "int64",
             "description": "[]角色",
             "name": "role_id",
             "in": "query"
           },
           {
             "type": "string",
-            "format": "int64",
             "description": "[]参与方",
             "name": "party_id",
             "in": "query"
@@ -657,7 +640,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -679,9 +661,8 @@
                   "type": "string",
                   "title": "编码"
                 },
-                "coin_id": {
+                "coin": {
                   "type": "string",
-                  "format": "int64",
                   "title": "币种"
                 },
                 "description": {
@@ -742,7 +723,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -783,7 +763,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -824,7 +803,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -865,7 +843,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -906,7 +883,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -947,7 +923,6 @@
         "parameters": [
           {
             "type": "string",
-            "format": "int64",
             "description": "id",
             "name": "id",
             "in": "path",
@@ -995,8 +970,7 @@
           "type": "array",
           "title": "删除",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         },
         "update": {
@@ -1010,23 +984,21 @@
       }
     },
     "componentsV1EnableStatus": {
-      "type": "string",
-      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
-      "default": "ENABLE_STATUS_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 启用\n - 2: 禁用",
       "enum": [
-        "ENABLE_STATUS_DEFAULT",
-        "ENABLE",
-        "DISABLE"
+        1,
+        2
       ]
     },
     "componentsV1NeedValue": {
-      "type": "string",
-      "title": "- NEED_VALUE_DEFAULT: 默认值\n - NEED_VALUE_YES: 通过\n - NEED_VALUE_NO: 拒绝",
-      "default": "NEED_VALUE_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 通过\n - 2: 拒绝",
       "enum": [
-        "NEED_VALUE_DEFAULT",
-        "NEED_VALUE_YES",
-        "NEED_VALUE_NO"
+        1,
+        2
       ]
     },
     "componentsV1PageInfo": {
@@ -1053,16 +1025,15 @@
       "type": "object",
       "properties": {
         "category": {
-          "type": "string",
-          "title": "分类"
+          "title": "分类",
+          "$ref": "#/definitions/componentsV1ProductCategory"
         },
         "code": {
           "type": "string",
           "title": "编码"
         },
-        "coin_id": {
+        "coin": {
           "type": "string",
-          "format": "int64",
           "title": "币种"
         },
         "created_at": {
@@ -1075,7 +1046,7 @@
         },
         "features": {
           "type": "array",
-          "title": "特性",
+          "title": "特性(列表接口中该字段值为空)",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
@@ -1083,7 +1054,6 @@
         },
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "id"
         },
         "name": {
@@ -1125,7 +1095,7 @@
         },
         "features": {
           "type": "array",
-          "title": "特性",
+          "title": "特性(列表接口中该字段值为空)",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
@@ -1133,17 +1103,15 @@
         },
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "id"
         },
         "name": {
           "type": "string",
           "title": "名称"
         },
-        "parent_id": {
-          "type": "string",
-          "format": "int64",
-          "title": "父级分类"
+        "parent_category": {
+          "title": "父级分类",
+          "$ref": "#/definitions/componentsV1ProductCategory"
         },
         "status": {
           "title": "状态",
@@ -1172,7 +1140,6 @@
         },
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "id"
         },
         "name": {
@@ -1198,27 +1165,29 @@
     "componentsV1ProductFeatureRelation": {
       "type": "object",
       "properties": {
-        "end_date": {
+        "from_date": {
           "type": "string",
-          "title": "结束时间"
+          "title": "开始时间"
         },
-        "feature_id": {
+        "id": {
           "type": "string",
-          "format": "int64",
-          "title": "特性id"
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
         },
         "period": {
           "type": "string",
           "title": "周期"
         },
-        "relation_id": {
+        "product_feature_relation_id": {
           "type": "string",
-          "format": "int64",
-          "title": "id"
+          "title": "关联关系id"
         },
-        "start_date": {
+        "thru_date": {
           "type": "string",
-          "title": "开始时间"
+          "title": "结束时间"
         },
         "value": {
           "type": "string",
@@ -1229,19 +1198,21 @@
     "componentsV1ProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "party_id": {
+        "code": {
           "type": "string",
-          "format": "int64",
+          "title": "code"
+        },
+        "id": {
+          "type": "string",
           "title": "参与方id"
         },
-        "relation_id": {
+        "name": {
           "type": "string",
-          "format": "int64"
+          "title": "名称"
         },
-        "role_id": {
+        "product_party_relation_id": {
           "type": "string",
-          "format": "int64",
-          "title": "角色id"
+          "title": "关联关系id"
         },
         "value": {
           "type": "string",
@@ -1250,26 +1221,24 @@
       }
     },
     "componentsV1ProductStatus": {
-      "type": "string",
-      "title": "- PRODUCT_STATUS_DRAFT: 草稿\n - PRODUCT_STATUS_PENDING: 待审批\n - PRODUCT_STATUS_APPROVED: 已通过\n - PRODUCT_STATUS_REJECTED: 已拒绝\n - PRODUCT_STATUS_FROZEN: 已冻结\n - PRODUCT_STATUS_CLOSED: 已关闭",
-      "default": "PRODUCT_STATUS_DRAFT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 草稿\n - 1: 待审批\n - 2: 已通过\n - 3: 已拒绝\n - 4: 已冻结\n - 5: 已关闭",
       "enum": [
-        "PRODUCT_STATUS_DRAFT",
-        "PRODUCT_STATUS_PENDING",
-        "PRODUCT_STATUS_APPROVED",
-        "PRODUCT_STATUS_REJECTED",
-        "PRODUCT_STATUS_FROZEN",
-        "PRODUCT_STATUS_CLOSED"
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
     "componentsV1UseType": {
-      "type": "string",
-      "title": "- USE_TYPE_DEFAULT: 默认值\n - USE_TYPE_REUSE: 复用\n - USE_TYPE_CUSTOM: 定制",
-      "default": "USE_TYPE_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 复用\n - 2: 定制",
       "enum": [
-        "USE_TYPE_DEFAULT",
-        "USE_TYPE_REUSE",
-        "USE_TYPE_CUSTOM"
+        1,
+        2
       ]
     },
     "productV1CreateProductCategoryRequest": {
@@ -1281,7 +1250,6 @@
         },
         "parent_id": {
           "type": "string",
-          "format": "int64",
           "title": "父级id"
         },
         "product_features": {
@@ -1302,8 +1270,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string",
-          "format": "int64"
+          "type": "string"
         }
       }
     },
@@ -1338,7 +1305,6 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "id"
         }
       }
@@ -1355,9 +1321,8 @@
           "type": "string",
           "title": "编码"
         },
-        "coin_id": {
+        "coin": {
           "type": "string",
-          "format": "int64",
           "title": "币种"
         },
         "description": {
@@ -1399,7 +1364,6 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "int64",
           "title": "id"
         }
       }
@@ -1468,8 +1432,7 @@
           "type": "array",
           "title": "删除",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         },
         "update": {
@@ -1497,8 +1460,7 @@
           "type": "array",
           "title": "删除",
           "items": {
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         },
         "update": {
