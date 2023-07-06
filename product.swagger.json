@@ -1335,12 +1335,45 @@
           "title": "[]产品特性",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+            "$ref": "#/definitions/productV1CreateProductCategoryRequestProductFeatureRelation"
           }
         },
         "status": {
           "title": "启用状态",
           "$ref": "#/definitions/componentsV1EnableStatus"
+        }
+      }
+    },
+    "productV1CreateProductCategoryRequestProductFeatureRelation": {
+      "type": "object",
+      "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "开始时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "period": {
+          "type": "string",
+          "title": "周期"
+        },
+        "product_feature_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "结束时间"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
         }
       }
     },
@@ -1412,19 +1445,19 @@
           "title": "[]产品特性",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+            "$ref": "#/definitions/productV1CreateProductRequestProductFeatureRelation"
           }
         },
         "name": {
           "type": "string",
           "title": "名称"
         },
-        "parites": {
+        "parties": {
           "type": "array",
           "title": "[]参与方",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+            "$ref": "#/definitions/productV1CreateProductRequestProductPartiesRelation"
           }
         },
         "price": {
@@ -1434,6 +1467,64 @@
         "use_type": {
           "title": "使用方式",
           "$ref": "#/definitions/componentsV1UseType"
+        }
+      }
+    },
+    "productV1CreateProductRequestProductFeatureRelation": {
+      "type": "object",
+      "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "开始时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "period": {
+          "type": "string",
+          "title": "周期"
+        },
+        "product_feature_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "结束时间"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "productV1CreateProductRequestProductPartiesRelation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "product_party_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
         }
       }
     },
