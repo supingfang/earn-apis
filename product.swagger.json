@@ -491,10 +491,11 @@
               2,
               3,
               4,
-              5
+              5,
+              6
             ],
             "type": "integer",
-            "description": "[]状态\n\n - 0: 草稿\n - 1: 待审批\n - 2: 已通过\n - 3: 已拒绝\n - 4: 已冻结\n - 5: 已关闭",
+            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -1301,13 +1302,14 @@
     "componentsV1ProductStatus": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 草稿\n - 1: 待审批\n - 2: 已通过\n - 3: 已拒绝\n - 4: 已冻结\n - 5: 已关闭",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
       "enum": [
         1,
         2,
         3,
         4,
-        5
+        5,
+        6
       ]
     },
     "componentsV1UseType": {
