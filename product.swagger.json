@@ -963,7 +963,7 @@
           "title": "新增",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+            "$ref": "#/definitions/productV1AddProductPartiesRelation"
           }
         },
         "delete": {
@@ -1321,32 +1321,7 @@
         2
       ]
     },
-    "productV1CreateProductCategoryRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "parent_id": {
-          "type": "string",
-          "title": "父级id"
-        },
-        "product_features": {
-          "type": "array",
-          "title": "[]产品特性",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/productV1CreateProductCategoryRequestProductFeatureRelation"
-          }
-        },
-        "status": {
-          "title": "启用状态",
-          "$ref": "#/definitions/componentsV1EnableStatus"
-        }
-      }
-    },
-    "productV1CreateProductCategoryRequestProductFeatureRelation": {
+    "productV1AddProductFeatureRelation": {
       "type": "object",
       "properties": {
         "from_date": {
@@ -1372,6 +1347,52 @@
         "value": {
           "type": "string",
           "title": "值"
+        }
+      }
+    },
+    "productV1AddProductPartiesRelation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "productV1CreateProductCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parent_id": {
+          "type": "string",
+          "title": "父级id"
+        },
+        "product_features": {
+          "type": "array",
+          "title": "[]产品特性",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
+          }
+        },
+        "status": {
+          "title": "启用状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
         }
       }
     },
@@ -1443,7 +1464,7 @@
           "title": "[]产品特性",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/productV1CreateProductRequestProductFeatureRelation"
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
           }
         },
         "name": {
@@ -1455,7 +1476,7 @@
           "title": "[]参与方",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/productV1CreateProductRequestProductPartiesRelation"
+            "$ref": "#/definitions/productV1AddProductPartiesRelation"
           }
         },
         "price": {
@@ -1465,56 +1486,6 @@
         "use_type": {
           "title": "使用方式",
           "$ref": "#/definitions/componentsV1UseType"
-        }
-      }
-    },
-    "productV1CreateProductRequestProductFeatureRelation": {
-      "type": "object",
-      "properties": {
-        "from_date": {
-          "type": "string",
-          "title": "开始时间"
-        },
-        "id": {
-          "type": "string",
-          "title": "id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "period": {
-          "type": "string",
-          "title": "周期"
-        },
-        "thru_date": {
-          "type": "string",
-          "title": "结束时间"
-        },
-        "value": {
-          "type": "string",
-          "title": "值"
-        }
-      }
-    },
-    "productV1CreateProductRequestProductPartiesRelation": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string",
-          "title": "code"
-        },
-        "id": {
-          "type": "string",
-          "title": "参与方id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "value": {
-          "type": "string",
-          "title": "值"
         }
       }
     },
@@ -1584,7 +1555,7 @@
           "title": "新增",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
           }
         },
         "delete": {
@@ -1612,7 +1583,7 @@
           "title": "新增",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
           }
         },
         "delete": {
