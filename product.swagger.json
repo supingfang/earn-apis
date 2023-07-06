@@ -389,9 +389,8 @@
                   "title": "名称"
                 },
                 "need_value": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "是否有值"
+                  "title": "是否有值",
+                  "$ref": "#/definitions/componentsV1NeedValue"
                 },
                 "task_type": {
                   "type": "integer",
@@ -992,6 +991,19 @@
         2
       ]
     },
+    "componentsV1IdName": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        }
+      }
+    },
     "componentsV1NeedValue": {
       "type": "integer",
       "format": "int32",
@@ -1046,7 +1058,7 @@
         },
         "features": {
           "type": "array",
-          "title": "特性(列表接口中该字段值为空)",
+          "title": "特性",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
@@ -1111,7 +1123,36 @@
         },
         "parent_category": {
           "title": "父级分类",
-          "$ref": "#/definitions/componentsV1ProductCategory"
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductCategoryItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parent_category": {
+          "title": "父级分类",
+          "$ref": "#/definitions/componentsV1IdName"
         },
         "status": {
           "title": "状态",
@@ -1147,9 +1188,46 @@
           "title": "名称"
         },
         "need_value": {
+          "title": "是否有值",
+          "$ref": "#/definitions/componentsV1NeedValue"
+        },
+        "task_type": {
           "type": "integer",
           "format": "int32",
-          "title": "是否有值"
+          "title": "任务类型"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductFeatureItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "default_period": {
+          "type": "string",
+          "title": "默认周期"
+        },
+        "default_value": {
+          "type": "string",
+          "title": "默认值"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "need_value": {
+          "title": "是否有值",
+          "$ref": "#/definitions/componentsV1NeedValue"
         },
         "task_type": {
           "type": "integer",
@@ -1375,7 +1453,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductCategory"
+            "$ref": "#/definitions/componentsV1ProductCategoryItem"
           }
         },
         "page_info": {
@@ -1391,7 +1469,7 @@
           "title": "特征列表",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeature"
+            "$ref": "#/definitions/componentsV1ProductFeatureItem"
           }
         },
         "page_info": {
