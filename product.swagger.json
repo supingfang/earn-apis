@@ -1363,10 +1363,6 @@
           "type": "string",
           "title": "周期"
         },
-        "product_feature_relation_id": {
-          "type": "string",
-          "title": "关联关系id"
-        },
         "thru_date": {
           "type": "string",
           "title": "结束时间"
@@ -1489,10 +1485,6 @@
           "type": "string",
           "title": "周期"
         },
-        "product_feature_relation_id": {
-          "type": "string",
-          "title": "关联关系id"
-        },
         "thru_date": {
           "type": "string",
           "title": "结束时间"
@@ -1517,10 +1509,6 @@
         "name": {
           "type": "string",
           "title": "名称"
-        },
-        "product_party_relation_id": {
-          "type": "string",
-          "title": "关联关系id"
         },
         "value": {
           "type": "string",
