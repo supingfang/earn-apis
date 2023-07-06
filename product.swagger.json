@@ -1039,7 +1039,7 @@
       "properties": {
         "category": {
           "title": "分类",
-          "$ref": "#/definitions/componentsV1ProductCategory"
+          "$ref": "#/definitions/componentsV1IdName"
         },
         "code": {
           "type": "string",
