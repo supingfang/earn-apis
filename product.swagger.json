@@ -1107,7 +1107,7 @@
         },
         "features": {
           "type": "array",
-          "title": "特性(列表接口中该字段值为空)",
+          "title": "特性",
           "items": {
             "type": "object",
             "$ref": "#/definitions/componentsV1ProductFeatureRelation"
