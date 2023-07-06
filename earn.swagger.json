@@ -39,7 +39,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -62,7 +62,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -95,7 +95,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -128,7 +128,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -161,7 +161,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -194,7 +194,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -227,7 +227,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -260,7 +260,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -283,7 +283,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -314,7 +314,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -337,7 +337,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -360,7 +360,3133 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单列表",
+        "operationId": "Order_ListOrders",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 订单id",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 订单号",
+            "name": "order_no",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 业务日期",
+            "name": "biz_date",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 产品id",
+            "name": "product_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 产品编码",
+            "name": "product_code",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 类型\n\n - 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 币种",
+            "name": "coin",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 参与方",
+            "name": "party_id",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: 外部",
+            "name": "source_type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 来源id",
+            "name": "source_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建开始时间",
+            "name": "created_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建结束时间",
+            "name": "created_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新开始时间",
+            "name": "updated_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新结束时间",
+            "name": "updated_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序字段",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrdersReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "创建订单",
+        "operationId": "Order_CreateOrder",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderV1CreateOrderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1CreateOrderReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情",
+        "operationId": "Order_GetOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1GetOrderReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "更新订单",
+        "operationId": "Order_UpdateOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "assets": {
+                  "type": "array",
+                  "title": "[] assets",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/orderV1UpdateOrderAssetRequest"
+                  }
+                },
+                "biz_date": {
+                  "type": "string",
+                  "title": "[] 业务日期"
+                },
+                "docs": {
+                  "type": "array",
+                  "title": "[] docs",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/orderV1UpdateOrderDocRequest"
+                  }
+                },
+                "parties": {
+                  "type": "array",
+                  "title": "[] parties",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/orderV1UpdateOrderPartyRequest"
+                  }
+                },
+                "products": {
+                  "type": "array",
+                  "title": "[] products",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/orderV1UpdateOrderProduct"
+                  }
+                },
+                "type": {
+                  "title": "[] 类型",
+                  "$ref": "#/definitions/orderV1OrderType"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/accounts": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-account",
+        "operationId": "Order_ListOrderAccounts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderAccountsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/approve": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "审批通过订单",
+        "operationId": "Order_ApproveOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/deliver": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "交付订单",
+        "operationId": "Order_DeliverOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/docs": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-doc",
+        "operationId": "Order_ListOrderDocs",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderDocsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/histories": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-history",
+        "operationId": "Order_ListOrderHistories",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderHistoriesReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/pay_confirm": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "确认客户支付订单",
+        "operationId": "Order_PayOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/reject": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "审批拒绝订单",
+        "operationId": "Order_RejectOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/settle": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "结算订单",
+        "operationId": "Order_SettleOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/settlements": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-settlement",
+        "operationId": "Order_ListOrderSettlements",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderSettlementsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/submit": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "提交订单",
+        "operationId": "Order_SubmitOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/supply_confirm": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "供应商确认订单",
+        "operationId": "Order_SupplyConfirmOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/supply_confirm_run": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "供应商确认运行订单",
+        "operationId": "Order_SupplyConfirmRunOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/supply_reject": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "供应商拒绝订单",
+        "operationId": "Order_SupplyRejectOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/tasks": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-task",
+        "operationId": "Order_ListOrderTasks",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderTasksReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/transactions": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "订单详情-transaction",
+        "operationId": "Order_ListOrderTransactions",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrderTransactionsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/parties": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方列表",
+        "operationId": "Parties_ListParties",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 参与方ID",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 参与方code",
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 参与方名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 等待提交\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                1,
+                2
+              ],
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 参与方类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 参与方角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建日期开始时间",
+            "name": "created_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建日期结束时间",
+            "name": "created_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新日期开始时间",
+            "name": "updated_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新日期结束时间",
+            "name": "updated_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序 (id desc/asc,code desc/asc, created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1ListParty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party": {
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "创建参与方",
+        "operationId": "Parties_CreateParty",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1CreatePartyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Id"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/apikey": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "编辑apikey",
+        "operationId": "Parties_UpdatePartyApiKey",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1UpdatePartyApiKeyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "创建apikey",
+        "operationId": "Parties_CreatePartyApiKey",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1CreatePartyApiKeyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Id"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/apikey/{id}/enable": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "启用/禁用apikey",
+        "operationId": "Parties_EnablePartyApiKey",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "title": "状态",
+                  "$ref": "#/definitions/componentsV1EnableStatus"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/roles": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方角色列表",
+        "operationId": "Parties_GetPartyRoles",
+        "parameters": [
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
+            "name": "type",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1IdName"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/upload": {
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "上传文件",
+        "operationId": "Parties_UploadFile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1UploadFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1UploadFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/upload/{id}": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "修改上传文件",
+        "operationId": "Parties_UpdateUploadFile",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "文件"
+                },
+                "type": {
+                  "title": "类型",
+                  "$ref": "#/definitions/partyV1FileType"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方详情",
+        "operationId": "Parties_GetParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1Party"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "修改参与方",
+        "operationId": "Parties_UpdateParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "contacts": {
+                  "title": "联系人",
+                  "$ref": "#/definitions/partyV1UpdatePartyContact"
+                },
+                "docs": {
+                  "title": "文档",
+                  "$ref": "#/definitions/partyV1UpdatePartyDoc"
+                },
+                "party": {
+                  "title": "参与方",
+                  "$ref": "#/definitions/partyV1UpdateParty"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/accounts": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方账户列表",
+        "operationId": "Parties_ListPartyAccounts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页数",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/apikey": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方apikey列表",
+        "operationId": "Parties_ListPartyApiKeys",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页数",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1ApiKeys"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/approve": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "审批",
+        "operationId": "Parties_ApproveParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/close": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "关闭",
+        "operationId": "Parties_CloseParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/contacts": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方联系人列表",
+        "operationId": "Parties_ListPartyContacts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页数",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1PartyContacts"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/documents": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方文档列表",
+        "operationId": "Parties_ListPartyDocuments",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页数",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1PartyDocs"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/frozen": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "冻结",
+        "operationId": "Parties_FreezeParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/histories": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方操作历史列表",
+        "operationId": "Parties_ListPartyHistories",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "history id",
+            "name": "history_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 操作类型",
+            "name": "action",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "操作前",
+            "name": "before",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "操作后",
+            "name": "after",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "ip",
+            "name": "ip",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新日期开始时间",
+            "name": "updated_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新日期结束时间",
+            "name": "updated_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 修改人",
+            "name": "updated_by",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "页数",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "排序 (history_id desc/asc, action desc/asc, ip desc/asc, updated_at desc/asc, updated_by desc/asc)",
+            "name": "sort",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1PartyHistories"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/orders": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方订单列表",
+        "operationId": "Parties_ListPartyOrders",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "[] 订单id",
+            "name": "order_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 订单号",
+            "name": "order_no",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 业务日期",
+            "name": "biz_date",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 产品id",
+            "name": "product_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 产品编码",
+            "name": "product_code",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 类型\n\n - 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 币种",
+            "name": "coin",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 参与方",
+            "name": "party_id",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: 外部",
+            "name": "source_type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 来源id",
+            "name": "source_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "enum": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ],
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建开始时间",
+            "name": "created_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建结束时间",
+            "name": "created_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新开始时间",
+            "name": "updated_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新结束时间",
+            "name": "updated_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序字段",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1ListOrdersReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/products": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方产品列表",
+        "operationId": "Parties_ListPartyProducts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "参与方ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "[]product id",
+            "name": "product_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]编码",
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "[]分类",
+            "name": "category",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "[]币种",
+            "name": "coin",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "type": "integer",
+            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
+            "name": "use_type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]创建开始日期",
+            "name": "created_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]创建结束日期",
+            "name": "created_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序(id desc/asc,code desc/asc,name desc/asc,coin desc/asc,created_at desc/asc,updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1Products"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/reject": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "拒绝",
+        "operationId": "Parties_RejectParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/submit": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "提交",
+        "operationId": "Parties_SubmitParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party/{id}/unfrozen": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "解冻",
+        "operationId": "Parties_UnfreezeParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/product_categories": {
+      "get": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "获取产品分类列表",
+        "operationId": "ProductCategory_ListProductCategories",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 排序(id desc/asc, parent_id desc/asc,created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ProductCategories"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "创建产品分类",
+        "operationId": "ProductCategory_CreateProductCategory",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductCategoryRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductCategoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/product_categories/{id}": {
+      "get": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "获取产品分类详情",
+        "operationId": "ProductCategory_GetProductCategory",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1ProductCategory"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "更新产品分类",
+        "operationId": "ProductCategory_UpdateProductCategory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "features": {
+                  "title": "[]产品特性",
+                  "$ref": "#/definitions/productV1UpdateProductCategoryRequestupdateFeatures"
+                },
+                "name": {
+                  "type": "string",
+                  "title": "名称"
+                },
+                "parent_id": {
+                  "type": "string",
+                  "title": "父级id"
+                },
+                "status": {
+                  "title": "启用状态",
+                  "$ref": "#/definitions/componentsV1EnableStatus"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "删除产品分类",
+        "operationId": "ProductCategory_DeleteProductCategory",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/product_categories/{id}/enable": {
+      "put": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "启用/禁用产品分类",
+        "operationId": "ProductCategory_EnableProductCategory",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "$ref": "#/definitions/componentsV1EnableStatus"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/product_features": {
+      "get": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "获取产品特性列表",
+        "operationId": "ProductFeature_ListProductFeatures",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 排序(id desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ProductFeatures"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "创建产品特性",
+        "operationId": "ProductFeature_CreateProductFeature",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductFeatureRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductFeatureResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/product_features/{id}": {
+      "get": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "获取产品特性详情",
+        "operationId": "ProductFeature_GetProductFeature",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1ProductFeature"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "更新产品特性",
+        "operationId": "ProductFeature_UpdateProductFeature",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "default_period": {
+                  "type": "string",
+                  "title": "默认周期"
+                },
+                "default_value": {
+                  "type": "string",
+                  "title": "[]默认值"
+                },
+                "name": {
+                  "type": "string",
+                  "title": "名称"
+                },
+                "need_value": {
+                  "title": "是否有值",
+                  "$ref": "#/definitions/componentsV1NeedValue"
+                },
+                "task_type": {
+                  "type": "integer",
+                  "format": "int32",
+                  "title": "任务类型"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "删除产品特性",
+        "operationId": "ProductFeature_DeleteProductFeature",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "产品列表",
+        "operationId": "Product_ListProducts",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[]id",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]编码",
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]分类",
+            "name": "category_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]币种",
+            "name": "coin",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "type": "integer",
+            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
+            "name": "use_type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]创建开始日期",
+            "name": "created_start",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]创建结束日期",
+            "name": "created_end",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[]参与方",
+            "name": "party_id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 排序(id desc/asc,code desc/asc,name desc/asc,coin desc/asc,created_at desc/asc,updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int32",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1Products"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "创建产品",
+        "operationId": "Product_CreateProduct",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1CreateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "获取产品详情",
+        "operationId": "Product_GetProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Product"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "更新产品",
+        "operationId": "Product_UpdateProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "integer",
+                  "format": "int32",
+                  "title": "分类"
+                },
+                "code": {
+                  "type": "string",
+                  "title": "编码"
+                },
+                "coin": {
+                  "type": "string",
+                  "title": "币种"
+                },
+                "description": {
+                  "type": "string",
+                  "title": "[]描述"
+                },
+                "features": {
+                  "title": "[]产品特性",
+                  "$ref": "#/definitions/productV1UpdateProductRequestupdateFeatures"
+                },
+                "name": {
+                  "type": "string",
+                  "title": "名称"
+                },
+                "parties": {
+                  "type": "array",
+                  "title": "[]参与方",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/UpdateProductRequestupdateParties"
+                  }
+                },
+                "price": {
+                  "type": "string",
+                  "title": "[]价格"
+                },
+                "use_type": {
+                  "title": "使用方式",
+                  "$ref": "#/definitions/componentsV1UseType"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/approve": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "审核产品",
+        "operationId": "Product_ApproveProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/close": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "关闭产品",
+        "operationId": "Product_CloseProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/frozen": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "冻结产品",
+        "operationId": "Product_FrozenProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/reject": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "驳回",
+        "operationId": "Product_RejectProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/submit": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "提交产品",
+        "operationId": "Product_SubmitProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/unfrozen": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "解冻产品",
+        "operationId": "Product_UnFrozenProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -382,13 +3508,11 @@
           },
           {
             "enum": [
-              "ENABLE_STATUS_DEFAULT",
-              "ENABLE",
-              "DISABLE"
+              1,
+              2
             ],
-            "type": "string",
-            "default": "ENABLE_STATUS_DEFAULT",
-            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
+            "type": "integer",
+            "description": "状态\n\n - 0: 默认值\n - 1: 启用\n - 2: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -417,7 +3541,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -448,7 +3572,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -480,7 +3604,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -535,7 +3659,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -581,7 +3705,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -604,7 +3728,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -627,7 +3751,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -658,7 +3782,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -691,7 +3815,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -724,7 +3848,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -758,13 +3882,11 @@
           },
           {
             "enum": [
-              "ENABLE_STATUS_DEFAULT",
-              "ENABLE",
-              "DISABLE"
+              1,
+              2
             ],
-            "type": "string",
-            "default": "ENABLE_STATUS_DEFAULT",
-            "description": "状态\n\n - ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
+            "type": "integer",
+            "description": "状态\n\n - 0: 默认值\n - 1: 启用\n - 2: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -799,7 +3921,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -830,7 +3952,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -862,7 +3984,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -929,7 +4051,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -959,7 +4081,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -999,7 +4121,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -1039,7 +4161,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -1085,7 +4207,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -1125,7 +4247,7 @@
           "default": {
             "description": "An unexpected error response.",
             "schema": {
-              "$ref": "#/definitions/rpcStatus"
+              "$ref": "#/definitions/googlerpcStatus"
             }
           }
         }
@@ -1133,6 +4255,34 @@
     }
   },
   "definitions": {
+    "UpdateProductRequestupdateParties": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductPartiesRelation"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          }
+        }
+      }
+    },
     "authenticationV1ActivateRequest": {
       "type": "object",
       "properties": {
@@ -1285,14 +4435,52 @@
       }
     },
     "componentsV1EnableStatus": {
-      "type": "string",
-      "title": "- ENABLE_STATUS_DEFAULT: 默认值\n - ENABLE: 启用\n - DISABLE: 禁用",
-      "default": "ENABLE_STATUS_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 启用\n - 2: 禁用",
       "enum": [
-        "ENABLE_STATUS_DEFAULT",
-        "ENABLE",
-        "DISABLE"
+        1,
+        2
       ]
+    },
+    "componentsV1Id": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        }
+      }
+    },
+    "componentsV1IdName": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        }
+      }
+    },
+    "componentsV1IdNameCode": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        }
+      }
     },
     "componentsV1Menu": {
       "type": "object",
@@ -1341,24 +4529,31 @@
       }
     },
     "componentsV1MenuHidden": {
-      "type": "string",
-      "title": "- MENU_HIDDEN_DEFAULT: 默认值\n - TRUE: 隐藏\n - FALSE: 显示",
-      "default": "MENU_HIDDEN_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 隐藏\n - 2: 显示",
       "enum": [
-        "MENU_HIDDEN_DEFAULT",
-        "TRUE",
-        "FALSE"
+        1,
+        2
       ]
     },
     "componentsV1MenuType": {
-      "type": "string",
-      "title": "- MENU_TYPE_DEFAULT: 默认值\n - DIRECTORY: 目录\n - MENU: 菜单\n - BUTTON: 按钮",
-      "default": "MENU_TYPE_DEFAULT",
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 目录\n - 2: 菜单\n - 3: 按钮",
       "enum": [
-        "MENU_TYPE_DEFAULT",
-        "DIRECTORY",
-        "MENU",
-        "BUTTON"
+        1,
+        2,
+        3
+      ]
+    },
+    "componentsV1NeedValue": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 通过\n - 2: 拒绝",
+      "enum": [
+        1,
+        2
       ]
     },
     "componentsV1PageInfo": {
@@ -1380,6 +4575,284 @@
           "title": "总数量"
         }
       }
+    },
+    "componentsV1Product": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "title": "分类",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "desc": {
+          "type": "string",
+          "title": "描述"
+        },
+        "features": {
+          "type": "array",
+          "title": "特性",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parties": {
+          "type": "array",
+          "title": "参与方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+          }
+        },
+        "price": {
+          "type": "string",
+          "title": "价格"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1ProductStatus"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        },
+        "use_type": {
+          "title": "使用方式",
+          "$ref": "#/definitions/componentsV1UseType"
+        }
+      }
+    },
+    "componentsV1ProductCategory": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "features": {
+          "type": "array",
+          "title": "特性",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parent_category": {
+          "title": "父级分类",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductCategoryItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parent_category": {
+          "title": "父级分类",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductFeature": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "default_period": {
+          "type": "string",
+          "title": "默认周期"
+        },
+        "default_value": {
+          "type": "string",
+          "title": "默认值"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "need_value": {
+          "title": "是否有值",
+          "$ref": "#/definitions/componentsV1NeedValue"
+        },
+        "task_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "任务类型"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductFeatureItem": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "default_period": {
+          "type": "string",
+          "title": "默认周期"
+        },
+        "default_value": {
+          "type": "string",
+          "title": "默认值"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "need_value": {
+          "title": "是否有值",
+          "$ref": "#/definitions/componentsV1NeedValue"
+        },
+        "task_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "任务类型"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "componentsV1ProductFeatureRelation": {
+      "type": "object",
+      "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "开始时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "period": {
+          "type": "string",
+          "title": "周期"
+        },
+        "product_feature_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "结束时间"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "componentsV1ProductPartiesRelation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "product_party_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "componentsV1ProductStatus": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
     },
     "componentsV1QrCode": {
       "type": "object",
@@ -1432,6 +4905,15 @@
           "title": "创建人"
         }
       }
+    },
+    "componentsV1UseType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 复用\n - 2: 定制",
+      "enum": [
+        1,
+        2
+      ]
     },
     "componentsV1User": {
       "type": "object",
@@ -1505,16 +4987,7 @@
         }
       }
     },
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "@type": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    },
-    "rpcStatus": {
+    "googlerpcStatus": {
       "type": "object",
       "properties": {
         "code": {
@@ -1532,6 +5005,1939 @@
           "type": "string"
         }
       }
+    },
+    "orderV1AccountType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 存款账户\n - 2: 贷款账户\n - 3: 质押账户\n - 4: 投资账户",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "orderV1AssetType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: COIN\n - 2: 产品",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "orderV1CreateOrderAsset": {
+      "type": "object",
+      "properties": {
+        "asset_type": {
+          "title": "资产类型",
+          "$ref": "#/definitions/orderV1AssetType"
+        },
+        "coin": {
+          "type": "string",
+          "title": "[] 币种"
+        },
+        "party_id": {
+          "type": "string",
+          "title": "参与方"
+        },
+        "product_id": {
+          "type": "string",
+          "title": "[] 产品"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色"
+        },
+        "value": {
+          "type": "string",
+          "title": "数值"
+        }
+      }
+    },
+    "orderV1CreateOrderDoc": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "title": "数据"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1DocType"
+        }
+      }
+    },
+    "orderV1CreateOrderParty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "参与方ID"
+        },
+        "rate": {
+          "type": "string",
+          "title": "比例"
+        },
+        "value": {
+          "type": "string",
+          "title": "[] 分配比率"
+        }
+      }
+    },
+    "orderV1CreateOrderProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "[] 数额"
+        },
+        "features": {
+          "type": "array",
+          "title": "产品特征",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateProductFeature"
+          }
+        },
+        "id": {
+          "type": "string",
+          "title": "产品ID"
+        },
+        "price": {
+          "type": "string",
+          "title": "[] 价格"
+        },
+        "quantity": {
+          "type": "string",
+          "title": "[] 数量"
+        }
+      }
+    },
+    "orderV1CreateOrderReply": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "订单ID"
+        },
+        "order_no": {
+          "type": "string",
+          "title": "订单号"
+        }
+      }
+    },
+    "orderV1CreateOrderRequest": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "title": "订单asset",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderAsset"
+          }
+        },
+        "biz_date": {
+          "type": "string",
+          "title": "业务日期"
+        },
+        "docs": {
+          "type": "array",
+          "title": "订单文档",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderDoc"
+          }
+        },
+        "parties": {
+          "type": "array",
+          "title": "订单party",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderParty"
+          }
+        },
+        "products": {
+          "type": "array",
+          "title": "订单产品",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderProduct"
+          }
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1OrderType"
+        }
+      }
+    },
+    "orderV1CreateProductFeature": {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "type": "string",
+          "title": "产品特征"
+        },
+        "from_date": {
+          "type": "string",
+          "title": "[] 生效日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "period": {
+          "type": "string",
+          "title": "运行"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "[] 到期日期"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "orderV1DocType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: AGREEMENT",
+      "enum": [
+        1
+      ]
+    },
+    "orderV1GetOrderAsset": {
+      "type": "object",
+      "properties": {
+        "asset_type": {
+          "title": "资产类型",
+          "$ref": "#/definitions/orderV1AssetType"
+        },
+        "coin": {
+          "type": "string",
+          "title": "[] 币种"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "party": {
+          "title": "参与方",
+          "$ref": "#/definitions/componentsV1IdNameCode"
+        },
+        "product": {
+          "title": "[] 产品",
+          "$ref": "#/definitions/componentsV1IdNameCode"
+        },
+        "role": {
+          "title": "角色",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "value": {
+          "type": "string",
+          "title": "数值"
+        }
+      }
+    },
+    "orderV1GetOrderReply": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "title": "assets",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1GetOrderAsset"
+          }
+        },
+        "biz_date": {
+          "type": "string",
+          "title": "业务日期"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "order_no": {
+          "type": "string",
+          "title": "订单号"
+        },
+        "parties": {
+          "type": "array",
+          "title": "参与方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderParty"
+          }
+        },
+        "products": {
+          "type": "array",
+          "title": "产品",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1ListOrderProductsReply"
+          }
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/orderV1OrderStatus"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1OrderType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
+    "orderV1ListOrderAccountsReply": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderAccount"
+          }
+        }
+      }
+    },
+    "orderV1ListOrderDocsReply": {
+      "type": "object",
+      "properties": {
+        "docs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderDoc"
+          }
+        }
+      }
+    },
+    "orderV1ListOrderHistoriesReply": {
+      "type": "object",
+      "properties": {
+        "histories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderHistory"
+          }
+        }
+      }
+    },
+    "orderV1ListOrderProductsReply": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "数额"
+        },
+        "code": {
+          "type": "string",
+          "title": "产品编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "features": {
+          "type": "array",
+          "title": "产品特征",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1ProductFeature"
+          }
+        },
+        "id": {
+          "type": "string",
+          "title": "产品ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "产品名称"
+        },
+        "price": {
+          "type": "string",
+          "title": "价格"
+        },
+        "quantity": {
+          "type": "string",
+          "title": "数量"
+        }
+      }
+    },
+    "orderV1ListOrderSettlementsReply": {
+      "type": "object",
+      "properties": {
+        "settlements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderSettlement"
+          }
+        }
+      }
+    },
+    "orderV1ListOrderTasksReply": {
+      "type": "object",
+      "properties": {
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderTask"
+          }
+        }
+      }
+    },
+    "orderV1ListOrderTransactionsReply": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderTransaction"
+          }
+        }
+      }
+    },
+    "orderV1ListOrdersReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "用户列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1Orders"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "orderV1OrderAccount": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "账户地址"
+        },
+        "amount": {
+          "type": "string",
+          "title": "余额"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "frozen": {
+          "type": "string",
+          "title": "冻结额"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "product": {
+          "title": "产品",
+          "$ref": "#/definitions/componentsV1IdNameCode"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态"
+        },
+        "total": {
+          "type": "string",
+          "title": "总额度"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1AccountType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "orderV1OrderDoc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "thumbnail": {
+          "type": "string",
+          "title": "缩略图url"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1DocType"
+        },
+        "url": {
+          "type": "string",
+          "title": "url"
+        }
+      }
+    },
+    "orderV1OrderHistory": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "title": "动作"
+        },
+        "after": {
+          "type": "string",
+          "title": "变更后"
+        },
+        "before": {
+          "type": "string",
+          "title": "变更前"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "memo": {
+          "type": "string",
+          "title": "备注"
+        }
+      }
+    },
+    "orderV1OrderParty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "name": {
+          "type": "string",
+          "title": "[] 参与方名称"
+        },
+        "rate": {
+          "type": "string",
+          "title": "比例"
+        },
+        "role": {
+          "title": "角色id",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "value": {
+          "type": "string",
+          "title": "[] 分配比率"
+        }
+      }
+    },
+    "orderV1OrderSettlement": {
+      "type": "object",
+      "properties": {
+        "cost": {
+          "type": "string",
+          "title": "成本"
+        },
+        "date": {
+          "type": "string",
+          "title": "日期"
+        },
+        "fee": {
+          "type": "string",
+          "title": "费用"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "party": {
+          "title": "参与方",
+          "$ref": "#/definitions/componentsV1IdNameCode"
+        },
+        "received": {
+          "type": "string",
+          "title": "实收"
+        },
+        "revenue": {
+          "type": "string",
+          "title": "收入"
+        },
+        "role": {
+          "title": "角色",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "value": {
+          "type": "string",
+          "title": "分配比率"
+        }
+      }
+    },
+    "orderV1OrderSourceType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 内部\n - 2: 外部",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "orderV1OrderStatus": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "orderV1OrderTask": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "period": {
+          "type": "string",
+          "title": "运行"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1TaskType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "orderV1OrderTransaction": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "交易额"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "memo": {
+          "type": "string",
+          "title": "备注"
+        },
+        "source_id": {
+          "type": "string",
+          "title": "来源id"
+        },
+        "source_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "来源类型"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32",
+          "title": "状态"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1TransactionType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        }
+      }
+    },
+    "orderV1OrderType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "orderV1Orders": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "数额"
+        },
+        "biz_date": {
+          "type": "string",
+          "title": "业务日期"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "Id"
+        },
+        "order_no": {
+          "type": "string",
+          "title": "订单号"
+        },
+        "parties": {
+          "type": "array",
+          "title": "参与方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdNameCode"
+          }
+        },
+        "products": {
+          "type": "array",
+          "title": "产品",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdNameCode"
+          }
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/orderV1OrderStatus"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1OrderType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
+    "orderV1ProductFeature": {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "type": "string",
+          "title": "产品特征"
+        },
+        "from_date": {
+          "type": "string",
+          "title": "生效日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "period": {
+          "type": "string",
+          "title": "运行"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "到期日期"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "orderV1TaskType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "orderV1TransactionType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 充值\n - 2: 提取\n - 3: 利息\n - 4: 费用\n - 5: 购买\n - 6: 赎回\n - 7: 交易买\n - 8: 交易卖\n - 9: 支付",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "orderV1UpdateOrderAsset": {
+      "type": "object",
+      "properties": {
+        "asset_type": {
+          "title": "资产类型",
+          "$ref": "#/definitions/orderV1AssetType"
+        },
+        "coin": {
+          "type": "string",
+          "title": "[] 币种"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "party_id": {
+          "type": "string",
+          "title": "参与方"
+        },
+        "product_id": {
+          "type": "string",
+          "title": "[] 产品"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色"
+        },
+        "value": {
+          "type": "string",
+          "title": "数值"
+        }
+      }
+    },
+    "orderV1UpdateOrderAssetRequest": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderAsset"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1UpdateOrderAsset"
+          }
+        }
+      }
+    },
+    "orderV1UpdateOrderDoc": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "title": "数据"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1DocType"
+        }
+      }
+    },
+    "orderV1UpdateOrderDocRequest": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderDoc"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1UpdateOrderDoc"
+          }
+        }
+      }
+    },
+    "orderV1UpdateOrderParty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "订单参与方id"
+        },
+        "rate": {
+          "type": "string",
+          "title": "比例"
+        },
+        "value": {
+          "type": "string",
+          "title": "[] 分配比率"
+        }
+      }
+    },
+    "orderV1UpdateOrderPartyRequest": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderParty"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1UpdateOrderParty"
+          }
+        }
+      }
+    },
+    "orderV1UpdateOrderProduct": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "[] 数额"
+        },
+        "features": {
+          "type": "array",
+          "title": "产品特征",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1UpdateProductFeature"
+          }
+        },
+        "id": {
+          "type": "string",
+          "title": "产品ID"
+        },
+        "price": {
+          "type": "string",
+          "title": "[] 价格"
+        },
+        "quantity": {
+          "type": "string",
+          "title": "[] 数量"
+        }
+      }
+    },
+    "orderV1UpdateProductFeature": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1ProductFeature"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1ProductFeature"
+          }
+        }
+      }
+    },
+    "partyV1ApiKey": {
+      "type": "object",
+      "properties": {
+        "callback": {
+          "type": "array",
+          "title": "回调",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "ip": {
+          "type": "array",
+          "title": "IPs",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key": {
+          "type": "string",
+          "title": "key"
+        },
+        "memo": {
+          "type": "string",
+          "title": "备注"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
+        },
+        "type": {
+          "title": "操作类型",
+          "$ref": "#/definitions/partyV1ApiKeyType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
+    "partyV1ApiKeyType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: read\n - 2: write\n - 3: read and write",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "partyV1ApiKeys": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "ApiKey列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1ApiKey"
+          }
+        }
+      }
+    },
+    "partyV1CreateParty": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "title": "[] 等级"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "role_id": {
+          "type": "array",
+          "title": "角色",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "title": "[] 来源",
+          "$ref": "#/definitions/partyV1PartySource"
+        },
+        "type": {
+          "title": "[] 类型",
+          "$ref": "#/definitions/partyV1PartyType"
+        }
+      }
+    },
+    "partyV1CreatePartyApiKeyRequest": {
+      "type": "object",
+      "properties": {
+        "callback": {
+          "type": "string",
+          "title": "[] callback"
+        },
+        "id": {
+          "type": "string",
+          "title": "party ID"
+        },
+        "ips": {
+          "type": "string",
+          "title": "[] ip地址，多ip以逗号分隔"
+        },
+        "memo": {
+          "type": "string",
+          "title": "[] 备注"
+        },
+        "secret": {
+          "type": "string",
+          "format": "byte",
+          "title": "密钥"
+        },
+        "type": {
+          "title": "api类型",
+          "$ref": "#/definitions/partyV1ApiKeyType"
+        }
+      }
+    },
+    "partyV1CreatePartyContact": {
+      "type": "object",
+      "properties": {
+        "contact": {
+          "type": "string",
+          "title": "联系人"
+        },
+        "title": {
+          "type": "string",
+          "title": "[] title"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1PartyContactType"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "partyV1CreatePartyDoc": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1PartyDocType"
+        }
+      }
+    },
+    "partyV1CreatePartyRequest": {
+      "type": "object",
+      "properties": {
+        "contacts": {
+          "type": "array",
+          "title": "联系人",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1CreatePartyContact"
+          }
+        },
+        "docs": {
+          "type": "array",
+          "title": "文档",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1CreatePartyDoc"
+          }
+        },
+        "party": {
+          "title": "参与方",
+          "$ref": "#/definitions/partyV1CreateParty"
+        }
+      }
+    },
+    "partyV1FileType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 图片\n - 2: 文档",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "partyV1ListParty": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "参与方列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1Party"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "partyV1Party": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "role": {
+          "type": "array",
+          "title": "角色",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/partyV1Status"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1PartyType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        }
+      }
+    },
+    "partyV1PartyContact": {
+      "type": "object",
+      "properties": {
+        "contact": {
+          "type": "string",
+          "title": "联系人"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "title": {
+          "type": "string",
+          "title": "title"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1PartyContactType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "partyV1PartyContactType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 邮箱\n - 2: 电话\n - 3: slack",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "partyV1PartyContacts": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "联系人列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1PartyContact"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "partyV1PartyDoc": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "thumbnail": {
+          "type": "string",
+          "title": "缩略图连接"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1PartyDocType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        },
+        "url": {
+          "type": "string",
+          "title": "文档连接"
+        }
+      }
+    },
+    "partyV1PartyDocType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 主体\n - 2: 法人\n - 3: 协议",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "partyV1PartyDocs": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "文档列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1PartyDoc"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "partyV1PartyHistories": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "title": "操作类型"
+        },
+        "after": {
+          "type": "string",
+          "title": "操作后"
+        },
+        "before": {
+          "type": "string",
+          "title": "操作前"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "ip": {
+          "type": "string",
+          "title": "ip"
+        },
+        "memo": {
+          "type": "string",
+          "title": "备注"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "修改日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "修改人"
+        }
+      }
+    },
+    "partyV1PartySource": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 外部\n - 2: 内部",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "partyV1PartyType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 个人\n - 2: 组织",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "partyV1Status": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 等待提交\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "partyV1UpdateContact": {
+      "type": "object",
+      "properties": {
+        "contact": {
+          "type": "string",
+          "title": "[] 联系人"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "title": {
+          "type": "string",
+          "title": "[] title"
+        },
+        "type": {
+          "title": "[] 类型",
+          "$ref": "#/definitions/partyV1PartyContactType"
+        },
+        "value": {
+          "type": "string",
+          "title": "[] 值"
+        }
+      }
+    },
+    "partyV1UpdateParty": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "[] code"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32",
+          "title": "[] 等级"
+        },
+        "name": {
+          "type": "string",
+          "title": "[] 名称"
+        },
+        "role_id": {
+          "type": "array",
+          "title": "[] 角色",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source": {
+          "title": "[] 来源",
+          "$ref": "#/definitions/partyV1PartySource"
+        },
+        "type": {
+          "title": "[] 类型",
+          "$ref": "#/definitions/partyV1PartyType"
+        }
+      }
+    },
+    "partyV1UpdatePartyApiKeyRequest": {
+      "type": "object",
+      "properties": {
+        "callback": {
+          "type": "string",
+          "title": "[] callback"
+        },
+        "id": {
+          "type": "string",
+          "title": "apikey id"
+        },
+        "ips": {
+          "type": "string",
+          "title": "[] ip地址，多ip以逗号分隔"
+        },
+        "memo": {
+          "type": "string",
+          "title": "[] 备注"
+        },
+        "secret": {
+          "type": "string",
+          "format": "byte",
+          "title": "密钥"
+        },
+        "type": {
+          "title": "api类型",
+          "$ref": "#/definitions/partyV1ApiKeyType"
+        }
+      }
+    },
+    "partyV1UpdatePartyContact": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "title": "[] 新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1CreatePartyContact"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "title": "[] 删除",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "title": "更新",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1UpdateContact"
+          }
+        }
+      }
+    },
+    "partyV1UpdatePartyDoc": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1CreatePartyDoc"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "title": "更新",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1CreatePartyDoc"
+          }
+        }
+      }
+    },
+    "partyV1UploadFileRequest": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "format": "byte",
+          "title": "文件"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/partyV1FileType"
+        }
+      }
+    },
+    "partyV1UploadFileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id"
+        }
+      }
+    },
+    "productV1AddProductFeatureRelation": {
+      "type": "object",
+      "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "开始时间"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "period": {
+          "type": "string",
+          "title": "周期"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "结束时间"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "productV1AddProductPartiesRelation": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "code"
+        },
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "productV1CreateProductCategoryRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parent_id": {
+          "type": "string",
+          "title": "父级id"
+        },
+        "product_features": {
+          "type": "array",
+          "title": "[]产品特性",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
+          }
+        },
+        "status": {
+          "title": "启用状态",
+          "$ref": "#/definitions/componentsV1EnableStatus"
+        }
+      }
+    },
+    "productV1CreateProductCategoryResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "productV1CreateProductFeatureRequest": {
+      "type": "object",
+      "properties": {
+        "default_period": {
+          "type": "string",
+          "title": "默认周期"
+        },
+        "default_value": {
+          "type": "string",
+          "title": "[]默认值"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "need_value": {
+          "title": "是否有值",
+          "$ref": "#/definitions/componentsV1NeedValue"
+        },
+        "task_type": {
+          "type": "integer",
+          "format": "int32",
+          "title": "任务类型"
+        }
+      }
+    },
+    "productV1CreateProductFeatureResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id"
+        }
+      }
+    },
+    "productV1CreateProductRequest": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "integer",
+          "format": "int32",
+          "title": "分类"
+        },
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "description": {
+          "type": "string",
+          "title": "[]描述"
+        },
+        "features": {
+          "type": "array",
+          "title": "[]产品特性",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
+          }
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parties": {
+          "type": "array",
+          "title": "[]参与方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductPartiesRelation"
+          }
+        },
+        "price": {
+          "type": "string",
+          "title": "[]价格"
+        },
+        "use_type": {
+          "title": "使用方式",
+          "$ref": "#/definitions/componentsV1UseType"
+        }
+      }
+    },
+    "productV1CreateProductResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id"
+        }
+      }
+    },
+    "productV1ProductCategories": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductCategoryItem"
+          }
+        },
+        "page_info": {
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "productV1ProductFeatures": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "特征列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureItem"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "productV1Products": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "产品列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Product"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
+    "productV1UpdateProductCategoryRequestupdateFeatures": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        }
+      }
+    },
+    "productV1UpdateProductRequestupdateFeatures": {
+      "type": "object",
+      "properties": {
+        "add": {
+          "type": "array",
+          "title": "新增",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/productV1AddProductFeatureRelation"
+          }
+        },
+        "delete": {
+          "type": "array",
+          "title": "删除",
+          "items": {
+            "type": "string"
+          }
+        },
+        "update": {
+          "type": "array",
+          "title": "修改",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "systemV1ListDictionaryReply": {
       "type": "object",
@@ -1687,19 +7093,34 @@
   },
   "tags": [
     {
-      "name": "Session"
+      "name": "Order"
+    },
+    {
+      "name": "Parties"
+    },
+    {
+      "name": "Product"
+    },
+    {
+      "name": "ProductFeature"
+    },
+    {
+      "name": "ProductCategory"
     },
     {
       "name": "Dictionary"
     },
     {
+      "name": "Session"
+    },
+    {
       "name": "Users"
     },
     {
-      "name": "Auth"
+      "name": "Role"
     },
     {
-      "name": "Role"
+      "name": "Auth"
     },
     {
       "name": "Authentication"
