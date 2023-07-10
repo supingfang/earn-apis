@@ -616,40 +616,24 @@
               "type": "object",
               "properties": {
                 "assets": {
-                  "type": "array",
                   "title": "[] assets",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/orderV1UpdateOrderAssetRequest"
-                  }
+                  "$ref": "#/definitions/orderV1UpdateOrderAssetRequest"
                 },
                 "biz_date": {
                   "type": "string",
                   "title": "[] 业务日期"
                 },
                 "docs": {
-                  "type": "array",
                   "title": "[] docs",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/orderV1UpdateOrderDocRequest"
-                  }
+                  "$ref": "#/definitions/orderV1UpdateOrderDocRequest"
                 },
                 "parties": {
-                  "type": "array",
                   "title": "[] parties",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/orderV1UpdateOrderPartyRequest"
-                  }
+                  "$ref": "#/definitions/orderV1UpdateOrderPartyRequest"
                 },
                 "products": {
-                  "type": "array",
                   "title": "[] products",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/orderV1UpdateOrderProduct"
-                  }
+                  "$ref": "#/definitions/orderV1UpdateOrderProduct"
                 },
                 "type": {
                   "title": "[] 类型",
@@ -1283,7 +1267,7 @@
             },
             "collectionFormat": "multi",
             "description": "[] 参与方类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
-            "name": "type",
+            "name": "types",
             "in": "query"
           },
           {
@@ -1293,7 +1277,7 @@
             },
             "collectionFormat": "multi",
             "description": "[] 参与方角色",
-            "name": "role_id",
+            "name": "role_ids",
             "in": "query"
           },
           {
@@ -1322,6 +1306,18 @@
           },
           {
             "type": "string",
+            "description": "[] 创建人",
+            "name": "created_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新人",
+            "name": "updated_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
             "description": "[] 排序 (id desc/asc,code desc/asc, created_at desc/asc, updated_at desc/asc)",
             "name": "sort",
             "in": "query"
@@ -1346,6 +1342,65 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/partyV1ListParty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/parties/keyword": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方模糊查询列表",
+        "operationId": "Parties_ListPartiesByKeyword",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] ID",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 编码",
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 角色数组",
+            "name": "role_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1IdNameCode"
             }
           },
           "default": {
@@ -1390,7 +1445,7 @@
         }
       }
     },
-    "/v1/party/apikey": {
+    "/v1/party/apikey/{id}": {
       "put": {
         "tags": [
           "Parties"
@@ -1399,11 +1454,47 @@
         "operationId": "Parties_UpdatePartyApiKey",
         "parameters": [
           {
+            "type": "string",
+            "description": "apikey id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
             "name": "body",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/partyV1UpdatePartyApiKeyRequest"
+              "type": "object",
+              "properties": {
+                "callback_urls": {
+                  "type": "array",
+                  "title": "[] callback",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "ips": {
+                  "type": "array",
+                  "title": "[] ip地址，多ip以逗号分隔",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "memo": {
+                  "type": "string",
+                  "title": "[] 备注"
+                },
+                "secret": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "密钥"
+                },
+                "type": {
+                  "title": "api类型",
+                  "$ref": "#/definitions/partyV1ApikeyType"
+                }
+              }
             }
           }
         ],
@@ -1412,37 +1503,6 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "创建apikey",
-        "operationId": "Parties_CreatePartyApiKey",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/partyV1CreatePartyApiKeyRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/componentsV1Id"
             }
           },
           "default": {
@@ -1516,6 +1576,12 @@
             "type": "integer",
             "description": "[] 类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
             "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 名字",
+            "name": "name",
             "in": "query"
           }
         ],
@@ -1639,7 +1705,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/partyV1Party"
+              "$ref": "#/definitions/partyV1PartyDetail"
             }
           },
           "default": {
@@ -1703,58 +1769,6 @@
         }
       }
     },
-    "/v1/party/{id}/accounts": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方账户列表",
-        "operationId": "Parties_ListPartyAccounts",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "页数",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
-            "name": "sort",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/party/{id}/apikey": {
       "get": {
         "tags": [
@@ -1796,6 +1810,73 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/partyV1ApiKeys"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "创建apikey",
+        "operationId": "Parties_CreatePartyApiKey",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "party ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "callback_urls": {
+                  "type": "array",
+                  "title": "[] callback",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "ips": {
+                  "type": "array",
+                  "title": "[] ip地址，多ip以逗号分隔",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "memo": {
+                  "type": "string",
+                  "title": "[] 备注"
+                },
+                "secret": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "密钥"
+                },
+                "type": {
+                  "title": "api类型",
+                  "$ref": "#/definitions/partyV1ApikeyType"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Id"
             }
           },
           "default": {
@@ -1887,110 +1968,6 @@
         }
       }
     },
-    "/v1/party/{id}/contacts": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方联系人列表",
-        "operationId": "Parties_ListPartyContacts",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "页数",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
-            "name": "sort",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/partyV1PartyContacts"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/{id}/documents": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方文档列表",
-        "operationId": "Parties_ListPartyDocuments",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "页数",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "排序 (created_at desc/asc, updated_at desc/asc)",
-            "name": "sort",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/partyV1PartyDocs"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/party/{id}/frozen": {
       "put": {
         "tags": [
@@ -2020,405 +1997,6 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/{id}/histories": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方操作历史列表",
-        "operationId": "Parties_ListPartyHistories",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "history id",
-            "name": "history_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 操作类型",
-            "name": "action",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "操作前",
-            "name": "before",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "操作后",
-            "name": "after",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "ip",
-            "name": "ip",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 更新日期开始时间",
-            "name": "updated_start",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 更新日期结束时间",
-            "name": "updated_end",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 修改人",
-            "name": "updated_by",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "页数",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "排序 (history_id desc/asc, action desc/asc, ip desc/asc, updated_at desc/asc, updated_by desc/asc)",
-            "name": "sort",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/partyV1PartyHistories"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/{id}/orders": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方订单列表",
-        "operationId": "Parties_ListPartyOrders",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "[] 订单id",
-            "name": "order_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 订单号",
-            "name": "order_no",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 业务日期",
-            "name": "biz_date",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 产品id",
-            "name": "product_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 产品编码",
-            "name": "product_code",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 类型\n\n - 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
-            "name": "type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 币种",
-            "name": "coin",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 角色",
-            "name": "role_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 参与方",
-            "name": "party_id",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: 外部",
-            "name": "source_type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 来源id",
-            "name": "source_id",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "enum": [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9,
-                10,
-                11
-              ],
-              "type": "integer"
-            },
-            "collectionFormat": "multi",
-            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
-            "name": "status",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 创建开始时间",
-            "name": "created_start",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 创建结束时间",
-            "name": "created_end",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 更新开始时间",
-            "name": "updated_start",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 更新结束时间",
-            "name": "updated_end",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 排序字段",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/orderV1ListOrdersReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/{id}/products": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方产品列表",
-        "operationId": "Parties_ListPartyProducts",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "参与方ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "[]product id",
-            "name": "product_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]编码",
-            "name": "code",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]名称",
-            "name": "name",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]分类",
-            "name": "category",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[]币种",
-            "name": "coin",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2,
-              3,
-              4,
-              5,
-              6
-            ],
-            "type": "integer",
-            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
-            "name": "status",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
-            "name": "use_type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]创建开始日期",
-            "name": "created_start",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]创建结束日期",
-            "name": "created_end",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[]角色",
-            "name": "role_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 排序(id desc/asc,code desc/asc,name desc/asc,coin desc/asc,created_at desc/asc,updated_at desc/asc)",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "format": "int32",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/productV1Products"
             }
           },
           "default": {
@@ -3191,7 +2769,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
+                "category_id": {
                   "type": "integer",
                   "format": "int32",
                   "title": "分类"
@@ -4819,17 +4397,9 @@
     "componentsV1ProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "code": {
-          "type": "string",
-          "title": "code"
-        },
         "id": {
           "type": "string",
           "title": "参与方id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "product_party_relation_id": {
           "type": "string",
@@ -4905,6 +4475,17 @@
           "title": "创建人"
         }
       }
+    },
+    "componentsV1TaskType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "componentsV1UseType": {
       "type": "integer",
@@ -5291,7 +4872,7 @@
         },
         "status": {
           "title": "状态",
-          "$ref": "#/definitions/orderV1OrderStatus"
+          "$ref": "#/definitions/orderV1Status"
         },
         "type": {
           "title": "类型",
@@ -5306,7 +4887,7 @@
     "orderV1ListOrderAccountsReply": {
       "type": "object",
       "properties": {
-        "accounts": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5318,7 +4899,7 @@
     "orderV1ListOrderDocsReply": {
       "type": "object",
       "properties": {
-        "docs": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5330,7 +4911,7 @@
     "orderV1ListOrderHistoriesReply": {
       "type": "object",
       "properties": {
-        "histories": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5383,7 +4964,7 @@
     "orderV1ListOrderSettlementsReply": {
       "type": "object",
       "properties": {
-        "settlements": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5395,7 +4976,7 @@
     "orderV1ListOrderTasksReply": {
       "type": "object",
       "properties": {
-        "tasks": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5407,7 +4988,7 @@
     "orderV1ListOrderTransactionsReply": {
       "type": "object",
       "properties": {
-        "transactions": {
+        "list": {
           "type": "array",
           "items": {
             "type": "object",
@@ -5612,24 +5193,6 @@
         2
       ]
     },
-    "orderV1OrderStatus": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
-      "enum": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11
-      ]
-    },
     "orderV1OrderTask": {
       "type": "object",
       "properties": {
@@ -5761,7 +5324,7 @@
         },
         "status": {
           "title": "状态",
-          "$ref": "#/definitions/orderV1OrderStatus"
+          "$ref": "#/definitions/orderV1Status"
         },
         "type": {
           "title": "类型",
@@ -5801,6 +5364,24 @@
           "title": "值"
         }
       }
+    },
+    "orderV1Status": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
     },
     "orderV1TaskType": {
       "type": "integer",
@@ -6032,7 +5613,7 @@
     "partyV1ApiKey": {
       "type": "object",
       "properties": {
-        "callback": {
+        "callback_urls": {
           "type": "array",
           "title": "回调",
           "items": {
@@ -6043,11 +5624,15 @@
           "type": "string",
           "title": "创建日期"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
         },
-        "ip": {
+        "ips": {
           "type": "array",
           "title": "IPs",
           "items": {
@@ -6068,23 +5653,17 @@
         },
         "type": {
           "title": "操作类型",
-          "$ref": "#/definitions/partyV1ApiKeyType"
+          "$ref": "#/definitions/partyV1ApikeyType"
         },
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
-    },
-    "partyV1ApiKeyType": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 0: 默认值\n - 1: read\n - 2: write\n - 3: read and write",
-      "enum": [
-        1,
-        2,
-        3
-      ]
     },
     "partyV1ApiKeys": {
       "type": "object",
@@ -6096,8 +5675,22 @@
             "type": "object",
             "$ref": "#/definitions/partyV1ApiKey"
           }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
+    },
+    "partyV1ApikeyType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: read\n - 2: write\n - 3: read and write",
+      "enum": [
+        1,
+        2,
+        3
+      ]
     },
     "partyV1CreateParty": {
       "type": "object",
@@ -6107,9 +5700,8 @@
           "title": "code"
         },
         "level": {
-          "type": "integer",
-          "format": "int32",
-          "title": "[] 等级"
+          "title": "[] 等级",
+          "$ref": "#/definitions/partyV1Level"
         },
         "name": {
           "type": "string",
@@ -6129,36 +5721,6 @@
         "type": {
           "title": "[] 类型",
           "$ref": "#/definitions/partyV1PartyType"
-        }
-      }
-    },
-    "partyV1CreatePartyApiKeyRequest": {
-      "type": "object",
-      "properties": {
-        "callback": {
-          "type": "string",
-          "title": "[] callback"
-        },
-        "id": {
-          "type": "string",
-          "title": "party ID"
-        },
-        "ips": {
-          "type": "string",
-          "title": "[] ip地址，多ip以逗号分隔"
-        },
-        "memo": {
-          "type": "string",
-          "title": "[] 备注"
-        },
-        "secret": {
-          "type": "string",
-          "format": "byte",
-          "title": "密钥"
-        },
-        "type": {
-          "title": "api类型",
-          "$ref": "#/definitions/partyV1ApiKeyType"
         }
       }
     },
@@ -6234,6 +5796,18 @@
         2
       ]
     },
+    "partyV1Level": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 一级\n - 2: 二级\n - 3: 三级\n - 4: 四级\n - 5: 五级",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
     "partyV1ListParty": {
       "type": "object",
       "properties": {
@@ -6262,9 +5836,17 @@
           "type": "string",
           "title": "创建日期"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
+        },
+        "level": {
+          "title": "等级",
+          "$ref": "#/definitions/partyV1Level"
         },
         "name": {
           "type": "string",
@@ -6278,6 +5860,10 @@
             "$ref": "#/definitions/componentsV1IdName"
           }
         },
+        "source": {
+          "title": "来源",
+          "$ref": "#/definitions/partyV1PartySource"
+        },
         "status": {
           "title": "状态",
           "$ref": "#/definitions/partyV1Status"
@@ -6289,6 +5875,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -6335,10 +5925,10 @@
         3
       ]
     },
-    "partyV1PartyContacts": {
+    "partyV1PartyDetail": {
       "type": "object",
       "properties": {
-        "list": {
+        "contact_list": {
           "type": "array",
           "title": "联系人列表",
           "items": {
@@ -6346,9 +5936,24 @@
             "$ref": "#/definitions/partyV1PartyContact"
           }
         },
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
+        "contacts": {
+          "type": "array",
+          "title": "参与方联系人(最大三个)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "doc_list": {
+          "type": "array",
+          "title": "文档列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/partyV1PartyDoc"
+          }
+        },
+        "party": {
+          "title": "参与方详情",
+          "$ref": "#/definitions/partyV1Party"
         }
       }
     },
@@ -6394,60 +5999,6 @@
         2,
         3
       ]
-    },
-    "partyV1PartyDocs": {
-      "type": "object",
-      "properties": {
-        "list": {
-          "type": "array",
-          "title": "文档列表",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/partyV1PartyDoc"
-          }
-        },
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
-        }
-      }
-    },
-    "partyV1PartyHistories": {
-      "type": "object",
-      "properties": {
-        "action": {
-          "type": "string",
-          "title": "操作类型"
-        },
-        "after": {
-          "type": "string",
-          "title": "操作后"
-        },
-        "before": {
-          "type": "string",
-          "title": "操作前"
-        },
-        "id": {
-          "type": "string",
-          "title": "ID"
-        },
-        "ip": {
-          "type": "string",
-          "title": "ip"
-        },
-        "memo": {
-          "type": "string",
-          "title": "备注"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "修改日期"
-        },
-        "updated_by": {
-          "type": "string",
-          "title": "修改人"
-        }
-      }
     },
     "partyV1PartySource": {
       "type": "integer",
@@ -6514,9 +6065,8 @@
           "title": "[] code"
         },
         "level": {
-          "type": "integer",
-          "format": "int32",
-          "title": "[] 等级"
+          "title": "[] 等级",
+          "$ref": "#/definitions/partyV1Level"
         },
         "name": {
           "type": "string",
@@ -6536,36 +6086,6 @@
         "type": {
           "title": "[] 类型",
           "$ref": "#/definitions/partyV1PartyType"
-        }
-      }
-    },
-    "partyV1UpdatePartyApiKeyRequest": {
-      "type": "object",
-      "properties": {
-        "callback": {
-          "type": "string",
-          "title": "[] callback"
-        },
-        "id": {
-          "type": "string",
-          "title": "apikey id"
-        },
-        "ips": {
-          "type": "string",
-          "title": "[] ip地址，多ip以逗号分隔"
-        },
-        "memo": {
-          "type": "string",
-          "title": "[] 备注"
-        },
-        "secret": {
-          "type": "string",
-          "format": "byte",
-          "title": "密钥"
-        },
-        "type": {
-          "title": "api类型",
-          "$ref": "#/definitions/partyV1ApiKeyType"
         }
       }
     },
@@ -6680,17 +6200,9 @@
     "productV1AddProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "code": {
-          "type": "string",
-          "title": "code"
-        },
         "id": {
           "type": "string",
           "title": "参与方id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "value": {
           "type": "string",
@@ -6751,9 +6263,8 @@
           "$ref": "#/definitions/componentsV1NeedValue"
         },
         "task_type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "任务类型"
+          "title": "任务类型",
+          "$ref": "#/definitions/componentsV1TaskType"
         }
       }
     },
@@ -6769,9 +6280,8 @@
     "productV1CreateProductRequest": {
       "type": "object",
       "properties": {
-        "category": {
-          "type": "integer",
-          "format": "int32",
+        "category_id": {
+          "type": "string",
           "title": "分类"
         },
         "code": {
@@ -6874,6 +6384,19 @@
         }
       }
     },
+    "productV1Status": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
     "productV1UpdateProductCategoryRequestupdateFeatures": {
       "type": "object",
       "properties": {
@@ -6942,6 +6465,27 @@
     "systemV1ListDictionaryReply": {
       "type": "object",
       "properties": {
+        "apikey_type": {
+          "type": "object",
+          "title": "apikey类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "file_type": {
+          "type": "object",
+          "title": "文件类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "level": {
+          "type": "object",
+          "title": "等级",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
         "menu_hidden_status": {
           "type": "object",
           "title": "菜单隐藏状态",
@@ -6956,6 +6500,69 @@
             "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
+        "party_contact_type": {
+          "type": "object",
+          "title": "参与方联系人类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "party_document_type": {
+          "type": "object",
+          "title": "参与方文档类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "party_level": {
+          "type": "object",
+          "title": "参与方等级",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "party_source": {
+          "type": "object",
+          "title": "参与方来源",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "party_status": {
+          "type": "object",
+          "title": "参与方状态",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "party_type": {
+          "type": "object",
+          "title": "参与方类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "product_category_status": {
+          "type": "object",
+          "title": "产品分类状态",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "product_status": {
+          "type": "object",
+          "title": "产品状态",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "product_use_type": {
+          "type": "object",
+          "title": "产品使用类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
         "role_status": {
           "type": "object",
           "title": "角色状态",
@@ -6966,6 +6573,13 @@
         "roles": {
           "type": "object",
           "title": "角色",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "task_type": {
+          "type": "object",
+          "title": "任务类型",
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
