@@ -1571,10 +1571,12 @@
           {
             "enum": [
               1,
-              2
+              2,
+              3,
+              4
             ],
             "type": "integer",
-            "description": "[] 类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
+            "description": "[] 类型\n\n - 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
             "name": "type",
             "in": "query"
           },
@@ -5647,6 +5649,10 @@
           "type": "string",
           "title": "备注"
         },
+        "secret": {
+          "type": "string",
+          "title": "密钥"
+        },
         "status": {
           "title": "状态",
           "$ref": "#/definitions/componentsV1EnableStatus"
@@ -5893,6 +5899,10 @@
           "type": "string",
           "title": "创建日期"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -5908,6 +5918,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         },
         "value": {
           "type": "string",
@@ -5964,6 +5978,10 @@
           "type": "string",
           "title": "创建日期"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -5983,6 +6001,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         },
         "url": {
           "type": "string",
@@ -6016,6 +6038,17 @@
       "enum": [
         1,
         2
+      ]
+    },
+    "partyV1RoleType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
+      "enum": [
+        1,
+        2,
+        3,
+        4
       ]
     },
     "partyV1Status": {
@@ -6479,13 +6512,6 @@
             "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
-        "level": {
-          "type": "object",
-          "title": "等级",
-          "additionalProperties": {
-            "$ref": "#/definitions/componentsV1Dictionary"
-          }
-        },
         "menu_hidden_status": {
           "type": "object",
           "title": "菜单隐藏状态",
@@ -6566,6 +6592,13 @@
         "role_status": {
           "type": "object",
           "title": "角色状态",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "role_type": {
+          "type": "object",
+          "title": "角色类型",
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
