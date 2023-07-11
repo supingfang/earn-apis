@@ -320,6 +320,216 @@
         }
       }
     },
+    "/v1/coins": {
+      "get": {
+        "tags": [
+          "Coin"
+        ],
+        "summary": "币种列表",
+        "operationId": "Coin_ListCoins",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 币种ID",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 币种名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer",
+            "description": "[] 币种类型\n\n - 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 主币",
+            "name": "native",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否UTXO系列币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_utxo",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否EVM兼容币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_evm",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_mainnet",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/coinV1ListCoinsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/coins/keyword": {
+      "get": {
+        "tags": [
+          "Coin"
+        ],
+        "summary": "币种列表通过关键字段",
+        "operationId": "Coin_ListCoinsByKeyword",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 币种ID",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer",
+            "description": "[] 币种类型\n\n - 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 主币",
+            "name": "native",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否UTXO系列币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_utxo",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否EVM兼容币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_evm",
+            "in": "query"
+          },
+          {
+            "enum": [
+              1,
+              2
+            ],
+            "type": "integer",
+            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "name": "is_mainnet",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/coinV1ListCoinsByKeywordReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/coins/{id}": {
+      "get": {
+        "tags": [
+          "Coin"
+        ],
+        "summary": "币种详情",
+        "operationId": "Coin_GetCoin",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "币种ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Coin"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/dictionary": {
       "get": {
         "tags": [
@@ -1445,121 +1655,6 @@
         }
       }
     },
-    "/v1/party/apikey/{id}": {
-      "put": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "编辑apikey",
-        "operationId": "Parties_UpdatePartyApiKey",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "apikey id",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "callback_urls": {
-                  "type": "array",
-                  "title": "[] callback",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "ips": {
-                  "type": "array",
-                  "title": "[] ip地址，多ip以逗号分隔",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "memo": {
-                  "type": "string",
-                  "title": "[] 备注"
-                },
-                "secret": {
-                  "type": "string",
-                  "format": "byte",
-                  "title": "密钥"
-                },
-                "type": {
-                  "title": "api类型",
-                  "$ref": "#/definitions/partyV1ApikeyType"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/apikey/{id}/enable": {
-      "put": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "启用/禁用apikey",
-        "operationId": "Parties_EnablePartyApiKey",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "title": "状态",
-                  "$ref": "#/definitions/componentsV1EnableStatus"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/party/roles": {
       "get": {
         "tags": [
@@ -1592,90 +1687,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/componentsV1IdName"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/upload": {
-      "post": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "上传文件",
-        "operationId": "Parties_UploadFile",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/partyV1UploadFileRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/partyV1UploadFileResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/upload/{id}": {
-      "put": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "修改上传文件",
-        "operationId": "Parties_UpdateUploadFile",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "file": {
-                  "type": "string",
-                  "format": "byte",
-                  "title": "文件"
-                },
-                "type": {
-                  "title": "类型",
-                  "$ref": "#/definitions/partyV1FileType"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
             }
           },
           "default": {
@@ -2111,6 +2122,205 @@
             "required": true,
             "schema": {
               "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party_apikey/{id}": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "编辑apikey",
+        "operationId": "Parties_UpdatePartyApiKey",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "apikey id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "callback_urls": {
+                  "type": "array",
+                  "title": "[] callback",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "ips": {
+                  "type": "array",
+                  "title": "[] ip地址，多ip以逗号分隔",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "memo": {
+                  "type": "string",
+                  "title": "[] 备注"
+                },
+                "secret": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "密钥"
+                },
+                "type": {
+                  "title": "api类型",
+                  "$ref": "#/definitions/partyV1ApikeyType"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party_apikey/{id}/enable": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "启用/禁用apikey",
+        "operationId": "Parties_EnablePartyApiKey",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "title": "状态",
+                  "$ref": "#/definitions/componentsV1EnableStatus"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party_upload": {
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "上传文件",
+        "operationId": "Parties_UploadFile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1UploadFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/partyV1UploadFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/party_upload/{id}": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "修改上传文件",
+        "operationId": "Parties_UpdateUploadFile",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "文件"
+                },
+                "type": {
+                  "title": "类型",
+                  "$ref": "#/definitions/partyV1FileType"
+                }
+              }
             }
           }
         ],
@@ -3982,6 +4192,36 @@
         }
       }
     },
+    "coinV1ListCoinsByKeywordReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "币种列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1CoinDictionary"
+          }
+        }
+      }
+    },
+    "coinV1ListCoinsReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "title": "币种列表",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1Coin"
+          }
+        },
+        "page_info": {
+          "title": "分页信息",
+          "$ref": "#/definitions/componentsV1PageInfo"
+        }
+      }
+    },
     "componentsV1AccessToken": {
       "type": "object",
       "properties": {
@@ -3999,6 +4239,112 @@
           "title": "Token 类型"
         }
       }
+    },
+    "componentsV1Bool": {
+      "description": "- 0: 默认值\n - 1: true\n - 2: false",
+      "type": "integer",
+      "format": "int32",
+      "title": "true or false",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "componentsV1Coin": {
+      "type": "object",
+      "properties": {
+        "chain_name": {
+          "type": "string",
+          "title": "链名称"
+        },
+        "confirming_threshold": {
+          "type": "integer",
+          "format": "int32",
+          "title": "确认次数"
+        },
+        "contract_address": {
+          "type": "string",
+          "title": "合约地址"
+        },
+        "decimals": {
+          "type": "integer",
+          "format": "int32",
+          "title": "精度"
+        },
+        "icon": {
+          "type": "string",
+          "title": "图标"
+        },
+        "id": {
+          "type": "string",
+          "title": "币种ID"
+        },
+        "is_evm": {
+          "title": "是否EVM兼容币种",
+          "$ref": "#/definitions/componentsV1Bool"
+        },
+        "is_mainnet": {
+          "title": "是否主网币种",
+          "$ref": "#/definitions/componentsV1Bool"
+        },
+        "is_utxo": {
+          "title": "是否UTXO系列币种",
+          "$ref": "#/definitions/componentsV1Bool"
+        },
+        "name": {
+          "type": "string",
+          "title": "币种名称"
+        },
+        "native_asset": {
+          "type": "string",
+          "title": "主币"
+        },
+        "tx_hash_url": {
+          "type": "string",
+          "title": "链浏览器地址"
+        },
+        "type": {
+          "title": "币种类型",
+          "$ref": "#/definitions/componentsV1CoinType"
+        },
+        "unit": {
+          "type": "string",
+          "title": "单位"
+        }
+      }
+    },
+    "componentsV1CoinDictionary": {
+      "type": "object",
+      "properties": {
+        "chain_name": {
+          "type": "string",
+          "title": "链名称"
+        },
+        "icon": {
+          "type": "string",
+          "title": "图标"
+        },
+        "id": {
+          "type": "string",
+          "title": "币种ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "币种名称"
+        }
+      }
+    },
+    "componentsV1CoinType": {
+      "description": "- 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
+      "type": "integer",
+      "format": "int32",
+      "title": "币种类型",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "componentsV1Dictionary": {
       "type": "object",
@@ -4075,7 +4421,7 @@
         },
         "hidden": {
           "title": "是否隐藏",
-          "$ref": "#/definitions/componentsV1MenuHidden"
+          "$ref": "#/definitions/componentsV1Bool"
         },
         "id": {
           "type": "string",
@@ -4107,15 +4453,6 @@
           "$ref": "#/definitions/componentsV1MenuType"
         }
       }
-    },
-    "componentsV1MenuHidden": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 0: 默认值\n - 1: 隐藏\n - 2: 显示",
-      "enum": [
-        1,
-        2
-      ]
     },
     "componentsV1MenuType": {
       "type": "integer",
@@ -6759,6 +7096,9 @@
     },
     {
       "name": "Session"
+    },
+    {
+      "name": "Coin"
     },
     {
       "name": "Users"
