@@ -1610,7 +1610,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/componentsV1IdNameCode"
+              "$ref": "#/definitions/partyV1ListPartiesByKeywordResponse"
             }
           },
           "default": {
@@ -1644,49 +1644,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/componentsV1Id"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/roles": {
-      "get": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "参与方角色列表",
-        "operationId": "Parties_GetPartyRoles",
-        "parameters": [
-          {
-            "enum": [
-              1,
-              2,
-              3,
-              4
-            ],
-            "type": "integer",
-            "description": "[] 类型\n\n - 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
-            "name": "type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 名字",
-            "name": "name",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/componentsV1IdName"
             }
           },
           "default": {
@@ -2256,8 +2213,54 @@
         }
       }
     },
+    "/v1/party_roles": {
+      "get": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "参与方角色列表",
+        "operationId": "Parties_GetPartyRoles",
+        "parameters": [
+          {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer",
+            "description": "[] 类型\n\n - 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 名字",
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1IdName"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/party_upload": {
       "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
         "tags": [
           "Parties"
         ],
@@ -2291,6 +2294,9 @@
     },
     "/v1/party_upload/{id}": {
       "put": {
+        "consumes": [
+          "multipart/form-data"
+        ],
         "tags": [
           "Parties"
         ],
@@ -2310,6 +2316,10 @@
             "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "type",
+                "file"
+              ],
               "properties": {
                 "file": {
                   "type": "string",
@@ -3490,29 +3500,6 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/session": {
-      "get": {
-        "tags": [
-          "Session"
-        ],
-        "summary": "会话",
-        "operationId": "Session_Session",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/systemV1SessionReply"
             }
           },
           "default": {
@@ -6151,6 +6138,18 @@
         5
       ]
     },
+    "partyV1ListPartiesByKeywordResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdNameCode"
+          }
+        }
+      }
+    },
     "partyV1ListParty": {
       "type": "object",
       "properties": {
@@ -6517,6 +6516,10 @@
     },
     "partyV1UploadFileRequest": {
       "type": "object",
+      "required": [
+        "type",
+        "file"
+      ],
       "properties": {
         "file": {
           "type": "string",
@@ -6842,6 +6845,20 @@
             "$ref": "#/definitions/componentsV1Dictionary"
           }
         },
+        "boolean": {
+          "type": "object",
+          "title": "是否",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "coin_type": {
+          "type": "object",
+          "title": "币种类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
         "file_type": {
           "type": "object",
           "title": "文件类型",
@@ -6960,16 +6977,6 @@
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
-        }
-      }
-    },
-    "systemV1SessionReply": {
-      "type": "object",
-      "properties": {
-        "expire_at": {
-          "type": "string",
-          "format": "int64",
-          "title": "过期时间(时间戳)"
         }
       }
     },
@@ -7093,9 +7100,6 @@
     },
     {
       "name": "Dictionary"
-    },
-    {
-      "name": "Session"
     },
     {
       "name": "Coin"
