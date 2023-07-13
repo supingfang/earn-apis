@@ -7,7 +7,7 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Earn API`s 测试更新",
+    "description": "Earn API`s",
     "title": "Earn API",
     "version": "1.0.0"
   },
@@ -1545,15 +1545,15 @@
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "int64",
+            "type": "integer",
+            "format": "int32",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "int64",
+            "type": "integer",
+            "format": "int32",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -1767,15 +1767,15 @@
             "required": true
           },
           {
-            "type": "string",
-            "format": "int64",
+            "type": "integer",
+            "format": "int32",
             "description": "页数",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "string",
-            "format": "int64",
+            "type": "integer",
+            "format": "int32",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -4724,13 +4724,13 @@
     "componentsV1ProductFeatureRelation": {
       "type": "object",
       "properties": {
+        "feature_id": {
+          "type": "string",
+          "title": "id"
+        },
         "from_date": {
           "type": "string",
           "title": "开始时间"
-        },
-        "id": {
-          "type": "string",
-          "title": "id"
         },
         "name": {
           "type": "string",
@@ -4822,13 +4822,25 @@
     "componentsV1ProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "id": {
+        "party_id": {
           "type": "string",
           "title": "参与方id"
+        },
+        "party_name": {
+          "type": "string",
+          "title": "参与方名称"
         },
         "product_party_relation_id": {
           "type": "string",
           "title": "关联关系id"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色id"
+        },
+        "role_name": {
+          "type": "string",
+          "title": "角色名称"
         },
         "value": {
           "type": "string",
@@ -6730,10 +6742,6 @@
         "id": {
           "type": "string",
           "title": "id"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "period": {
           "type": "string",
