@@ -1573,6 +1573,37 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "创建参与方",
+        "operationId": "Parties_CreateParty",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/partyV1CreatePartyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Id"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
       }
     },
     "/v1/parties/keyword": {
@@ -1634,40 +1665,7 @@
         }
       }
     },
-    "/v1/party": {
-      "post": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "创建参与方",
-        "operationId": "Parties_CreateParty",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/partyV1CreatePartyRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/componentsV1Id"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party/{id}": {
+    "/v1/parties/{id}": {
       "get": {
         "tags": [
           "Parties"
@@ -1751,7 +1749,7 @@
         }
       }
     },
-    "/v1/party/{id}/apikey": {
+    "/v1/parties/{id}/apikey": {
       "get": {
         "tags": [
           "Parties"
@@ -1869,7 +1867,7 @@
         }
       }
     },
-    "/v1/party/{id}/approve": {
+    "/v1/parties/{id}/approve": {
       "put": {
         "tags": [
           "Parties"
@@ -1909,7 +1907,7 @@
         }
       }
     },
-    "/v1/party/{id}/close": {
+    "/v1/parties/{id}/close": {
       "put": {
         "tags": [
           "Parties"
@@ -1949,7 +1947,7 @@
         }
       }
     },
-    "/v1/party/{id}/frozen": {
+    "/v1/parties/{id}/frozen": {
       "put": {
         "tags": [
           "Parties"
@@ -1989,7 +1987,7 @@
         }
       }
     },
-    "/v1/party/{id}/reject": {
+    "/v1/parties/{id}/reject": {
       "put": {
         "tags": [
           "Parties"
@@ -2029,7 +2027,7 @@
         }
       }
     },
-    "/v1/party/{id}/submit": {
+    "/v1/parties/{id}/submit": {
       "put": {
         "tags": [
           "Parties"
@@ -2069,7 +2067,7 @@
         }
       }
     },
-    "/v1/party/{id}/unfrozen": {
+    "/v1/parties/{id}/unfrozen": {
       "put": {
         "tags": [
           "Parties"
@@ -2254,7 +2252,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/componentsV1IdName"
+              "$ref": "#/definitions/partyV1PartyRolesResponse"
             }
           },
           "default": {
@@ -6517,6 +6515,10 @@
           "type": "string",
           "title": "名称"
         },
+        "path": {
+          "type": "string",
+          "title": "文档连接"
+        },
         "thumbnail": {
           "type": "string",
           "title": "缩略图连接"
@@ -6532,10 +6534,6 @@
         "updated_by": {
           "type": "string",
           "title": "更新人"
-        },
-        "url": {
-          "type": "string",
-          "title": "文档连接"
         }
       }
     },
@@ -6548,6 +6546,18 @@
         2,
         3
       ]
+    },
+    "partyV1PartyRolesResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
+        }
+      }
     },
     "partyV1PartySource": {
       "type": "integer",
