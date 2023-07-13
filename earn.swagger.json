@@ -724,6 +724,18 @@
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 创建人",
+            "name": "created_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 更新人",
+            "name": "updated_by",
+            "in": "query"
           }
         ],
         "responses": {
@@ -1135,7 +1147,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "ID",
+            "description": "订单ID",
             "name": "id",
             "in": "path",
             "required": true
@@ -1533,15 +1545,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -1755,15 +1767,15 @@
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "页数",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -1831,7 +1843,6 @@
                 },
                 "secret": {
                   "type": "string",
-                  "format": "byte",
                   "title": "密钥"
                 },
                 "type": {
@@ -2140,7 +2151,6 @@
                 },
                 "secret": {
                   "type": "string",
-                  "format": "byte",
                   "title": "密钥"
                 },
                 "type": {
@@ -2365,15 +2375,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -2602,15 +2612,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -2729,12 +2739,11 @@
                 },
                 "need_value": {
                   "title": "是否有值",
-                  "$ref": "#/definitions/componentsV1NeedValue"
+                  "$ref": "#/definitions/componentsV1Bool"
                 },
                 "task_type": {
-                  "type": "integer",
-                  "format": "int32",
-                  "title": "任务类型"
+                  "title": "任务类型",
+                  "$ref": "#/definitions/componentsV1TaskType"
                 }
               }
             }
@@ -2879,15 +2888,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -2992,8 +3001,7 @@
               "type": "object",
               "properties": {
                 "category_id": {
-                  "type": "integer",
-                  "format": "int32",
+                  "type": "string",
                   "title": "分类"
                 },
                 "code": {
@@ -3017,12 +3025,8 @@
                   "title": "名称"
                 },
                 "parties": {
-                  "type": "array",
                   "title": "[]参与方",
-                  "items": {
-                    "type": "object",
-                    "$ref": "#/definitions/UpdateProductRequestupdateParties"
-                  }
+                  "$ref": "#/definitions/UpdateProductRequestupdateParties"
                 },
                 "price": {
                   "type": "string",
@@ -4451,15 +4455,6 @@
         3
       ]
     },
-    "componentsV1NeedValue": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 0: 默认值\n - 1: 通过\n - 2: 拒绝",
-      "enum": [
-        1,
-        2
-      ]
-    },
     "componentsV1PageInfo": {
       "type": "object",
       "properties": {
@@ -4498,6 +4493,10 @@
         "created_at": {
           "type": "string",
           "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
         },
         "desc": {
           "type": "string",
@@ -4539,6 +4538,10 @@
           "type": "string",
           "title": "更新时间"
         },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
+        },
         "use_type": {
           "title": "使用方式",
           "$ref": "#/definitions/componentsV1UseType"
@@ -4551,6 +4554,10 @@
         "created_at": {
           "type": "string",
           "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
         },
         "features": {
           "type": "array",
@@ -4579,6 +4586,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -4588,6 +4599,10 @@
         "created_at": {
           "type": "string",
           "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
         },
         "id": {
           "type": "string",
@@ -4608,6 +4623,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -4618,6 +4637,10 @@
           "type": "string",
           "title": "创建时间"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "default_period": {
           "type": "string",
           "title": "默认周期"
@@ -4636,7 +4659,7 @@
         },
         "need_value": {
           "title": "是否有值",
-          "$ref": "#/definitions/componentsV1NeedValue"
+          "$ref": "#/definitions/componentsV1Bool"
         },
         "task_type": {
           "type": "integer",
@@ -4646,6 +4669,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -4656,6 +4683,10 @@
           "type": "string",
           "title": "创建时间"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "default_period": {
           "type": "string",
           "title": "默认周期"
@@ -4674,16 +4705,19 @@
         },
         "need_value": {
           "title": "是否有值",
-          "$ref": "#/definitions/componentsV1NeedValue"
+          "$ref": "#/definitions/componentsV1Bool"
         },
         "task_type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "任务类型"
+          "title": "任务类型",
+          "$ref": "#/definitions/componentsV1TaskType"
         },
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -4717,6 +4751,71 @@
         "value": {
           "type": "string",
           "title": "值"
+        }
+      }
+    },
+    "componentsV1ProductItem": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "title": "分类",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
+        "desc": {
+          "type": "string",
+          "title": "描述"
+        },
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "parties": {
+          "type": "array",
+          "title": "参与方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
+        },
+        "price": {
+          "type": "string",
+          "title": "价格"
+        },
+        "status": {
+          "title": "状态",
+          "$ref": "#/definitions/componentsV1ProductStatus"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
+        },
+        "use_type": {
+          "title": "使用方式",
+          "$ref": "#/definitions/componentsV1UseType"
         }
       }
     },
@@ -5172,6 +5271,10 @@
           "type": "string",
           "title": "创建日期"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "Id"
@@ -5207,6 +5310,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -5359,6 +5466,10 @@
           "type": "string",
           "title": "创建时间"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "frozen": {
           "type": "string",
           "title": "冻结额"
@@ -5387,12 +5498,24 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
     "orderV1OrderDoc": {
       "type": "object",
       "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -5408,6 +5531,14 @@
         "type": {
           "title": "类型",
           "$ref": "#/definitions/orderV1DocType"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         },
         "url": {
           "type": "string",
@@ -5434,6 +5565,10 @@
           "type": "string",
           "title": "创建时间"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -5441,6 +5576,10 @@
         "memo": {
           "type": "string",
           "title": "备注"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -5476,6 +5615,14 @@
           "type": "string",
           "title": "成本"
         },
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "date": {
           "type": "string",
           "title": "日期"
@@ -5504,6 +5651,14 @@
           "title": "角色",
           "$ref": "#/definitions/componentsV1IdName"
         },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
+        },
         "value": {
           "type": "string",
           "title": "分配比率"
@@ -5526,6 +5681,10 @@
           "type": "string",
           "title": "创建时间"
         },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
         "id": {
           "type": "string",
           "title": "id"
@@ -5546,6 +5705,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -5563,6 +5726,10 @@
         "created_at": {
           "type": "string",
           "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
         },
         "id": {
           "type": "string",
@@ -5593,6 +5760,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -5623,6 +5794,10 @@
         "created_at": {
           "type": "string",
           "title": "创建日期"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
         },
         "id": {
           "type": "string",
@@ -5659,6 +5834,10 @@
         "updated_at": {
           "type": "string",
           "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         }
       }
     },
@@ -6037,7 +6216,7 @@
           "type": "string",
           "title": "名称"
         },
-        "role_id": {
+        "role_ids": {
           "type": "array",
           "title": "角色",
           "items": {
@@ -6633,7 +6812,7 @@
         },
         "need_value": {
           "title": "是否有值",
-          "$ref": "#/definitions/componentsV1NeedValue"
+          "$ref": "#/definitions/componentsV1Bool"
         },
         "task_type": {
           "title": "任务类型",
@@ -6748,7 +6927,7 @@
           "title": "产品列表",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1Product"
+            "$ref": "#/definitions/componentsV1ProductItem"
           }
         },
         "page_info": {
@@ -6838,9 +7017,23 @@
     "systemV1ListDictionaryReply": {
       "type": "object",
       "properties": {
+        "account_type": {
+          "type": "object",
+          "title": "账户类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
         "apikey_type": {
           "type": "object",
           "title": "apikey类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "asset_type": {
+          "type": "object",
+          "title": "资产类型",
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
@@ -6876,6 +7069,34 @@
         "menu_type": {
           "type": "object",
           "title": "菜单类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "order_doc_type": {
+          "type": "object",
+          "title": "订单文档类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "order_source_type": {
+          "type": "object",
+          "title": "订单来源类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "order_status": {
+          "type": "object",
+          "title": "订单状态",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "order_type": {
+          "type": "object",
+          "title": "订单类型",
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
@@ -6967,6 +7188,13 @@
         "task_type": {
           "type": "object",
           "title": "任务类型",
+          "additionalProperties": {
+            "$ref": "#/definitions/componentsV1Dictionary"
+          }
+        },
+        "transaction_type": {
+          "type": "object",
+          "title": "交易类型",
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
