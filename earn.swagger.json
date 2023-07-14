@@ -2341,35 +2341,13 @@
         "tags": [
           "ProductCategory"
         ],
-        "summary": "获取产品分类列表",
-        "operationId": "ProductCategory_ListProductCategories",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "[] 排序(id desc/asc, parent_id desc/asc,created_at desc/asc, updated_at desc/asc)",
-            "name": "sort",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[] 页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "[] 每页数量",
-            "name": "page_size",
-            "in": "query"
-          }
-        ],
+        "summary": "获取产品分类列表，不分页",
+        "operationId": "ProductCategory_ListAllProductCategories",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/productV1ProductCategories"
+              "$ref": "#/definitions/productV1ListAllProductCategoriesReply"
             }
           },
           "default": {
@@ -6638,7 +6616,7 @@
           "type": "string",
           "title": "[] 名称"
         },
-        "role_id": {
+        "role_ids": {
           "type": "array",
           "title": "[] 角色",
           "items": {
@@ -6774,9 +6752,13 @@
     "productV1AddProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "id": {
+        "party_id": {
           "type": "string",
           "title": "参与方id"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色id"
         },
         "value": {
           "type": "string",
@@ -6906,6 +6888,18 @@
         "id": {
           "type": "string",
           "title": "id"
+        }
+      }
+    },
+    "productV1ListAllProductCategoriesReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
         }
       }
     },
