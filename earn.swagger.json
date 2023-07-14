@@ -576,6 +576,42 @@
         }
       }
     },
+    "/v1/order_upload": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "tags": [
+          "Order"
+        ],
+        "summary": "上传文件",
+        "operationId": "Order_UploadFile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderV1UploadFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1UploadFileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/orders": {
       "get": {
         "tags": [
@@ -5016,9 +5052,9 @@
     "orderV1CreateOrderDoc": {
       "type": "object",
       "properties": {
-        "file": {
+        "id": {
           "type": "string",
-          "title": "数据"
+          "title": "ID"
         },
         "name": {
           "type": "string",
@@ -5925,27 +5961,6 @@
         }
       }
     },
-    "orderV1UpdateOrderDoc": {
-      "type": "object",
-      "properties": {
-        "file": {
-          "type": "string",
-          "title": "数据"
-        },
-        "id": {
-          "type": "string",
-          "title": "ID"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "type": {
-          "title": "类型",
-          "$ref": "#/definitions/orderV1DocType"
-        }
-      }
-    },
     "orderV1UpdateOrderDocRequest": {
       "type": "object",
       "properties": {
@@ -5966,7 +5981,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/orderV1UpdateOrderDoc"
+            "$ref": "#/definitions/orderV1CreateOrderDoc"
           }
         }
       }
@@ -6064,6 +6079,41 @@
             "type": "object",
             "$ref": "#/definitions/orderV1ProductFeature"
           }
+        }
+      }
+    },
+    "orderV1UploadFileRequest": {
+      "type": "object",
+      "required": [
+        "type",
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "format": "byte",
+          "title": "文件"
+        },
+        "id": {
+          "type": "string",
+          "title": "[] id\n修改图片使用ID进行修改"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1DocType"
+        }
+      }
+    },
+    "orderV1UploadFileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "url": {
+          "type": "string",
+          "title": "url"
         }
       }
     },
