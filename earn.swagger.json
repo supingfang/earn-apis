@@ -1545,15 +1545,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -1765,15 +1765,15 @@
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "页数",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -2289,64 +2289,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/partyV1UploadFileResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party_upload/{id}": {
-      "put": {
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "tags": [
-          "Parties"
-        ],
-        "summary": "修改上传文件",
-        "operationId": "Parties_UpdateUploadFile",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "type",
-                "file"
-              ],
-              "properties": {
-                "file": {
-                  "type": "string",
-                  "format": "byte",
-                  "title": "文件"
-                },
-                "type": {
-                  "title": "类型",
-                  "$ref": "#/definitions/partyV1FileType"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
             }
           },
           "default": {
@@ -4726,13 +4668,13 @@
           "type": "string",
           "title": "id"
         },
+        "feature_name": {
+          "type": "string",
+          "title": "名称"
+        },
         "from_date": {
           "type": "string",
           "title": "开始时间"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "period": {
           "type": "string",
@@ -6467,7 +6409,14 @@
     "partyV1PartyDetail": {
       "type": "object",
       "properties": {
-        "contact_list": {
+        "contact_names": {
+          "type": "array",
+          "title": "参与方联系人名称(最大三个)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contacts": {
           "type": "array",
           "title": "联系人列表",
           "items": {
@@ -6475,14 +6424,7 @@
             "$ref": "#/definitions/partyV1PartyContact"
           }
         },
-        "contacts": {
-          "type": "array",
-          "title": "参与方联系人(最大三个)",
-          "items": {
-            "type": "string"
-          }
-        },
-        "doc_list": {
+        "docs": {
           "type": "array",
           "title": "文档列表",
           "items": {
@@ -6506,6 +6448,10 @@
         "created_by": {
           "type": "string",
           "title": "创建人"
+        },
+        "file_type": {
+          "title": "文档类型",
+          "$ref": "#/definitions/partyV1FileType"
         },
         "id": {
           "type": "string",
@@ -6727,6 +6673,10 @@
           "format": "byte",
           "title": "文件"
         },
+        "id": {
+          "type": "string",
+          "title": "[] id\n修改图片使用ID进行修改"
+        },
         "type": {
           "title": "类型",
           "$ref": "#/definitions/partyV1FileType"
@@ -6739,6 +6689,10 @@
         "id": {
           "type": "string",
           "title": "id"
+        },
+        "url": {
+          "type": "string",
+          "title": "url"
         }
       }
     },
