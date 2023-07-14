@@ -12,6 +12,29 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/v1/all_product_categories": {
+      "get": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "获取产品分类列表，不分页",
+        "operationId": "ProductCategory_ListAllProductCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ListAllProductCategoriesReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/activate": {
       "post": {
         "tags": [
@@ -2341,13 +2364,35 @@
         "tags": [
           "ProductCategory"
         ],
-        "summary": "获取产品分类列表，不分页",
-        "operationId": "ProductCategory_ListAllProductCategories",
+        "summary": "获取产品分类列表",
+        "operationId": "ProductCategory_ListProductCategories",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] 排序(id desc/asc, parent_id desc/asc,created_at desc/asc, updated_at desc/asc)",
+            "name": "sort",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "[] 页码",
+            "name": "page",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "format": "int64",
+            "description": "[] 每页数量",
+            "name": "page_size",
+            "in": "query"
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/productV1ListAllProductCategoriesReply"
+              "$ref": "#/definitions/productV1ProductCategories"
             }
           },
           "default": {
