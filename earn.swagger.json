@@ -12,6 +12,29 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/v1/all_product_categories": {
+      "get": {
+        "tags": [
+          "ProductCategory"
+        ],
+        "summary": "获取产品分类列表，不分页",
+        "operationId": "ProductCategory_ListAllProductCategories",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ListAllProductCategoriesReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/activate": {
       "post": {
         "tags": [
@@ -387,20 +410,6 @@
             "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
             "name": "is_mainnet",
             "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
           }
         ],
         "responses": {
@@ -408,85 +417,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/coinV1ListCoinsReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/coins/keyword": {
-      "get": {
-        "tags": [
-          "Coin"
-        ],
-        "summary": "币种列表通过关键字段",
-        "operationId": "Coin_ListCoinsByKeyword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "[] 币种ID",
-            "name": "id",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2,
-              3,
-              4
-            ],
-            "type": "integer",
-            "description": "[] 币种类型\n\n - 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
-            "name": "type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 主币",
-            "name": "native",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否UTXO系列币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_utxo",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否EVM兼容币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_evm",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_mainnet",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/coinV1ListCoinsByKeywordReply"
             }
           },
           "default": {
@@ -565,6 +495,42 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/authorizationV1Menus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/order_upload": {
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "tags": [
+          "Order"
+        ],
+        "summary": "上传文件",
+        "operationId": "Order_UploadFile",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderV1UploadFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderV1UploadFileResponse"
             }
           },
           "default": {
@@ -712,15 +678,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -1545,15 +1511,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
@@ -1765,15 +1731,15 @@
             "required": true
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "页数",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "每页数量",
             "name": "page_size",
             "in": "query"
@@ -1820,6 +1786,9 @@
             "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "file"
+              ],
               "properties": {
                 "callback_urls": {
                   "type": "array",
@@ -1827,6 +1796,11 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "file": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "密钥"
                 },
                 "ips": {
                   "type": "array",
@@ -1838,10 +1812,6 @@
                 "memo": {
                   "type": "string",
                   "title": "[] 备注"
-                },
-                "secret": {
-                  "type": "string",
-                  "title": "密钥"
                 },
                 "type": {
                   "title": "api类型",
@@ -2107,6 +2077,46 @@
         }
       }
     },
+    "/v1/parties/{id}/wait": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "等待",
+        "operationId": "Parties_WaitParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/party_apikey/{id}": {
       "put": {
         "tags": [
@@ -2136,6 +2146,11 @@
                     "type": "string"
                   }
                 },
+                "file": {
+                  "type": "string",
+                  "format": "byte",
+                  "title": "密钥"
+                },
                 "ips": {
                   "type": "array",
                   "title": "[] ip地址，多ip以逗号分隔",
@@ -2146,10 +2161,6 @@
                 "memo": {
                   "type": "string",
                   "title": "[] 备注"
-                },
-                "secret": {
-                  "type": "string",
-                  "title": "密钥"
                 },
                 "type": {
                   "title": "api类型",
@@ -2289,64 +2300,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/partyV1UploadFileResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/party_upload/{id}": {
-      "put": {
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "tags": [
-          "Parties"
-        ],
-        "summary": "修改上传文件",
-        "operationId": "Parties_UpdateUploadFile",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "type",
-                "file"
-              ],
-              "properties": {
-                "file": {
-                  "type": "string",
-                  "format": "byte",
-                  "title": "文件"
-                },
-                "type": {
-                  "title": "类型",
-                  "$ref": "#/definitions/partyV1FileType"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
             }
           },
           "default": {
@@ -4181,19 +4134,6 @@
         }
       }
     },
-    "coinV1ListCoinsByKeywordReply": {
-      "type": "object",
-      "properties": {
-        "list": {
-          "type": "array",
-          "title": "币种列表",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1CoinDictionary"
-          }
-        }
-      }
-    },
     "coinV1ListCoinsReply": {
       "type": "object",
       "properties": {
@@ -4204,10 +4144,6 @@
             "type": "object",
             "$ref": "#/definitions/componentsV1Coin"
           }
-        },
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
     },
@@ -4299,27 +4235,6 @@
         "unit": {
           "type": "string",
           "title": "单位"
-        }
-      }
-    },
-    "componentsV1CoinDictionary": {
-      "type": "object",
-      "properties": {
-        "chain_name": {
-          "type": "string",
-          "title": "链名称"
-        },
-        "icon": {
-          "type": "string",
-          "title": "图标"
-        },
-        "id": {
-          "type": "string",
-          "title": "币种ID"
-        },
-        "name": {
-          "type": "string",
-          "title": "币种名称"
         }
       }
     },
@@ -4726,13 +4641,13 @@
           "type": "string",
           "title": "id"
         },
+        "feature_name": {
+          "type": "string",
+          "title": "名称"
+        },
         "from_date": {
           "type": "string",
           "title": "开始时间"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "period": {
           "type": "string",
@@ -5074,9 +4989,9 @@
     "orderV1CreateOrderDoc": {
       "type": "object",
       "properties": {
-        "file": {
+        "id": {
           "type": "string",
-          "title": "数据"
+          "title": "ID"
         },
         "name": {
           "type": "string",
@@ -5983,27 +5898,6 @@
         }
       }
     },
-    "orderV1UpdateOrderDoc": {
-      "type": "object",
-      "properties": {
-        "file": {
-          "type": "string",
-          "title": "数据"
-        },
-        "id": {
-          "type": "string",
-          "title": "ID"
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
-        },
-        "type": {
-          "title": "类型",
-          "$ref": "#/definitions/orderV1DocType"
-        }
-      }
-    },
     "orderV1UpdateOrderDocRequest": {
       "type": "object",
       "properties": {
@@ -6024,7 +5918,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/orderV1UpdateOrderDoc"
+            "$ref": "#/definitions/orderV1CreateOrderDoc"
           }
         }
       }
@@ -6122,6 +6016,41 @@
             "type": "object",
             "$ref": "#/definitions/orderV1ProductFeature"
           }
+        }
+      }
+    },
+    "orderV1UploadFileRequest": {
+      "type": "object",
+      "required": [
+        "type",
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "format": "byte",
+          "title": "文件"
+        },
+        "id": {
+          "type": "string",
+          "title": "[] id\n修改图片使用ID进行修改"
+        },
+        "type": {
+          "title": "类型",
+          "$ref": "#/definitions/orderV1DocType"
+        }
+      }
+    },
+    "orderV1UploadFileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id"
+        },
+        "url": {
+          "type": "string",
+          "title": "url"
         }
       }
     },
@@ -6315,6 +6244,30 @@
         2
       ]
     },
+    "partyV1IdNameCodeRoleIds": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "role_ids": {
+          "type": "array",
+          "title": "角色",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "partyV1Level": {
       "type": "integer",
       "format": "int32",
@@ -6334,7 +6287,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1IdNameCode"
+            "$ref": "#/definitions/partyV1IdNameCodeRoleIds"
           }
         }
       }
@@ -6467,7 +6420,14 @@
     "partyV1PartyDetail": {
       "type": "object",
       "properties": {
-        "contact_list": {
+        "contact_names": {
+          "type": "array",
+          "title": "参与方联系人名称(最大三个)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contacts": {
           "type": "array",
           "title": "联系人列表",
           "items": {
@@ -6475,14 +6435,7 @@
             "$ref": "#/definitions/partyV1PartyContact"
           }
         },
-        "contacts": {
-          "type": "array",
-          "title": "参与方联系人(最大三个)",
-          "items": {
-            "type": "string"
-          }
-        },
-        "doc_list": {
+        "docs": {
           "type": "array",
           "title": "文档列表",
           "items": {
@@ -6506,6 +6459,10 @@
         "created_by": {
           "type": "string",
           "title": "创建人"
+        },
+        "file_type": {
+          "title": "文档类型",
+          "$ref": "#/definitions/partyV1FileType"
         },
         "id": {
           "type": "string",
@@ -6642,7 +6599,7 @@
           "type": "string",
           "title": "[] 名称"
         },
-        "role_id": {
+        "role_ids": {
           "type": "array",
           "title": "[] 角色",
           "items": {
@@ -6727,6 +6684,10 @@
           "format": "byte",
           "title": "文件"
         },
+        "id": {
+          "type": "string",
+          "title": "[] id\n修改图片使用ID进行修改"
+        },
         "type": {
           "title": "类型",
           "$ref": "#/definitions/partyV1FileType"
@@ -6739,6 +6700,14 @@
         "id": {
           "type": "string",
           "title": "id"
+        },
+        "path": {
+          "type": "string",
+          "title": "url"
+        },
+        "thumbnail": {
+          "type": "string",
+          "title": "缩略图"
         }
       }
     },
@@ -6770,9 +6739,13 @@
     "productV1AddProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "id": {
+        "party_id": {
           "type": "string",
           "title": "参与方id"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色id"
         },
         "value": {
           "type": "string",
@@ -6902,6 +6875,18 @@
         "id": {
           "type": "string",
           "title": "id"
+        }
+      }
+    },
+    "productV1ListAllProductCategoriesReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
         }
       }
     },
