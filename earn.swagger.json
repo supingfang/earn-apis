@@ -410,20 +410,6 @@
             "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
             "name": "is_mainnet",
             "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "页码",
-            "name": "page",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "format": "int64",
-            "description": "每页数量",
-            "name": "page_size",
-            "in": "query"
           }
         ],
         "responses": {
@@ -431,85 +417,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/coinV1ListCoinsReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/coins/keyword": {
-      "get": {
-        "tags": [
-          "Coin"
-        ],
-        "summary": "币种列表通过关键字段",
-        "operationId": "Coin_ListCoinsByKeyword",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "[] 币种ID",
-            "name": "id",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2,
-              3,
-              4
-            ],
-            "type": "integer",
-            "description": "[] 币种类型\n\n - 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
-            "name": "type",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "[] 主币",
-            "name": "native",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否UTXO系列币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_utxo",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否EVM兼容币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_evm",
-            "in": "query"
-          },
-          {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
-            "name": "is_mainnet",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/coinV1ListCoinsByKeywordReply"
             }
           },
           "default": {
@@ -4182,19 +4089,6 @@
         }
       }
     },
-    "coinV1ListCoinsByKeywordReply": {
-      "type": "object",
-      "properties": {
-        "list": {
-          "type": "array",
-          "title": "币种列表",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/componentsV1CoinDictionary"
-          }
-        }
-      }
-    },
     "coinV1ListCoinsReply": {
       "type": "object",
       "properties": {
@@ -4205,10 +4099,6 @@
             "type": "object",
             "$ref": "#/definitions/componentsV1Coin"
           }
-        },
-        "page_info": {
-          "title": "分页信息",
-          "$ref": "#/definitions/componentsV1PageInfo"
         }
       }
     },
@@ -4300,27 +4190,6 @@
         "unit": {
           "type": "string",
           "title": "单位"
-        }
-      }
-    },
-    "componentsV1CoinDictionary": {
-      "type": "object",
-      "properties": {
-        "chain_name": {
-          "type": "string",
-          "title": "链名称"
-        },
-        "icon": {
-          "type": "string",
-          "title": "图标"
-        },
-        "id": {
-          "type": "string",
-          "title": "币种ID"
-        },
-        "name": {
-          "type": "string",
-          "title": "币种名称"
         }
       }
     },
@@ -6330,6 +6199,30 @@
         2
       ]
     },
+    "partyV1IdNameCodeRoleIds": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "role_ids": {
+          "type": "array",
+          "title": "角色",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "partyV1Level": {
       "type": "integer",
       "format": "int32",
@@ -6349,7 +6242,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1IdNameCode"
+            "$ref": "#/definitions/partyV1IdNameCodeRoleIds"
           }
         }
       }
@@ -6763,9 +6656,13 @@
           "type": "string",
           "title": "id"
         },
-        "url": {
+        "path": {
           "type": "string",
           "title": "url"
+        },
+        "thumbnail": {
+          "type": "string",
+          "title": "缩略图"
         }
       }
     },
