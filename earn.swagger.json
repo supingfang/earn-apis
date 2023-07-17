@@ -771,15 +771,15 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 页码",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "description": "[] 每页数量",
             "name": "page_size",
             "in": "query"
