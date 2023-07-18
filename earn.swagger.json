@@ -4735,11 +4735,11 @@
     "componentsV1ProductPartiesRelation": {
       "type": "object",
       "properties": {
-        "party_id": {
+        "id": {
           "type": "string",
           "title": "参与方id"
         },
-        "party_name": {
+        "name": {
           "type": "string",
           "title": "参与方名称"
         },
@@ -5006,6 +5006,10 @@
     "orderV1CreateOrderParty": {
       "type": "object",
       "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "生效日期"
+        },
         "id": {
           "type": "string",
           "title": "参与方ID"
@@ -5013,6 +5017,14 @@
         "rate": {
           "type": "string",
           "title": "比例"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "参与方角色ID"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "到期日期"
         },
         "value": {
           "type": "string",
@@ -5120,7 +5132,7 @@
         },
         "id": {
           "type": "string",
-          "title": "ID"
+          "title": "产品特征ID"
         },
         "period": {
           "type": "string",
