@@ -35,6 +35,29 @@
         }
       }
     },
+    "/v1/all_product_features": {
+      "get": {
+        "tags": [
+          "ProductFeature"
+        ],
+        "summary": "获取产品特性列表，不分页",
+        "operationId": "ProductFeature_ListAllProductFeatures",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ListAllProductFeaturesReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/auth/activate": {
       "post": {
         "tags": [
@@ -5057,6 +5080,7 @@
         },
         "quantity": {
           "type": "string",
+          "format": "int64",
           "title": "[] 数量"
         }
       }
@@ -5152,6 +5176,14 @@
       "type": "integer",
       "format": "int32",
       "title": "- 0: 默认值\n - 1: AGREEMENT",
+      "enum": [
+        1
+      ]
+    },
+    "orderV1FileType": {
+      "type": "integer",
+      "format": "int32",
+      "title": "- 0: 默认值\n - 1: 文档",
       "enum": [
         1
       ]
@@ -5327,6 +5359,7 @@
         },
         "quantity": {
           "type": "string",
+          "format": "int64",
           "title": "数量"
         }
       }
@@ -5461,6 +5494,10 @@
           "type": "string",
           "title": "名称"
         },
+        "path": {
+          "type": "string",
+          "title": "path"
+        },
         "thumbnail": {
           "type": "string",
           "title": "缩略图url"
@@ -5476,10 +5513,6 @@
         "updated_by": {
           "type": "string",
           "title": "更新人"
-        },
-        "url": {
-          "type": "string",
-          "title": "url"
         }
       }
     },
@@ -6002,6 +6035,7 @@
         },
         "quantity": {
           "type": "string",
+          "format": "int64",
           "title": "[] 数量"
         }
       }
@@ -6049,7 +6083,7 @@
         },
         "type": {
           "title": "类型",
-          "$ref": "#/definitions/orderV1DocType"
+          "$ref": "#/definitions/orderV1FileType"
         }
       }
     },
@@ -6060,9 +6094,9 @@
           "type": "string",
           "title": "id"
         },
-        "url": {
+        "path": {
           "type": "string",
-          "title": "url"
+          "title": "path"
         }
       }
     },
@@ -6475,6 +6509,10 @@
         "file_type": {
           "title": "文档类型",
           "$ref": "#/definitions/partyV1FileType"
+        },
+        "filename": {
+          "type": "string",
+          "title": "文件名"
         },
         "id": {
           "type": "string",
@@ -6891,6 +6929,18 @@
       }
     },
     "productV1ListAllProductCategoriesReply": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdName"
+          }
+        }
+      }
+    },
+    "productV1ListAllProductFeaturesReply": {
       "type": "object",
       "properties": {
         "list": {
