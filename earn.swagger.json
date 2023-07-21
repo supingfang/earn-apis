@@ -6018,12 +6018,8 @@
           "title": "[] 数额"
         },
         "features": {
-          "type": "array",
           "title": "产品特征",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/orderV1UpdateProductFeature"
-          }
+          "$ref": "#/definitions/orderV1UpdateProductFeature"
         },
         "id": {
           "type": "string",
@@ -6947,7 +6943,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1IdName"
+            "$ref": "#/definitions/componentsV1ProductFeatureItem"
           }
         }
       }
