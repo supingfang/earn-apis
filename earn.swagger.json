@@ -2974,41 +2974,17 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category_id": {
-                  "type": "string",
-                  "title": "分类"
-                },
-                "code": {
-                  "type": "string",
-                  "title": "编码"
-                },
-                "coin": {
-                  "type": "string",
-                  "title": "币种"
-                },
-                "description": {
-                  "type": "string",
-                  "title": "[]描述"
-                },
                 "features": {
                   "title": "[]产品特性",
                   "$ref": "#/definitions/productV1UpdateProductRequestupdateFeatures"
-                },
-                "name": {
-                  "type": "string",
-                  "title": "名称"
                 },
                 "parties": {
                   "title": "[]参与方",
                   "$ref": "#/definitions/UpdateProductRequestupdateParties"
                 },
-                "price": {
-                  "type": "string",
-                  "title": "[]价格"
-                },
-                "use_type": {
-                  "title": "使用方式",
-                  "$ref": "#/definitions/componentsV1UseType"
+                "product": {
+                  "title": "产品",
+                  "$ref": "#/definitions/UpdateProductRequestUpdateProduct"
                 }
               }
             }
@@ -4010,6 +3986,39 @@
     }
   },
   "definitions": {
+    "UpdateProductRequestUpdateProduct": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string",
+          "title": "分类"
+        },
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "description": {
+          "type": "string",
+          "title": "[]描述"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "price": {
+          "type": "string",
+          "title": "[]价格"
+        },
+        "use_type": {
+          "title": "使用方式",
+          "$ref": "#/definitions/componentsV1UseType"
+        }
+      }
+    },
     "UpdateProductRequestupdateParties": {
       "type": "object",
       "properties": {
@@ -4033,7 +4042,7 @@
           "title": "修改",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductPartiesRelation"
+            "$ref": "#/definitions/updatePartiesUpdateProductPartiesRelation"
           }
         }
       }
@@ -6799,6 +6808,39 @@
         }
       }
     },
+    "productV1CreateProduct": {
+      "type": "object",
+      "properties": {
+        "category_id": {
+          "type": "string",
+          "title": "分类"
+        },
+        "code": {
+          "type": "string",
+          "title": "编码"
+        },
+        "coin": {
+          "type": "string",
+          "title": "币种"
+        },
+        "description": {
+          "type": "string",
+          "title": "[]描述"
+        },
+        "name": {
+          "type": "string",
+          "title": "名称"
+        },
+        "price": {
+          "type": "string",
+          "title": "[]价格"
+        },
+        "use_type": {
+          "title": "使用方式",
+          "$ref": "#/definitions/componentsV1UseType"
+        }
+      }
+    },
     "productV1CreateProductCategoryRequest": {
       "type": "object",
       "properties": {
@@ -6869,22 +6911,6 @@
     "productV1CreateProductRequest": {
       "type": "object",
       "properties": {
-        "category_id": {
-          "type": "string",
-          "title": "分类"
-        },
-        "code": {
-          "type": "string",
-          "title": "编码"
-        },
-        "coin": {
-          "type": "string",
-          "title": "币种"
-        },
-        "description": {
-          "type": "string",
-          "title": "[]描述"
-        },
         "features": {
           "type": "array",
           "title": "[]产品特性",
@@ -6892,10 +6918,6 @@
             "type": "object",
             "$ref": "#/definitions/productV1AddProductFeatureRelation"
           }
-        },
-        "name": {
-          "type": "string",
-          "title": "名称"
         },
         "parties": {
           "type": "array",
@@ -6905,13 +6927,9 @@
             "$ref": "#/definitions/productV1AddProductPartiesRelation"
           }
         },
-        "price": {
-          "type": "string",
-          "title": "[]价格"
-        },
-        "use_type": {
-          "title": "使用方式",
-          "$ref": "#/definitions/componentsV1UseType"
+        "product": {
+          "title": "产品",
+          "$ref": "#/definitions/productV1CreateProduct"
         }
       }
     },
@@ -7061,7 +7079,7 @@
           "title": "修改",
           "items": {
             "type": "object",
-            "$ref": "#/definitions/componentsV1ProductFeatureRelation"
+            "$ref": "#/definitions/updateFeaturesUpdateProductFeatureRelation"
           }
         }
       }
@@ -7266,6 +7284,56 @@
           "additionalProperties": {
             "$ref": "#/definitions/componentsV1Dictionary"
           }
+        }
+      }
+    },
+    "updateFeaturesUpdateProductFeatureRelation": {
+      "type": "object",
+      "properties": {
+        "feature_id": {
+          "type": "string",
+          "title": "id"
+        },
+        "from_date": {
+          "type": "string",
+          "title": "开始时间"
+        },
+        "period": {
+          "type": "string",
+          "title": "周期"
+        },
+        "product_feature_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "结束时间"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
+        }
+      }
+    },
+    "updatePartiesUpdateProductPartiesRelation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "参与方id"
+        },
+        "product_party_relation_id": {
+          "type": "string",
+          "title": "关联关系id"
+        },
+        "role_id": {
+          "type": "string",
+          "title": "角色id"
+        },
+        "value": {
+          "type": "string",
+          "title": "值"
         }
       }
     },
