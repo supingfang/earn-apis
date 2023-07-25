@@ -1900,6 +1900,46 @@
         }
       }
     },
+    "/v1/parties/{id}/cancel": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "取消",
+        "operationId": "Parties_CancelParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/parties/{id}/close": {
       "put": {
         "tags": [
@@ -3013,6 +3053,46 @@
         ],
         "summary": "审核产品",
         "operationId": "Product_ApproveProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/cancel": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "取消产品",
+        "operationId": "Product_CancelProduct",
         "parameters": [
           {
             "type": "string",
