@@ -627,7 +627,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: 外部",
+            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: Prime",
             "name": "source_type",
             "in": "query"
           },
@@ -827,6 +827,10 @@
                 "docs": {
                   "title": "[] docs",
                   "$ref": "#/definitions/orderV1UpdateOrderDocRequest"
+                },
+                "funding_parties": {
+                  "title": "订单资金方",
+                  "$ref": "#/definitions/orderV1UpdateOrderPartyRequest"
                 },
                 "parties": {
                   "title": "[] parties",
@@ -1425,7 +1429,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 驳回\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
             "name": "status",
             "in": "query"
           },
@@ -5205,6 +5209,10 @@
           "type": "string",
           "title": "业务日期"
         },
+        "customer_id": {
+          "type": "string",
+          "title": "客户ID"
+        },
         "docs": {
           "type": "array",
           "title": "订单文档",
@@ -5213,9 +5221,17 @@
             "$ref": "#/definitions/orderV1CreateOrderDoc"
           }
         },
+        "funding_parties": {
+          "type": "array",
+          "title": "订单资金方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1CreateOrderParty"
+          }
+        },
         "parties": {
           "type": "array",
-          "title": "订单party",
+          "title": "订单参与方",
           "items": {
             "type": "object",
             "$ref": "#/definitions/orderV1CreateOrderParty"
@@ -5228,6 +5244,14 @@
             "type": "object",
             "$ref": "#/definitions/orderV1CreateOrderProduct"
           }
+        },
+        "source_id": {
+          "type": "string",
+          "title": "来源ID"
+        },
+        "source_type": {
+          "title": "来源类型",
+          "$ref": "#/definitions/orderV1OrderSourceType"
         }
       }
     },
@@ -5332,12 +5356,24 @@
           "type": "string",
           "title": "创建人"
         },
+        "customer": {
+          "title": "客户",
+          "$ref": "#/definitions/componentsV1IdName"
+        },
         "docs": {
           "type": "array",
           "title": "文档",
           "items": {
             "type": "object",
             "$ref": "#/definitions/orderV1OrderDoc"
+          }
+        },
+        "funding_parties": {
+          "type": "array",
+          "title": "资金方",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderParty"
           }
         },
         "id": {
@@ -5366,10 +5402,10 @@
         },
         "source_id": {
           "type": "string",
-          "title": "source id"
+          "title": "来源ID"
         },
         "source_type": {
-          "title": "source type",
+          "title": "来源类型",
           "$ref": "#/definitions/orderV1OrderSourceType"
         },
         "status": {
@@ -5730,7 +5766,7 @@
     "orderV1OrderSourceType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 内部\n - 2: 外部",
+      "title": "- 0: 默认值\n - 1: 内部\n - 2: Prime",
       "enum": [
         1,
         2
@@ -5832,10 +5868,9 @@
     "orderV1OrderType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
+      "title": "- 0: 默认值\n - 1: investment 投资",
       "enum": [
-        1,
-        2
+        1
       ]
     },
     "orderV1Orders": {
@@ -6694,7 +6729,7 @@
     "partyV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 驳回\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
       "enum": [
         1,
         2,
