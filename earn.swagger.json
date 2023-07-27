@@ -604,16 +604,6 @@
             "in": "query"
           },
           {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
-            "description": "[] 类型\n\n - 0: 默认值\n - 1: loan 贷款\n - 2: investment 投资",
-            "name": "type",
-            "in": "query"
-          },
-          {
             "type": "string",
             "description": "[] 币种",
             "name": "coin",
@@ -846,9 +836,13 @@
                   "title": "[] products",
                   "$ref": "#/definitions/orderV1UpdateOrderProduct"
                 },
-                "type": {
-                  "title": "[] 类型",
-                  "$ref": "#/definitions/orderV1OrderType"
+                "source_id": {
+                  "type": "string",
+                  "title": "source id"
+                },
+                "source_type": {
+                  "title": "source type",
+                  "$ref": "#/definitions/orderV1OrderSourceType"
                 }
               }
             }
@@ -971,38 +965,6 @@
             "description": "A successful response.",
             "schema": {
               "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/docs": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "订单详情-doc",
-        "operationId": "Order_ListOrderDocs",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/orderV1ListOrderDocsReply"
             }
           },
           "default": {
@@ -1463,7 +1425,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 等待提交\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 驳回\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
             "name": "status",
             "in": "query"
           },
@@ -2060,6 +2022,46 @@
         }
       }
     },
+    "/v1/parties/{id}/return": {
+      "put": {
+        "tags": [
+          "Parties"
+        ],
+        "summary": "驳回",
+        "operationId": "Parties_WaitParty",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/parties/{id}/submit": {
       "put": {
         "tags": [
@@ -2107,46 +2109,6 @@
         ],
         "summary": "解冻",
         "operationId": "Parties_UnfreezeParty",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/parties/{id}/wait": {
-      "put": {
-        "tags": [
-          "Parties"
-        ],
-        "summary": "等待",
-        "operationId": "Parties_WaitParty",
         "parameters": [
           {
             "type": "string",
@@ -2501,10 +2463,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "features": {
-                  "title": "[]产品特性",
-                  "$ref": "#/definitions/productV1UpdateProductCategoryRequestupdateFeatures"
-                },
                 "name": {
                   "type": "string",
                   "title": "名称"
@@ -2512,6 +2470,10 @@
                 "parent_id": {
                   "type": "string",
                   "title": "父级id"
+                },
+                "product_features": {
+                  "title": "[]产品特性",
+                  "$ref": "#/definitions/productV1UpdateProductCategoryRequestupdateFeatures"
                 },
                 "status": {
                   "title": "启用状态",
@@ -2854,10 +2816,11 @@
               3,
               4,
               5,
-              6
+              6,
+              7
             ],
             "type": "integer",
-            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -2886,7 +2849,7 @@
           {
             "type": "string",
             "description": "[]角色",
-            "name": "role_id",
+            "name": "role_ids",
             "in": "query"
           },
           {
@@ -3213,6 +3176,46 @@
         ],
         "summary": "驳回",
         "operationId": "Product_RejectProduct",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "id",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/{id}/return": {
+      "put": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "驳回产品",
+        "operationId": "Product_ReturnProduct",
         "parameters": [
           {
             "type": "string",
@@ -5225,10 +5228,6 @@
             "type": "object",
             "$ref": "#/definitions/orderV1CreateOrderProduct"
           }
-        },
-        "type": {
-          "title": "类型",
-          "$ref": "#/definitions/orderV1OrderType"
         }
       }
     },
@@ -5333,6 +5332,14 @@
           "type": "string",
           "title": "创建人"
         },
+        "docs": {
+          "type": "array",
+          "title": "文档",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/orderV1OrderDoc"
+          }
+        },
         "id": {
           "type": "string",
           "title": "Id"
@@ -5356,6 +5363,14 @@
             "type": "object",
             "$ref": "#/definitions/orderV1ListOrderProductsReply"
           }
+        },
+        "source_id": {
+          "type": "string",
+          "title": "source id"
+        },
+        "source_type": {
+          "title": "source type",
+          "$ref": "#/definitions/orderV1OrderSourceType"
         },
         "status": {
           "title": "状态",
@@ -5383,18 +5398,6 @@
           "items": {
             "type": "object",
             "$ref": "#/definitions/orderV1OrderAccount"
-          }
-        }
-      }
-    },
-    "orderV1ListOrderDocsReply": {
-      "type": "object",
-      "properties": {
-        "list": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/orderV1OrderDoc"
           }
         }
       }
@@ -5882,6 +5885,14 @@
             "$ref": "#/definitions/componentsV1IdNameCode"
           }
         },
+        "source_id": {
+          "type": "string",
+          "title": "source id"
+        },
+        "source_type": {
+          "title": "source type",
+          "$ref": "#/definitions/orderV1OrderSourceType"
+        },
         "status": {
           "title": "状态",
           "$ref": "#/definitions/orderV1Status"
@@ -6110,9 +6121,9 @@
           "title": "产品特征",
           "$ref": "#/definitions/orderV1UpdateProductFeature"
         },
-        "id": {
+        "order_product_id": {
           "type": "string",
-          "title": "产品ID"
+          "title": "订单产品ID"
         },
         "price": {
           "type": "string",
@@ -6683,7 +6694,7 @@
     "partyV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 等待提交\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 驳回\n - 5: 拒绝\n - 6: 冻结\n - 7: 关闭",
       "enum": [
         1,
         2,
@@ -7098,14 +7109,15 @@
     "productV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
       "enum": [
         1,
         2,
         3,
         4,
         5,
-        6
+        6,
+        7
       ]
     },
     "productV1UpdateProductCategoryRequestupdateFeatures": {
