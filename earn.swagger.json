@@ -651,12 +651,15 @@
                 8,
                 9,
                 10,
-                11
+                11,
+                12,
+                13,
+                14
               ],
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -900,7 +903,47 @@
         }
       }
     },
-    "/v1/orders/{id}/approve": {
+    "/v1/orders/{id}/asset_release": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "解押申请",
+        "operationId": "Order_AssetRelease",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/audit_approve": {
       "put": {
         "tags": [
           "Order"
@@ -940,13 +983,173 @@
         }
       }
     },
-    "/v1/orders/{id}/deliver": {
+    "/v1/orders/{id}/audit_cancel": {
       "put": {
         "tags": [
           "Order"
         ],
-        "summary": "交付订单",
-        "operationId": "Order_DeliverOrder",
+        "summary": "撤回审批",
+        "operationId": "Order_CancelAudit",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/audit_reject": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "审批拒绝订单",
+        "operationId": "Order_RejectOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/audit_return": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "撤回审批",
+        "operationId": "Order_ReturnAudit",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/confirm_asset": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "收押确认",
+        "operationId": "Order_ConfirmAsset",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/deposit_asset": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "补保",
+        "operationId": "Order_DepositAsset",
         "parameters": [
           {
             "type": "string",
@@ -1012,13 +1215,13 @@
         }
       }
     },
-    "/v1/orders/{id}/pay_confirm": {
+    "/v1/orders/{id}/increase_loan": {
       "put": {
         "tags": [
           "Order"
         ],
-        "summary": "确认客户支付订单",
-        "operationId": "Order_PayOrder",
+        "summary": "增资",
+        "operationId": "Order_IncreaseLoan",
         "parameters": [
           {
             "type": "string",
@@ -1052,93 +1255,13 @@
         }
       }
     },
-    "/v1/orders/{id}/reject": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "审批拒绝订单",
-        "operationId": "Order_RejectOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/settle": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "结算订单",
-        "operationId": "Order_SettleOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "订单ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/settlements": {
+    "/v1/orders/{id}/invoices": {
       "get": {
         "tags": [
           "Order"
         ],
-        "summary": "订单详情-settlement",
-        "operationId": "Order_ListOrderSettlements",
+        "summary": "订单详情-invoice",
+        "operationId": "Order_ListOrderInvoices",
         "parameters": [
           {
             "type": "string",
@@ -1164,6 +1287,206 @@
         }
       }
     },
+    "/v1/orders/{id}/pay_interest": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "收息",
+        "operationId": "Order_PayInterest",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/pay_principal": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "还本",
+        "operationId": "Order_PayPrincipal",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/reduce_loan": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "减资",
+        "operationId": "Order_ReduceLoan",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/request_asset": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "质押请求",
+        "operationId": "Order_RequestAsset",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/orders/{id}/request_loan": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "放贷申请",
+        "operationId": "Order_RequestLoan",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/orders/{id}/submit": {
       "put": {
         "tags": [
@@ -1171,126 +1494,6 @@
         ],
         "summary": "提交订单",
         "operationId": "Order_SubmitOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/supply_confirm": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "供应商确认订单",
-        "operationId": "Order_SupplyConfirmOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/supply_confirm_run": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "供应商确认运行订单",
-        "operationId": "Order_SupplyConfirmRunOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/supply_reject": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "供应商拒绝订单",
-        "operationId": "Order_SupplyRejectOrder",
         "parameters": [
           {
             "type": "string",
@@ -1356,13 +1559,13 @@
         }
       }
     },
-    "/v1/orders/{id}/transactions": {
-      "get": {
+    "/v1/orders/{id}/withdraw_asset": {
+      "put": {
         "tags": [
           "Order"
         ],
-        "summary": "订单详情-transaction",
-        "operationId": "Order_ListOrderTransactions",
+        "summary": "提保",
+        "operationId": "Order_WithdrawAsset",
         "parameters": [
           {
             "type": "string",
@@ -1370,13 +1573,21 @@
             "name": "id",
             "in": "path",
             "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/orderV1ListOrderTransactionsReply"
+              "type": "object"
             }
           },
           "default": {
@@ -2802,13 +3013,21 @@
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
             "description": "[]分类",
             "name": "category_id",
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
             "description": "[]币种",
             "name": "coin",
             "in": "query"
@@ -2829,11 +3048,15 @@
             "in": "query"
           },
           {
-            "enum": [
-              1,
-              2
-            ],
-            "type": "integer",
+            "type": "array",
+            "items": {
+              "enum": [
+                1,
+                2
+              ],
+              "type": "integer"
+            },
+            "collectionFormat": "multi",
             "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
             "name": "use_type",
             "in": "query"
@@ -2851,13 +3074,21 @@
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
             "description": "[]角色",
             "name": "role_ids",
             "in": "query"
           },
           {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
             "description": "[]参与方",
             "name": "party_id",
             "in": "query"
@@ -3178,7 +3409,7 @@
         "tags": [
           "Product"
         ],
-        "summary": "驳回",
+        "summary": "拒绝产品",
         "operationId": "Product_RejectProduct",
         "parameters": [
           {
@@ -4530,6 +4761,10 @@
           "type": "string",
           "title": "创建人"
         },
+        "created_id": {
+          "type": "string",
+          "title": "创建人ID"
+        },
         "desc": {
           "type": "string",
           "title": "描述"
@@ -5516,18 +5751,6 @@
         }
       }
     },
-    "orderV1ListOrderTransactionsReply": {
-      "type": "object",
-      "properties": {
-        "list": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/orderV1OrderTransaction"
-          }
-        }
-      }
-    },
     "orderV1ListOrdersReply": {
       "type": "object",
       "properties": {
@@ -5810,61 +6033,6 @@
         }
       }
     },
-    "orderV1OrderTransaction": {
-      "type": "object",
-      "properties": {
-        "amount": {
-          "type": "string",
-          "title": "交易额"
-        },
-        "coin": {
-          "type": "string",
-          "title": "币种"
-        },
-        "created_at": {
-          "type": "string",
-          "title": "创建时间"
-        },
-        "created_by": {
-          "type": "string",
-          "title": "创建人"
-        },
-        "id": {
-          "type": "string",
-          "title": "id"
-        },
-        "memo": {
-          "type": "string",
-          "title": "备注"
-        },
-        "source_id": {
-          "type": "string",
-          "title": "来源id"
-        },
-        "source_type": {
-          "type": "integer",
-          "format": "int32",
-          "title": "来源类型"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int32",
-          "title": "状态"
-        },
-        "type": {
-          "title": "类型",
-          "$ref": "#/definitions/orderV1TransactionType"
-        },
-        "updated_at": {
-          "type": "string",
-          "title": "更新时间"
-        },
-        "updated_by": {
-          "type": "string",
-          "title": "更新人"
-        }
-      }
-    },
     "orderV1OrderType": {
       "type": "integer",
       "format": "int32",
@@ -5978,7 +6146,7 @@
     "orderV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 待确认\n - 4: 已确认\n - 5: 待付款\n - 6: 已付款\n - 7: 待运行\n - 8: 已运行\n - 9: 供应商结算中\n - 10: 供应商已结算\n - 11: 已关闭",
+      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
       "enum": [
         1,
         2,
@@ -5990,7 +6158,10 @@
         8,
         9,
         10,
-        11
+        11,
+        12,
+        13,
+        14
       ]
     },
     "orderV1TaskType": {
@@ -6002,22 +6173,6 @@
         2,
         3,
         4
-      ]
-    },
-    "orderV1TransactionType": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 0: 默认值\n - 1: 充值\n - 2: 提取\n - 3: 利息\n - 4: 费用\n - 5: 购买\n - 6: 赎回\n - 7: 交易买\n - 8: 交易卖\n - 9: 支付",
-      "enum": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
       ]
     },
     "orderV1UpdateOrderAsset": {
@@ -6611,6 +6766,10 @@
             "type": "object",
             "$ref": "#/definitions/partyV1PartyContact"
           }
+        },
+        "created_id": {
+          "type": "string",
+          "title": "参与方创建人ID"
         },
         "docs": {
           "type": "array",
