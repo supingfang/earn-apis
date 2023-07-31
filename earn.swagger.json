@@ -12,6 +12,129 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/v1/accounts": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "列表",
+        "operationId": "Account_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountV1ListAccountReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "创建",
+        "operationId": "Account_Create",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountV1CreateAccountRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/componentsV1Id"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/{id}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "详情",
+        "operationId": "Account_Get",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "ID",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountV1AccountReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "更新",
+        "operationId": "Account_Update",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
     "/v1/all_product_categories": {
       "get": {
         "tags": [
@@ -823,7 +946,7 @@
               4
             ],
             "type": "integer",
-            "description": "[] 币种类型\n\n - 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
+            "description": "[] 币种类型\n\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
             "name": "type",
             "in": "query"
           },
@@ -839,7 +962,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 是否UTXO系列币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "description": "[] 是否UTXO系列币种\n\n - 1: true\n - 2: false",
             "name": "is_utxo",
             "in": "query"
           },
@@ -849,7 +972,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 是否EVM兼容币种\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "description": "[] 是否EVM兼容币种\n\n - 1: true\n - 2: false",
             "name": "is_evm",
             "in": "query"
           },
@@ -859,7 +982,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 0: 默认值\n - 1: true\n - 2: false",
+            "description": "[] 是否主网币种 (生产环境默认为true)\n\n - 1: true\n - 2: false",
             "name": "is_mainnet",
             "in": "query"
           }
@@ -1056,7 +1179,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 来源类型\n\n - 0: 默认值\n - 1: 内部\n - 2: Prime",
+            "description": "[] 来源类型\n\n - 1: 内部\n - 2: Prime",
             "name": "source_type",
             "in": "query"
           },
@@ -1088,7 +1211,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
+            "description": "[] 状态\n\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -1244,7 +1367,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 状态\n\n - 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
+            "description": "[] 状态\n\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -1258,7 +1381,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 类型\n\n - 0: 默认\n - 1: 销售\n - 2: 购买",
+            "description": "[] 类型\n\n - 1: 销售\n - 2: 购买",
             "name": "type",
             "in": "query"
           },
@@ -1679,7 +1802,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 来源类型\n\n - 0: 默认\n - 1: 订单\n - 2: 发票",
+            "description": "[] 来源类型\n\n - 1: 订单\n - 2: 发票",
             "name": "source",
             "in": "query"
           },
@@ -1695,7 +1818,7 @@
               2
             ],
             "type": "integer",
-            "description": "[] 支付类型\n\n - 0: 默认\n - 1: 收据\n - 2: 付款",
+            "description": "[] 支付类型\n\n - 1: 收据\n - 2: 付款",
             "name": "type",
             "in": "query"
           },
@@ -1713,7 +1836,7 @@
               10
             ],
             "type": "integer",
-            "description": "[] 业务类型\n\n - 0: 默认\n - 1: 收押确认\n - 2: 提保\n - 3: 补保\n - 4: 增资\n - 5: 减资\n - 6: 收息\n - 7: 还本\n - 8: 放贷\n - 9: 解押\n - 10: 强平",
+            "description": "[] 业务类型\n\n - 1: 收押确认\n - 2: 提保\n - 3: 补保\n - 4: 增资\n - 5: 减资\n - 6: 收息\n - 7: 还本\n - 8: 放贷\n - 9: 解押\n - 10: 强平",
             "name": "biz_type",
             "in": "query"
           },
@@ -1818,7 +1941,7 @@
               7
             ],
             "type": "integer",
-            "description": "[] 状态\n\n - 0: 默认\n - 1: 草稿\n - 2: 待审核\n - 3: 审核通过\n - 4: 已支付\n - 5: 退回\n - 6: 作废\n - 7: 驳回",
+            "description": "[] 状态\n\n - 1: 草稿\n - 2: 待审核\n - 3: 审核通过\n - 4: 已支付\n - 5: 退回\n - 6: 作废\n - 7: 驳回",
             "name": "status",
             "in": "query"
           },
@@ -2232,6 +2355,14 @@
             "name": "id",
             "in": "path",
             "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
           }
         ],
         "responses": {
@@ -3163,7 +3294,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 参与方状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
+            "description": "[] 参与方状态\n\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
             "name": "status",
             "in": "query"
           },
@@ -3177,7 +3308,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[] 参与方类型\n\n - 0: 默认值\n - 1: 个人\n - 2: 组织",
+            "description": "[] 参与方类型\n\n - 1: 个人\n - 2: 组织",
             "name": "types",
             "in": "query"
           },
@@ -4011,7 +4142,7 @@
               4
             ],
             "type": "integer",
-            "description": "[] 类型\n\n - 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
+            "description": "[] 类型\n\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
             "name": "type",
             "in": "query"
           },
@@ -4566,7 +4697,7 @@
               7
             ],
             "type": "integer",
-            "description": "[]状态\n\n - 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
+            "description": "[]状态\n\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
             "name": "status",
             "in": "query"
           },
@@ -4580,7 +4711,7 @@
               "type": "integer"
             },
             "collectionFormat": "multi",
-            "description": "[]使用方式\n\n - 0: 默认值\n - 1: 复用\n - 2: 定制",
+            "description": "[]使用方式\n\n - 1: 复用\n - 2: 定制",
             "name": "use_type",
             "in": "query"
           },
@@ -4673,6 +4804,65 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/productV1CreateProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        }
+      }
+    },
+    "/v1/products/keyword": {
+      "get": {
+        "tags": [
+          "Product"
+        ],
+        "summary": "产品列表模糊查询",
+        "operationId": "Product_ListProductsByKeyword",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "[] ID",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 编码",
+            "name": "code",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 名称",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "[] 角色",
+            "name": "role_id",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "description": "[] 角色数组",
+            "name": "role_ids",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/productV1ListProductByKeywordResponse"
             }
           },
           "default": {
@@ -5107,7 +5297,7 @@
               2
             ],
             "type": "integer",
-            "description": "状态\n\n - 0: 默认值\n - 1: 启用\n - 2: 禁用",
+            "description": "状态\n\n - 1: 启用\n - 2: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -5569,7 +5759,7 @@
               2
             ],
             "type": "integer",
-            "description": " - 0: 默认值\n - 1: true\n - 2: false",
+            "description": " - 1: true\n - 2: false",
             "name": "is_waiting",
             "in": "query"
           }
@@ -5901,7 +6091,7 @@
               2
             ],
             "type": "integer",
-            "description": "状态\n\n - 0: 默认值\n - 1: 启用\n - 2: 禁用",
+            "description": "状态\n\n - 1: 启用\n - 2: 禁用",
             "name": "status",
             "in": "query"
           },
@@ -6362,6 +6552,15 @@
         }
       }
     },
+    "accountV1AccountReply": {
+      "type": "object"
+    },
+    "accountV1CreateAccountRequest": {
+      "type": "object"
+    },
+    "accountV1ListAccountReply": {
+      "type": "object"
+    },
     "authenticationV1ActivateRequest": {
       "type": "object",
       "properties": {
@@ -6515,7 +6714,7 @@
     "componentsV1AccountType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 质押账户\n - 2: 贷款账户\n - 3: 还款账户\n - 4: 资金账户",
+      "title": "- 1: 质押账户\n - 2: 贷款账户\n - 3: 还款账户\n - 4: 资金账户",
       "enum": [
         1,
         2,
@@ -6526,7 +6725,7 @@
     "componentsV1ApproveStatus": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 通过\n - 2: 拒绝\n - 3: 忽略\n - 4: 取消\n - 5: 驳回",
+      "title": "- 1: 通过\n - 2: 拒绝\n - 3: 忽略\n - 4: 取消\n - 5: 驳回",
       "enum": [
         1,
         2,
@@ -6538,7 +6737,7 @@
     "componentsV1AuditBusinessType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
+      "title": "- 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
       "enum": [
         1,
         2,
@@ -6547,7 +6746,7 @@
       ]
     },
     "componentsV1Bool": {
-      "description": "- 0: 默认值\n - 1: true\n - 2: false",
+      "description": "- 1: true\n - 2: false",
       "type": "integer",
       "format": "int32",
       "title": "true or false",
@@ -6620,7 +6819,7 @@
       }
     },
     "componentsV1CoinType": {
-      "description": "- 0: 默认值\n - 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
+      "description": "- 1: 基础币(BTC、ETH...)\n - 2: ERC20 合约币\n - 3: BEP20 合约币\n - 4: TRC20 合约币",
       "type": "integer",
       "format": "int32",
       "title": "币种类型",
@@ -6648,7 +6847,7 @@
     "componentsV1EnableStatus": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 启用\n - 2: 禁用",
+      "title": "- 1: 启用\n - 2: 禁用",
       "enum": [
         1,
         2
@@ -6742,7 +6941,7 @@
     "componentsV1MenuType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 目录\n - 2: 菜单\n - 3: 按钮",
+      "title": "- 1: 目录\n - 2: 菜单\n - 3: 按钮",
       "enum": [
         1,
         2,
@@ -7149,7 +7348,7 @@
     "componentsV1ProductStatus": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
+      "title": "- 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 已冻结\n - 6: 已关闭",
       "enum": [
         1,
         2,
@@ -7214,7 +7413,7 @@
     "componentsV1TaskType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 审批",
+      "title": "- 1: 审批",
       "enum": [
         1
       ]
@@ -7222,7 +7421,7 @@
     "componentsV1UseType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 复用\n - 2: 定制",
+      "title": "- 1: 复用\n - 2: 定制",
       "enum": [
         1,
         2
@@ -7322,7 +7521,7 @@
     "orderV1AccountType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 存款账户\n - 2: 贷款账户\n - 3: 质押账户\n - 4: 投资账户",
+      "title": "- 1: 存款账户\n - 2: 贷款账户\n - 3: 质押账户\n - 4: 投资账户",
       "enum": [
         1,
         2,
@@ -7333,7 +7532,7 @@
     "orderV1AssetType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: COIN\n - 2: 产品",
+      "title": "- 1: COIN\n - 2: 产品",
       "enum": [
         1,
         2
@@ -7342,7 +7541,7 @@
     "orderV1BizType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 收押确认\n - 2: 提保\n - 3: 补保\n - 4: 增资\n - 5: 减资\n - 6: 收息\n - 7: 还本\n - 8: 放贷\n - 9: 解押\n - 10: 强平",
+      "title": "- 1: 收押确认\n - 2: 提保\n - 3: 补保\n - 4: 增资\n - 5: 减资\n - 6: 收息\n - 7: 还本\n - 8: 放贷\n - 9: 解押\n - 10: 强平",
       "enum": [
         1,
         2,
@@ -7627,7 +7826,7 @@
     "orderV1DocType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: AGREEMENT",
+      "title": "- 1: AGREEMENT",
       "enum": [
         1
       ]
@@ -7635,7 +7834,7 @@
     "orderV1FileType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 文档",
+      "title": "- 1: 文档",
       "enum": [
         1
       ]
@@ -7831,7 +8030,7 @@
     "orderV1InvoiceType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 销售\n - 2: 购买",
+      "title": "- 1: 销售\n - 2: 购买",
       "enum": [
         1,
         2
@@ -8248,7 +8447,7 @@
     "orderV1OrderSourceType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 内部\n - 2: Prime",
+      "title": "- 1: 内部\n - 2: Prime",
       "enum": [
         1,
         2
@@ -8295,7 +8494,7 @@
     "orderV1OrderType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: investment 投资",
+      "title": "- 1: investment 投资",
       "enum": [
         1
       ]
@@ -8376,7 +8575,7 @@
     "orderV1PayMethod": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 加密",
+      "title": "- 1: 加密",
       "enum": [
         1
       ]
@@ -8384,7 +8583,7 @@
     "orderV1PaymentStatus": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 草稿\n - 2: 待审核\n - 3: 审核通过\n - 4: 已支付\n - 5: 退回\n - 6: 作废\n - 7: 驳回",
+      "title": "- 1: 草稿\n - 2: 待审核\n - 3: 审核通过\n - 4: 已支付\n - 5: 退回\n - 6: 作废\n - 7: 驳回",
       "enum": [
         1,
         2,
@@ -8398,7 +8597,7 @@
     "orderV1PaymentType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 收据\n - 2: 付款",
+      "title": "- 1: 收据\n - 2: 付款",
       "enum": [
         1,
         2
@@ -8529,7 +8728,7 @@
     "orderV1SourceType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认\n - 1: 订单\n - 2: 发票",
+      "title": "- 1: 订单\n - 2: 发票",
       "enum": [
         1,
         2
@@ -8538,7 +8737,7 @@
     "orderV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
+      "title": "- 1: 已下单\n - 2: 审批中\n - 3: 审批通过\n - 4: 待付款\n - 5: 已付款\n - 6: 订单交付\n - 7: 已运行\n - 8: 结算中\n - 9: 已结算\n - 10: 解押中\n - 11: 已完成\n - 12: 拒绝\n - 13: 驳回\n - 14: 已关闭",
       "enum": [
         1,
         2,
@@ -8559,7 +8758,7 @@
     "orderV1TaskType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
+      "title": "- 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
       "enum": [
         1,
         2,
@@ -8849,7 +9048,7 @@
     "partyV1ApikeyType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: read\n - 2: write\n - 3: read and write",
+      "title": "- 1: read\n - 2: write\n - 3: read and write",
       "enum": [
         1,
         2,
@@ -8954,7 +9153,7 @@
     "partyV1FileType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 图片\n - 2: 文档",
+      "title": "- 1: 图片\n - 2: 文档",
       "enum": [
         1,
         2
@@ -8987,7 +9186,7 @@
     "partyV1Level": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 一级\n - 2: 二级\n - 3: 三级\n - 4: 四级\n - 5: 五级",
+      "title": "- 1: 一级\n - 2: 二级\n - 3: 三级\n - 4: 四级\n - 5: 五级",
       "enum": [
         1,
         2,
@@ -9126,7 +9325,7 @@
     "partyV1PartyContactType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 邮箱\n - 2: 电话\n - 3: slack",
+      "title": "- 1: 邮箱\n - 2: 电话\n - 3: slack",
       "enum": [
         1,
         2,
@@ -9221,7 +9420,7 @@
     "partyV1PartyDocType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 主体\n - 2: 法人\n - 3: 协议",
+      "title": "- 1: 主体\n - 2: 法人\n - 3: 协议",
       "enum": [
         1,
         2,
@@ -9243,7 +9442,7 @@
     "partyV1PartySource": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 外部\n - 2: 内部",
+      "title": "- 1: 外部\n - 2: 内部",
       "enum": [
         1,
         2
@@ -9252,7 +9451,7 @@
     "partyV1PartyType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 个人\n - 2: 组织",
+      "title": "- 1: 个人\n - 2: 组织",
       "enum": [
         1,
         2
@@ -9261,7 +9460,7 @@
     "partyV1RoleType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: party\n - 2: order\n - 3: account\n - 4: asset",
+      "title": "- 1: party\n - 2: order\n - 3: account\n - 4: asset",
       "enum": [
         1,
         2,
@@ -9272,7 +9471,7 @@
     "partyV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
+      "title": "- 1: 草稿\n - 2: 待审核\n - 3: 可用\n - 4: 拒绝\n - 5: 驳回\n - 6: 冻结\n - 7: 关闭",
       "enum": [
         1,
         2,
@@ -9765,6 +9964,18 @@
         }
       }
     },
+    "productV1ListProductByKeywordResponse": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/componentsV1IdNameCode"
+          }
+        }
+      }
+    },
     "productV1ProductCategories": {
       "type": "object",
       "properties": {
@@ -9869,7 +10080,7 @@
     "productV1Status": {
       "type": "integer",
       "format": "int32",
-      "title": "- 0: 默认值\n - 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
+      "title": "- 1: 草稿\n - 2: 待审批\n - 3: 已通过\n - 4: 已拒绝\n - 5: 驳回\n - 6: 已冻结\n - 7: 已关闭",
       "enum": [
         1,
         2,
@@ -10610,6 +10821,9 @@
     },
     {
       "name": "Task"
+    },
+    {
+      "name": "Account"
     },
     {
       "name": "Role"
