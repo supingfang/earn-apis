@@ -5205,14 +5205,14 @@
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "name": "page",
             "in": "query"
           },
           {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
+            "format": "int64",
             "name": "pageSize",
             "in": "query"
           }
@@ -5287,8 +5287,7 @@
                   "type": "string"
                 },
                 "memo": {
-                  "type": "integer",
-                  "format": "int32"
+                  "type": "string"
                 },
                 "status": {
                   "type": "integer",
@@ -6241,19 +6240,6 @@
     "accountV1AccountReply": {
       "type": "object"
     },
-    "accountV1AccountSource": {
-      "description": "- 1: 手工\n - 2: 订单\n - 3: 交易所\n - 4: 矿池\n - 5: 银行",
-      "type": "integer",
-      "format": "int32",
-      "title": "账户来源",
-      "enum": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ]
-    },
     "accountV1AccountStatementResult": {
       "description": "- 1: 正确\n - 2: 不正确",
       "type": "integer",
@@ -6269,6 +6255,28 @@
       "type": "integer",
       "format": "int32",
       "title": "账户对账单状态",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "accountV1AccountTransactionSource": {
+      "description": "- 1: 支付\n - 2: 矿池\n - 3: 对账单",
+      "type": "integer",
+      "format": "int32",
+      "title": "账户交易来源",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "accountV1AccountTransactionStatus": {
+      "description": "- 1: 提交中\n - 2: 已完成\n - 3: 已失败",
+      "type": "integer",
+      "format": "int32",
+      "title": "账户交易状态",
       "enum": [
         1,
         2,
@@ -6314,16 +6322,15 @@
     "accountV1ListStatementsResponse": {
       "type": "object",
       "properties": {
+        "page_info": {
+          "$ref": "#/definitions/componentsV1PageInfo"
+        },
         "statements": {
           "type": "array",
           "items": {
             "type": "object",
             "$ref": "#/definitions/accountV1StatementItem"
           }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
@@ -6334,8 +6341,7 @@
           "type": "string"
         },
         "account_type": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/accountV1AccountType"
         },
         "amount": {
           "type": "string"
@@ -6352,13 +6358,14 @@
         "id": {
           "type": "string"
         },
+        "party": {
+          "$ref": "#/definitions/componentsV1IdName"
+        },
         "result": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/accountV1AccountStatementResult"
         },
         "status": {
-          "type": "integer",
-          "format": "int32"
+          "$ref": "#/definitions/accountV1AccountStatementStatus"
         },
         "transactions": {
           "type": "array",
@@ -6420,17 +6427,16 @@
           "type": "string"
         },
         "memo": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "source_id": {
           "type": "string"
         },
         "source_type": {
-          "$ref": "#/definitions/accountV1AccountSource"
+          "$ref": "#/definitions/accountV1AccountTransactionSource"
         },
         "status": {
-          "$ref": "#/definitions/accountV1AccountStatementStatus"
+          "$ref": "#/definitions/accountV1AccountTransactionStatus"
         },
         "type": {
           "$ref": "#/definitions/accountV1AccountTransactionType"
@@ -7665,10 +7671,6 @@
     "orderV1CreateProductFeature": {
       "type": "object",
       "properties": {
-        "feature": {
-          "type": "string",
-          "title": "产品特征"
-        },
         "from_date": {
           "type": "string",
           "title": "[] 生效日期"
@@ -8595,7 +8597,19 @@
     "orderV1ProductFeature": {
       "type": "object",
       "properties": {
-        "feature": {
+        "created_at": {
+          "type": "string",
+          "title": "创建时间"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
+        "feature_id": {
+          "type": "string",
+          "title": "产品特征"
+        },
+        "feature_name": {
           "type": "string",
           "title": "产品特征"
         },
@@ -8605,7 +8619,7 @@
         },
         "id": {
           "type": "string",
-          "title": "id"
+          "title": "订单产品特征id"
         },
         "period": {
           "type": "string",
@@ -8614,6 +8628,14 @@
         "thru_date": {
           "type": "string",
           "title": "到期日期"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新时间"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         },
         "value": {
           "type": "string",
