@@ -1508,86 +1508,6 @@
         }
       }
     },
-    "/v1/orders/invoices/{id}/approve": {
-      "put": {
-        "tags": [
-          "Invoice"
-        ],
-        "summary": "审批通过结算单",
-        "operationId": "Invoice_ApproveInvoice",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/invoices/{id}/cancel": {
-      "put": {
-        "tags": [
-          "Invoice"
-        ],
-        "summary": "撤回审批",
-        "operationId": "Invoice_CancelAudit",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/orders/invoices/{id}/pay": {
       "put": {
         "tags": [
@@ -1595,86 +1515,6 @@
         ],
         "summary": "支付确认",
         "operationId": "Invoice_PayInvoice",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/invoices/{id}/reject": {
-      "put": {
-        "tags": [
-          "Invoice"
-        ],
-        "summary": "审批拒绝结算单",
-        "operationId": "Invoice_RejectInvoice",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/invoices/{id}/return": {
-      "put": {
-        "tags": [
-          "Invoice"
-        ],
-        "summary": "驳回审批",
-        "operationId": "Invoice_ReturnAudit",
         "parameters": [
           {
             "type": "string",
@@ -2557,46 +2397,6 @@
         }
       }
     },
-    "/v1/orders/{id}/approve": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "审批通过订单",
-        "operationId": "Order_ApproveOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/orders/{id}/asset_release": {
       "put": {
         "tags": [
@@ -2604,46 +2404,6 @@
         ],
         "summary": "解押申请",
         "operationId": "Order_AssetRelease",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/cancel": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "撤回审批",
-        "operationId": "Order_CancelAudit",
         "parameters": [
           {
             "type": "string",
@@ -2981,46 +2741,6 @@
         }
       }
     },
-    "/v1/orders/{id}/reject": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "审批拒绝订单",
-        "operationId": "Order_RejectOrder",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
     "/v1/orders/{id}/request_asset": {
       "put": {
         "tags": [
@@ -3068,46 +2788,6 @@
         ],
         "summary": "放贷申请",
         "operationId": "Order_RequestLoan",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/googlerpcStatus"
-            }
-          }
-        }
-      }
-    },
-    "/v1/orders/{id}/return": {
-      "put": {
-        "tags": [
-          "Order"
-        ],
-        "summary": "驳回审批",
-        "operationId": "Order_ReturnAudit",
         "parameters": [
           {
             "type": "string",
@@ -4856,6 +4536,12 @@
             "description": "[] 角色数组",
             "name": "role_ids",
             "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "参与方id",
+            "name": "party_id",
+            "in": "query"
           }
         ],
         "responses": {
@@ -5535,7 +5221,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/statementV1ListStatementsResponse"
+              "$ref": "#/definitions/accountV1ListStatementsResponse"
             }
           },
           "default": {
@@ -5565,7 +5251,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/statementV1StatementInfo"
+              "$ref": "#/definitions/accountV1StatementInfo"
             }
           },
           "default": {
@@ -6555,11 +6241,179 @@
     "accountV1AccountReply": {
       "type": "object"
     },
+    "accountV1Adjustment": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "coin": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "source_type": {
+          "$ref": "#/definitions/accountV1AdjustmentSourceType"
+        },
+        "statement_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/accountV1AdjustmentStatus"
+        },
+        "type": {
+          "$ref": "#/definitions/accountV1AdjustmentType"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "accountV1AdjustmentSourceType": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        1
+      ]
+    },
+    "accountV1AdjustmentStatus": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        1
+      ]
+    },
+    "accountV1AdjustmentType": {
+      "type": "integer",
+      "format": "int32"
+    },
     "accountV1CreateAccountRequest": {
       "type": "object"
     },
     "accountV1ListAccountReply": {
       "type": "object"
+    },
+    "accountV1ListStatementsResponse": {
+      "type": "object",
+      "properties": {
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/accountV1StatementItem"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "accountV1StatementInfo": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "account_type": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "adjustments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/accountV1Adjustment"
+          }
+        },
+        "amount": {
+          "type": "string"
+        },
+        "biz_date": {
+          "type": "string"
+        },
+        "coin": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "result": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "accountV1StatementItem": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "account_type": {
+          "$ref": "#/definitions/componentsV1AccountType"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "biz_date": {
+          "type": "string"
+        },
+        "coin": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "result": {
+          "$ref": "#/definitions/accountV1StatementResult"
+        },
+        "status": {
+          "$ref": "#/definitions/accountV1StatementStatus"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "accountV1StatementResult": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "accountV1StatementStatus": {
+      "type": "integer",
+      "format": "int32",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "authenticationV1ActivateRequest": {
       "type": "object",
@@ -10156,174 +10010,6 @@
       },
       "additionalProperties": false
     },
-    "statementV1Adjustment": {
-      "type": "object",
-      "properties": {
-        "amount": {
-          "type": "string"
-        },
-        "coin": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "memo": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "source_id": {
-          "type": "string"
-        },
-        "source_type": {
-          "$ref": "#/definitions/statementV1AdjustmentSourceType"
-        },
-        "statement_id": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/statementV1AdjustmentStatus"
-        },
-        "type": {
-          "$ref": "#/definitions/statementV1AdjustmentType"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
-    "statementV1AdjustmentSourceType": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1
-      ]
-    },
-    "statementV1AdjustmentStatus": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1
-      ]
-    },
-    "statementV1AdjustmentType": {
-      "type": "integer",
-      "format": "int32"
-    },
-    "statementV1ListStatementsResponse": {
-      "type": "object",
-      "properties": {
-        "statements": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/statementV1StatementItem"
-          }
-        },
-        "total": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "statementV1StatementInfo": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "account_type": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "adjustments": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/statementV1Adjustment"
-          }
-        },
-        "amount": {
-          "type": "string"
-        },
-        "biz_date": {
-          "type": "string"
-        },
-        "coin": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "result": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "status": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
-    "statementV1StatementItem": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "string"
-        },
-        "account_type": {
-          "$ref": "#/definitions/componentsV1AccountType"
-        },
-        "amount": {
-          "type": "string"
-        },
-        "biz_date": {
-          "type": "string"
-        },
-        "coin": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "result": {
-          "$ref": "#/definitions/statementV1StatementResult"
-        },
-        "status": {
-          "$ref": "#/definitions/statementV1StatementStatus"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
-    "statementV1StatementResult": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1,
-        2
-      ]
-    },
-    "statementV1StatementStatus": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1,
-        2,
-        3,
-        4
-      ]
-    },
     "systemV1ListDictionaryReply": {
       "type": "object",
       "properties": {
@@ -10790,9 +10476,6 @@
       "name": "Parties"
     },
     {
-      "name": "Statement"
-    },
-    {
       "name": "Product"
     },
     {
@@ -10824,6 +10507,9 @@
     },
     {
       "name": "Account"
+    },
+    {
+      "name": "Statement"
     },
     {
       "name": "Role"
