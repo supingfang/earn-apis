@@ -6241,62 +6241,69 @@
     "accountV1AccountReply": {
       "type": "object"
     },
-    "accountV1Adjustment": {
-      "type": "object",
-      "properties": {
-        "amount": {
-          "type": "string"
-        },
-        "coin": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "memo": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "source_id": {
-          "type": "string"
-        },
-        "source_type": {
-          "$ref": "#/definitions/accountV1AdjustmentSourceType"
-        },
-        "statement_id": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/accountV1AdjustmentStatus"
-        },
-        "type": {
-          "$ref": "#/definitions/accountV1AdjustmentType"
-        },
-        "updated_at": {
-          "type": "string"
-        }
-      }
-    },
-    "accountV1AdjustmentSourceType": {
+    "accountV1AccountSource": {
+      "description": "- 1: 手工\n - 2: 订单\n - 3: 交易所\n - 4: 矿池\n - 5: 银行",
       "type": "integer",
       "format": "int32",
+      "title": "账户来源",
       "enum": [
-        1
+        1,
+        2,
+        3,
+        4,
+        5
       ]
     },
-    "accountV1AdjustmentStatus": {
+    "accountV1AccountStatementResult": {
+      "description": "- 1: 正确\n - 2: 不正确",
       "type": "integer",
       "format": "int32",
+      "title": "账户对账单结果",
       "enum": [
-        1
+        1,
+        2
       ]
     },
-    "accountV1AdjustmentType": {
+    "accountV1AccountStatementStatus": {
+      "description": "- 1: 发送\n - 2: 确认\n - 3: 调整",
       "type": "integer",
-      "format": "int32"
+      "format": "int32",
+      "title": "账户对账单状态",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "accountV1AccountTransactionType": {
+      "description": "- 1: 充值\n - 2: 提取\n - 3: 利息\n - 4: 费用\n - 5: 购买\n - 6: 赎回\n - 7: 交易买\n - 8: 交易卖\n - 9: 支付\n - 10: 调整",
+      "type": "integer",
+      "format": "int32",
+      "title": "账户交易类型",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    "accountV1AccountType": {
+      "description": "- 1: 存款账户\n - 2: 贷款账户\n - 3: 质押账户\n - 4: 还款账户",
+      "type": "integer",
+      "format": "int32",
+      "title": "账户类型",
+      "enum": [
+        1,
+        2,
+        3,
+        4
+      ]
     },
     "accountV1CreateAccountRequest": {
       "type": "object"
@@ -6330,13 +6337,6 @@
           "type": "integer",
           "format": "int32"
         },
-        "adjustments": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/accountV1Adjustment"
-          }
-        },
         "amount": {
           "type": "string"
         },
@@ -6360,6 +6360,13 @@
           "type": "integer",
           "format": "int32"
         },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/accountV1StatementTransaction"
+          }
+        },
         "updated_at": {
           "type": "string"
         }
@@ -6372,7 +6379,7 @@
           "type": "string"
         },
         "account_type": {
-          "$ref": "#/definitions/componentsV1AccountType"
+          "$ref": "#/definitions/accountV1AccountType"
         },
         "amount": {
           "type": "string"
@@ -6387,33 +6394,51 @@
           "type": "string"
         },
         "result": {
-          "$ref": "#/definitions/accountV1StatementResult"
+          "$ref": "#/definitions/accountV1AccountStatementResult"
         },
         "status": {
-          "$ref": "#/definitions/accountV1StatementStatus"
+          "$ref": "#/definitions/accountV1AccountStatementStatus"
         },
         "updated_at": {
           "type": "string"
         }
       }
     },
-    "accountV1StatementResult": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1,
-        2
-      ]
-    },
-    "accountV1StatementStatus": {
-      "type": "integer",
-      "format": "int32",
-      "enum": [
-        1,
-        2,
-        3,
-        4
-      ]
+    "accountV1StatementTransaction": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string"
+        },
+        "coin": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "source_id": {
+          "type": "string"
+        },
+        "source_type": {
+          "$ref": "#/definitions/accountV1AccountSource"
+        },
+        "status": {
+          "$ref": "#/definitions/accountV1AccountStatementStatus"
+        },
+        "type": {
+          "$ref": "#/definitions/accountV1AccountTransactionType"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
     },
     "authenticationV1ActivateRequest": {
       "type": "object",
@@ -6564,17 +6589,6 @@
           "title": "Token 类型"
         }
       }
-    },
-    "componentsV1AccountType": {
-      "type": "integer",
-      "format": "int32",
-      "title": "- 1: 质押账户\n - 2: 贷款账户\n - 3: 还款账户\n - 4: 资金账户",
-      "enum": [
-        1,
-        2,
-        3,
-        4
-      ]
     },
     "componentsV1ApproveStatus": {
       "type": "integer",
@@ -8149,6 +8163,10 @@
           "type": "string",
           "title": "创建人"
         },
+        "file_type": {
+          "title": "文档类型",
+          "$ref": "#/definitions/orderV1FileType"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -8219,6 +8237,18 @@
     "orderV1OrderParty": {
       "type": "object",
       "properties": {
+        "created_at": {
+          "type": "string",
+          "title": "创建日期"
+        },
+        "created_by": {
+          "type": "string",
+          "title": "创建人"
+        },
+        "from_date": {
+          "type": "string",
+          "title": "生效日期"
+        },
         "id": {
           "type": "string",
           "title": "参与方id"
@@ -8234,6 +8264,18 @@
         "role": {
           "title": "角色id",
           "$ref": "#/definitions/componentsV1IdName"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "到期日期"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "更新日期"
+        },
+        "updated_by": {
+          "type": "string",
+          "title": "更新人"
         },
         "value": {
           "type": "string",
