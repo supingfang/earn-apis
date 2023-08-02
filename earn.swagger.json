@@ -8827,6 +8827,10 @@
           "title": "产品特征",
           "$ref": "#/definitions/orderV1UpdateProductFeature"
         },
+        "id": {
+          "type": "string",
+          "title": "产品ID"
+        },
         "order_product_id": {
           "type": "string",
           "title": "订单产品ID"
