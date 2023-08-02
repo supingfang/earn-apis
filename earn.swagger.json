@@ -8026,6 +8026,10 @@
           "type": "string",
           "title": "产品名称"
         },
+        "order_product_id": {
+          "type": "string",
+          "title": "订单产品ID"
+        },
         "price": {
           "type": "string",
           "title": "价格"
