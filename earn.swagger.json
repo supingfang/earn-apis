@@ -7781,9 +7781,9 @@
           "type": "string",
           "title": "[] 币种"
         },
-        "id": {
+        "order_asset_id": {
           "type": "string",
-          "title": "ID"
+          "title": "订单资产ID"
         },
         "party": {
           "title": "参与方",
