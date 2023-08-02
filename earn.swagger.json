@@ -7453,13 +7453,13 @@
     "orderV1CreateOrderDoc": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID"
+        },
         "name": {
           "type": "string",
           "title": "名称"
-        },
-        "order_doc_id": {
-          "type": "string",
-          "title": "ID"
         },
         "type": {
           "title": "类型",
@@ -7524,7 +7524,6 @@
         },
         "quantity": {
           "type": "string",
-          "format": "int64",
           "title": "[] 数量"
         }
       }
@@ -8169,6 +8168,10 @@
           "title": "文档类型",
           "$ref": "#/definitions/orderV1FileType"
         },
+        "filename": {
+          "type": "string",
+          "title": "文件名"
+        },
         "id": {
           "type": "string",
           "title": "ID"
@@ -8762,6 +8765,10 @@
     "orderV1UpdateOrderParty": {
       "type": "object",
       "properties": {
+        "from_date": {
+          "type": "string",
+          "title": "生效日期"
+        },
         "order_party_id": {
           "type": "string",
           "title": "订单参与方id"
@@ -8769,6 +8776,10 @@
         "rate": {
           "type": "string",
           "title": "比例"
+        },
+        "thru_date": {
+          "type": "string",
+          "title": "到期日期"
         },
         "value": {
           "type": "string",
