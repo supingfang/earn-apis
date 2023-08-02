@@ -186,22 +186,23 @@
         "tags": [
           "Audit"
         ],
+        "summary": "获取审批信息",
         "operationId": "Audit_GetAuditInfo",
         "parameters": [
           {
             "enum": [
               1,
-              2,
-              3,
-              4
+              2
             ],
             "type": "integer",
+            "description": "业务类型",
             "name": "business_type",
             "in": "path",
             "required": true
           },
           {
             "type": "string",
+            "description": "业务ID",
             "name": "business_id",
             "in": "path",
             "required": true
@@ -228,10 +229,12 @@
         "tags": [
           "Audit"
         ],
+        "summary": "审批撤销",
         "operationId": "Audit_Cancel",
         "parameters": [
           {
             "type": "string",
+            "description": "节点ID",
             "name": "node_id",
             "in": "path",
             "required": true
@@ -244,7 +247,8 @@
               "type": "object",
               "properties": {
                 "memo": {
-                  "type": "string"
+                  "type": "string",
+                  "title": "注释"
                 }
               }
             }
@@ -271,10 +275,12 @@
         "tags": [
           "Audit"
         ],
+        "summary": "审批忽略",
         "operationId": "Audit_Ignore",
         "parameters": [
           {
             "type": "string",
+            "description": "节点ID",
             "name": "node_id",
             "in": "path",
             "required": true
@@ -287,7 +293,8 @@
               "type": "object",
               "properties": {
                 "memo": {
-                  "type": "string"
+                  "type": "string",
+                  "title": "注释"
                 }
               }
             }
@@ -314,10 +321,12 @@
         "tags": [
           "Audit"
         ],
+        "summary": "审批通过",
         "operationId": "Audit_Pass",
         "parameters": [
           {
             "type": "string",
+            "description": "节点ID",
             "name": "node_id",
             "in": "path",
             "required": true
@@ -330,7 +339,8 @@
               "type": "object",
               "properties": {
                 "memo": {
-                  "type": "string"
+                  "type": "string",
+                  "title": "注释"
                 }
               }
             }
@@ -357,10 +367,12 @@
         "tags": [
           "Audit"
         ],
+        "summary": "审批拒绝",
         "operationId": "Audit_Reject",
         "parameters": [
           {
             "type": "string",
+            "description": "节点ID",
             "name": "node_id",
             "in": "path",
             "required": true
@@ -373,7 +385,8 @@
               "type": "object",
               "properties": {
                 "memo": {
-                  "type": "string"
+                  "type": "string",
+                  "title": "注释"
                 }
               }
             }
@@ -400,10 +413,12 @@
         "tags": [
           "Audit"
         ],
+        "summary": "审批驳回",
         "operationId": "Audit_TurnDown",
         "parameters": [
           {
             "type": "string",
+            "description": "节点ID",
             "name": "node_id",
             "in": "path",
             "required": true
@@ -416,7 +431,8 @@
               "type": "object",
               "properties": {
                 "memo": {
-                  "type": "string"
+                  "type": "string",
+                  "title": "注释"
                 }
               }
             }
@@ -6611,12 +6627,10 @@
     "componentsV1AuditBusinessType": {
       "type": "integer",
       "format": "int32",
-      "title": "- 1: 派息\n - 2: 对账单\n - 3: 付款提醒\n - 4: 结算通知",
+      "title": "- 1: 订单\n - 2: 结算单",
       "enum": [
         1,
-        2,
-        3,
-        4
+        2
       ]
     },
     "componentsV1Bool": {
@@ -9618,10 +9632,12 @@
       "properties": {
         "level": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "审批流层级"
         },
         "nodes": {
           "type": "array",
+          "title": "审批流节点",
           "items": {
             "type": "object",
             "$ref": "#/definitions/productV1AuditTaskNode"
@@ -9650,27 +9666,33 @@
       "type": "object",
       "properties": {
         "approver": {
-          "type": "string"
+          "type": "string",
+          "title": "审批人"
         },
         "node_id": {
-          "type": "string"
+          "type": "string",
+          "title": "节点ID"
         },
         "status": {
+          "title": "审批状态",
           "$ref": "#/definitions/componentsV1ApproveStatus"
         }
       }
     },
     "productV1CreateAuditRuleRequest": {
       "type": "object",
+      "title": "创建审批规则",
       "properties": {
         "flows": {
           "type": "array",
+          "title": "审批流",
           "items": {
             "type": "object",
             "$ref": "#/definitions/productV1Flow"
           }
         },
         "rule": {
+          "title": "规则",
           "$ref": "#/definitions/productV1Rule"
         }
       }
@@ -9819,28 +9841,33 @@
     },
     "productV1Flow": {
       "type": "object",
+      "title": "审批流",
       "properties": {
         "approve_groups": {
           "type": "array",
+          "title": "审批组",
           "items": {
             "type": "string"
           }
         },
         "approvers": {
           "type": "array",
+          "title": "审批人",
           "items": {
             "type": "string"
           }
         },
         "must_approvers": {
           "type": "array",
+          "title": "必审人",
           "items": {
             "type": "string"
           }
         },
         "threshold": {
           "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "title": "审批阈值"
         }
       }
     },
@@ -9849,16 +9876,19 @@
       "properties": {
         "audit_flow": {
           "type": "array",
+          "title": "审批流",
           "items": {
             "type": "object",
             "$ref": "#/definitions/productV1AuditFlow"
           }
         },
         "status": {
+          "title": "审批状态",
           "$ref": "#/definitions/componentsV1ApproveStatus"
         },
         "task_id": {
-          "type": "string"
+          "type": "string",
+          "title": "任务ID"
         }
       }
     },
@@ -9966,25 +9996,31 @@
       "type": "object",
       "properties": {
         "business_type": {
+          "title": "业务类型",
           "$ref": "#/definitions/componentsV1AuditBusinessType"
         },
         "coin": {
-          "type": "string"
+          "type": "string",
+          "title": "币种"
         },
         "from_party": {
-          "type": "string"
+          "type": "string",
+          "title": "参与方-发起方"
         },
         "id": {
           "type": "string"
         },
         "product_category": {
-          "type": "string"
+          "type": "string",
+          "title": "产品类别"
         },
         "to_party": {
-          "type": "string"
+          "type": "string",
+          "title": "参与方-接收方"
         },
         "value": {
-          "type": "string"
+          "type": "string",
+          "title": "金额"
         }
       }
     },
@@ -9992,25 +10028,31 @@
       "type": "object",
       "properties": {
         "business_type": {
+          "title": "业务类型",
           "$ref": "#/definitions/componentsV1AuditBusinessType"
         },
         "coin": {
-          "type": "string"
+          "type": "string",
+          "title": "币种"
         },
         "from_party": {
+          "title": "参与方-发起方",
           "$ref": "#/definitions/componentsV1IdName"
         },
         "id": {
           "type": "string"
         },
         "product_category": {
+          "title": "产品类别",
           "$ref": "#/definitions/componentsV1IdName"
         },
         "to_party": {
+          "title": "参与方-接收方",
           "$ref": "#/definitions/componentsV1IdName"
         },
         "value": {
-          "type": "string"
+          "type": "string",
+          "title": "金额"
         }
       }
     },
